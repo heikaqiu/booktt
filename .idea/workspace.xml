@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="5a75ba0b-3883-4ebf-9b69-9ac052ca8d63" name="Default Changelist" comment="搭建了SpringBoot 整合SSM的项目" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="F:\jar" />
+        <option name="mavenHome" value="$MAVEN_REPOSITORY$/apache-maven-3.5.4" />
+        <option name="userSettingsFile" value="F:\jar\apache-maven-3.5.4\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1WyKC6HcsvHMCVUbEWkxWEsHDdq" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="settings.github" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\IDEAProject\booktt\src\main\resources\static" />
+      <recent name="F:\IDEAProject\booktt\src\main\resources\static\js" />
+      <recent name="F:\IDEAProject\booktt\src\main\resources\templates" />
+      <recent name="F:\IDEAProject\booktt\src\main\resources" />
+      <recent name="F:\IDEAProject\booktt\src\main\java\cn\heikaqiu\booktt\bean" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\IDEAProject\booktt\src\main\resources\static" />
+      <recent name="F:\IDEAProject\booktt\src\main\resources\templates\css" />
+      <recent name="F:\IDEAProject\booktt\src\main\resources\templates" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="BookttApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="booktt" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="cn.heikaqiu.booktt.BookttApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5a75ba0b-3883-4ebf-9b69-9ac052ca8d63" name="Default Changelist" comment="" />
+      <created>1580116263260</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1580116263260</updated>
+      <workItem from="1580116269961" duration="6087000" />
+      <workItem from="1580126205677" duration="489000" />
+      <workItem from="1580218031265" duration="1021000" />
+      <workItem from="1580221661363" duration="406000" />
+      <workItem from="1580227003470" duration="909000" />
+      <workItem from="1580268977330" duration="2216000" />
+      <workItem from="1580271599643" duration="793000" />
+    </task>
+    <task id="LOCAL-00001" summary="搭建了SpringBoot 整合SSM的项目">
+      <created>1580269942342</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1580269942342</updated>
+    </task>
+    <task id="LOCAL-00002" summary="搭建了SpringBoot 整合SSM的项目">
+      <created>1580270858599</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1580270858599</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="1">
+          <value>
+            <State>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="roots">
+                    <value>
+                      <list>
+                        <option value="$PROJECT_DIR$" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="OPEN_TABS">
+      <set>
+        <option value="1" />
+      </set>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="搭建了SpringBoot 整合SSM的项目" />
+    <option name="LAST_COMMIT_MESSAGE" value="搭建了SpringBoot 整合SSM的项目" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="361" y="71" key="#Notifications" timestamp="1580270667170">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="361" y="71" key="#Notifications/0.0.1536.824@0.0.1536.824" timestamp="1580270667170" />
+    <state x="757" y="98" key="#com.intellij.refactoring.encapsulateFields.EncalpsulateFieldsDialog" timestamp="1580121489566">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="757" y="98" key="#com.intellij.refactoring.encapsulateFields.EncalpsulateFieldsDialog/0.0.1536.824@0.0.1536.824" timestamp="1580121489566" />
+    <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1580122820017">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1580122820017" />
+    <state x="193" y="16" key="CommitChangelistDialog2" timestamp="1580270948455">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="193" y="16" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1580270948455" />
+    <state x="147" y="71" key="DiffContextDialog" timestamp="1580270594529">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="147" y="71" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1580270594529" />
+    <state x="656" y="128" key="FileChooserDialogImpl" timestamp="1580272225708">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="656" y="128" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1580272225708" />
+    <state x="589" y="329" width="382" height="166" key="Github.CreateGistDialog" timestamp="1580272322185">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="589" y="329" width="382" height="166" key="Github.CreateGistDialog/0.0.1536.824@0.0.1536.824" timestamp="1580272322185" />
+    <state x="644" y="306" width="272" height="290" key="Github.ShareDialog" timestamp="1580271974629">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="644" y="306" width="272" height="290" key="Github.ShareDialog/0.0.1536.824@0.0.1536.824" timestamp="1580271974629" />
+    <state width="1493" height="203" key="GridCell.Tab.0.bottom" timestamp="1580227931332">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="203" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1580227931332" />
+    <state width="1493" height="203" key="GridCell.Tab.0.center" timestamp="1580227931332">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="203" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1580227931332" />
+    <state width="1493" height="203" key="GridCell.Tab.0.left" timestamp="1580227931332">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="203" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1580227931332" />
+    <state width="1493" height="203" key="GridCell.Tab.0.right" timestamp="1580227931332">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="203" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1580227931332" />
+    <state width="1493" height="203" key="GridCell.Tab.1.bottom" timestamp="1580227931333">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="203" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1580227931333" />
+    <state width="1493" height="203" key="GridCell.Tab.1.center" timestamp="1580227931332">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="203" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1580227931332" />
+    <state width="1493" height="203" key="GridCell.Tab.1.left" timestamp="1580227931332">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="203" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1580227931332" />
+    <state width="1493" height="203" key="GridCell.Tab.1.right" timestamp="1580227931332">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="203" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1580227931332" />
+    <state x="165" y="110" key="SettingsEditor" timestamp="1580271699278">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="165" y="110" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1580271699278" />
+    <state x="490" y="154" width="543" height="524" key="StructurePopup" timestamp="1580121802580">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="490" y="154" width="543" height="524" key="StructurePopup/0.0.1536.824@0.0.1536.824" timestamp="1580121802580" />
+    <state x="440" y="129" key="Vcs.Push.Dialog.v2" timestamp="1580271159882">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="440" y="129" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1580271159882" />
+  </component>
+</project>
