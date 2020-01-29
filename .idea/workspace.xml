@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5a75ba0b-3883-4ebf-9b69-9ac052ca8d63" name="Default Changelist" comment="搭建了SpringBoot 整合SSM的项目" />
+    <list default="true" id="5a75ba0b-3883-4ebf-9b69-9ac052ca8d63" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,6 +19,13 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="F:\IDEAProject\booktt\.idea" />
+      </set>
+    </option>
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -100,6 +109,8 @@
       <workItem from="1580227003470" duration="909000" />
       <workItem from="1580268977330" duration="2216000" />
       <workItem from="1580271599643" duration="793000" />
+      <workItem from="1580272465585" duration="1229000" />
+      <workItem from="1580273790656" duration="845000" />
     </task>
     <task id="LOCAL-00001" summary="搭建了SpringBoot 整合SSM的项目">
       <created>1580269942342</created>
@@ -115,7 +126,14 @@
       <option name="project" value="LOCAL" />
       <updated>1580270858599</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="搭建了SpringBoot 整合SSM的项目">
+      <created>1580272711057</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1580272711057</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -149,6 +167,13 @@
             </State>
           </value>
         </entry>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
       </map>
     </option>
     <option name="OPEN_TABS">
@@ -162,10 +187,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="搭建了SpringBoot 整合SSM的项目" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="361" y="71" key="#Notifications" timestamp="1580270667170">
+    <state x="265" y="99" key="#Notifications" timestamp="1580273701372">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="71" key="#Notifications/0.0.1536.824@0.0.1536.824" timestamp="1580270667170" />
+    <state x="265" y="99" key="#Notifications/0.0.1536.824@0.0.1536.824" timestamp="1580273701372" />
     <state x="757" y="98" key="#com.intellij.refactoring.encapsulateFields.EncalpsulateFieldsDialog" timestamp="1580121489566">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -174,10 +199,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1580122820017" />
-    <state x="193" y="16" key="CommitChangelistDialog2" timestamp="1580270948455">
+    <state x="193" y="16" key="CommitChangelistDialog2" timestamp="1580272702090">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="193" y="16" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1580270948455" />
+    <state x="193" y="16" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1580272702090" />
     <state x="147" y="71" key="DiffContextDialog" timestamp="1580270594529">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -190,6 +215,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="589" y="329" width="382" height="166" key="Github.CreateGistDialog/0.0.1536.824@0.0.1536.824" timestamp="1580272322185" />
+    <state x="618" y="346" key="Github.Dialog.Accounts.Choose" timestamp="1580273885586">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="618" y="346" key="Github.Dialog.Accounts.Choose/0.0.1536.824@0.0.1536.824" timestamp="1580273885586" />
     <state x="644" y="306" width="272" height="290" key="Github.ShareDialog" timestamp="1580271974629">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -226,17 +255,21 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1493" height="203" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1580227931332" />
-    <state x="165" y="110" key="SettingsEditor" timestamp="1580271699278">
+    <state x="85" y="93" key="SettingsEditor" timestamp="1580273671396">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="165" y="110" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1580271699278" />
+    <state x="85" y="93" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1580273671396" />
     <state x="490" y="154" width="543" height="524" key="StructurePopup" timestamp="1580121802580">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="490" y="154" width="543" height="524" key="StructurePopup/0.0.1536.824@0.0.1536.824" timestamp="1580121802580" />
-    <state x="440" y="129" key="Vcs.Push.Dialog.v2" timestamp="1580271159882">
+    <state x="440" y="129" key="Vcs.Push.Dialog.v2" timestamp="1580274366326">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="440" y="129" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1580271159882" />
+    <state x="440" y="129" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1580274366326" />
+    <state x="471" y="204" key="git4idea.merge.GitPullDialog" timestamp="1580273365909">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="471" y="204" key="git4idea.merge.GitPullDialog/0.0.1536.824@0.0.1536.824" timestamp="1580273365909" />
   </component>
 </project>
