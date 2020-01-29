@@ -2,12 +2,565 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5a75ba0b-3883-4ebf-9b69-9ac052ca8d63" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_devtools_2_2_4_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/.editorconfig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/CHANGELOG.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/Gruntfile.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/bower.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/css/flat-ui.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/css/flat-ui.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/css/flat-ui.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/css/vendor/bootstrap.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/fonts/glyphicons/flat-ui-icons-regular.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/fonts/glyphicons/flat-ui-icons-regular.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/fonts/glyphicons/flat-ui-icons-regular.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/fonts/glyphicons/flat-ui-icons-regular.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/fonts/glyphicons/selection.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/fonts/lato/lato-black.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/fonts/lato/lato-black.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/fonts/lato/lato-black.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/fonts/lato/lato-black.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/fonts/lato/lato-bold.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/fonts/lato/lato-bold.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/fonts/lato/lato-bold.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/fonts/lato/lato-bold.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/fonts/lato/lato-bolditalic.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/fonts/lato/lato-bolditalic.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/fonts/lato/lato-bolditalic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/fonts/lato/lato-bolditalic.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/fonts/lato/lato-italic.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/fonts/lato/lato-italic.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/fonts/lato/lato-italic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/fonts/lato/lato-italic.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/fonts/lato/lato-light.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/fonts/lato/lato-light.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/fonts/lato/lato-light.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/fonts/lato/lato-light.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/fonts/lato/lato-regular.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/fonts/lato/lato-regular.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/fonts/lato/lato-regular.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/fonts/lato/lato-regular.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/img/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/img/icons/png/Book.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/img/icons/png/Calendar.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/img/icons/png/Chat.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/img/icons/png/Clipboard.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/img/icons/png/Compas.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/img/icons/png/Gift-Box.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/img/icons/png/Infinity-Loop.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/img/icons/png/Mail.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/img/icons/png/Map.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/img/icons/png/Pensils.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/img/icons/png/Pocket.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/img/icons/png/Retina-Ready.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/img/icons/png/Toilet-Paper.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/img/icons/png/Watches.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/img/icons/svg/book.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/img/icons/svg/calendar.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/img/icons/svg/chat.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/img/icons/svg/clipboard.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/img/icons/svg/clocks.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/img/icons/svg/compas.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/img/icons/svg/gift-box.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/img/icons/svg/loop.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/img/icons/svg/mail.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/img/icons/svg/map.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/img/icons/svg/paper-bag.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/img/icons/svg/pencils.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/img/icons/svg/retina.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/img/icons/svg/ribbon.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/img/icons/svg/toilet-paper.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/img/login/icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/img/login/imac-2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/img/login/imac.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/img/tile/ribbon-2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/img/tile/ribbon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/js/flat-ui.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/js/flat-ui.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/js/vendor/html5shiv.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/js/vendor/jquery.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/js/vendor/jquery.min.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/js/vendor/respond.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/js/vendor/video-js.swf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/dist/js/vendor/video.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/docs/assets/css/demo.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/docs/assets/css/demo.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/docs/assets/css/docs.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/docs/assets/css/docs.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/docs/assets/css/src/demo.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/docs/assets/css/src/docs.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/docs/assets/css/src/prettyprint.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/docs/assets/img/demo/browser-2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/docs/assets/img/demo/browser-author.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/docs/assets/img/demo/browser-pic-1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/docs/assets/img/demo/browser-pic-2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/docs/assets/img/demo/browser-pic-3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/docs/assets/img/demo/browser-pic-4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/docs/assets/img/demo/browser-pic-5.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/docs/assets/img/demo/browser-pic-6.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/docs/assets/img/demo/browser.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/docs/assets/img/demo/html-icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/docs/assets/img/demo/logo-mask-2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/docs/assets/img/demo/logo-mask.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/docs/assets/img/demo/video.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/docs/assets/img/example-image.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/docs/assets/img/footer/logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/docs/assets/img/getting-started/icomoon_import.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/docs/assets/img/video/poster.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/docs/assets/js/application.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/docs/assets/js/prettify.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/docs/components.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/docs/examples/buttons.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/docs/examples/dropdowns.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/docs/examples/forms.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/docs/examples/navbar-fixed-top.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/docs/examples/navbar-static-top.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/docs/examples/navbars-with-elements.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/docs/examples/navbars.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/docs/examples/pagination.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/docs/examples/radiocheck.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/docs/examples/select.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/docs/examples/switches.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/docs/examples/tagsinput.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/docs/examples/thumbnails.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/docs/examples/tiles.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/docs/examples/todo-list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/docs/examples/tooltips.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/docs/examples/typography.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/docs/examples/vertical-slider.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/docs/getting-started.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/docs/template.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/fonts/glyphicons/flat-ui-icons-regular.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/fonts/glyphicons/flat-ui-icons-regular.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/fonts/glyphicons/flat-ui-icons-regular.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/fonts/glyphicons/flat-ui-icons-regular.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/fonts/glyphicons/selection.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/fonts/lato/lato-black.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/fonts/lato/lato-black.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/fonts/lato/lato-black.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/fonts/lato/lato-black.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/fonts/lato/lato-bold.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/fonts/lato/lato-bold.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/fonts/lato/lato-bold.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/fonts/lato/lato-bold.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/fonts/lato/lato-bolditalic.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/fonts/lato/lato-bolditalic.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/fonts/lato/lato-bolditalic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/fonts/lato/lato-bolditalic.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/fonts/lato/lato-italic.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/fonts/lato/lato-italic.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/fonts/lato/lato-italic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/fonts/lato/lato-italic.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/fonts/lato/lato-light.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/fonts/lato/lato-light.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/fonts/lato/lato-light.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/fonts/lato/lato-light.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/fonts/lato/lato-regular.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/fonts/lato/lato-regular.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/fonts/lato/lato-regular.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/fonts/lato/lato-regular.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/img/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/img/icons/png/Book.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/img/icons/png/Calendar.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/img/icons/png/Chat.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/img/icons/png/Clipboard.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/img/icons/png/Compas.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/img/icons/png/Gift-Box.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/img/icons/png/Infinity-Loop.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/img/icons/png/Mail.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/img/icons/png/Map.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/img/icons/png/Pensils.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/img/icons/png/Pocket.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/img/icons/png/Retina-Ready.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/img/icons/png/Toilet-Paper.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/img/icons/png/Watches.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/img/icons/svg/book.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/img/icons/svg/calendar.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/img/icons/svg/chat.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/img/icons/svg/clipboard.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/img/icons/svg/clocks.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/img/icons/svg/compas.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/img/icons/svg/gift-box.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/img/icons/svg/loop.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/img/icons/svg/mail.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/img/icons/svg/map.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/img/icons/svg/paper-bag.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/img/icons/svg/pencils.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/img/icons/svg/retina.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/img/icons/svg/ribbon.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/img/icons/svg/toilet-paper.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/img/login/icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/img/login/imac-2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/img/login/imac.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/img/tile/ribbon-2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/img/tile/ribbon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/js/.jscs.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/js/.jshintrc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/js/radiocheck.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/less/.csscomb.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/less/.csslintrc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/less/flat-ui.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/less/mixins.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/less/mixins/background-clip.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/less/mixins/background-variant.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/less/mixins/border-radius.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/less/mixins/buttons.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/less/mixins/center-block.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/less/mixins/clearfix.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/less/mixins/forms.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/less/mixins/gradients.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/less/mixins/grid.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/less/mixins/hide-text.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/less/mixins/image.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/less/mixins/nav-divider.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/less/mixins/navbar-vertical-align.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/less/mixins/opacity.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/less/mixins/pagination.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/less/mixins/pallets.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/less/mixins/reset-filter.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/less/mixins/resize.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/less/mixins/responsive-visibility.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/less/mixins/select.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/less/mixins/size.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/less/mixins/switches.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/less/mixins/tab-focus.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/less/mixins/text-emphasis.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/less/mixins/text-overflow.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/less/mixins/vendor-prefixes.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/less/modules/button-groups.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/less/modules/buttons.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/less/modules/code.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/less/modules/dropdowns.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/less/modules/footer.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/less/modules/forms.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/less/modules/glyphicons.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/less/modules/input-groups.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/less/modules/local-fonts.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/less/modules/login.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/less/modules/navbar.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/less/modules/pager.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/less/modules/pagination.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/less/modules/palette.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/less/modules/print.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/less/modules/progress-bars.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/less/modules/radiocheck.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/less/modules/scaffolding.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/less/modules/select.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/less/modules/share.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/less/modules/slider.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/less/modules/switch.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/less/modules/tagsinput.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/less/modules/thumbnails.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/less/modules/tiles.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/less/modules/todo-list.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/less/modules/tooltip.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/less/modules/type.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/less/modules/typeahead.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/less/modules/video.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/less/spaces.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/less/variables.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Flat-UI-master/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/BookInfo.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/Cart.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/FriendLink.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/Login.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/Order.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/OrderInfo.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/Register.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/UserInfo.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/.editorconfig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/CHANGELOG.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/Gruntfile.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/bower.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/css/flat-ui.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/css/flat-ui.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/css/flat-ui.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/css/vendor/bootstrap.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/fonts/glyphicons/flat-ui-icons-regular.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/fonts/glyphicons/flat-ui-icons-regular.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/fonts/glyphicons/flat-ui-icons-regular.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/fonts/glyphicons/flat-ui-icons-regular.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/fonts/glyphicons/selection.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/fonts/lato/lato-black.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/fonts/lato/lato-black.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/fonts/lato/lato-black.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/fonts/lato/lato-black.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/fonts/lato/lato-bold.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/fonts/lato/lato-bold.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/fonts/lato/lato-bold.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/fonts/lato/lato-bold.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/fonts/lato/lato-bolditalic.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/fonts/lato/lato-bolditalic.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/fonts/lato/lato-bolditalic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/fonts/lato/lato-bolditalic.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/fonts/lato/lato-italic.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/fonts/lato/lato-italic.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/fonts/lato/lato-italic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/fonts/lato/lato-italic.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/fonts/lato/lato-light.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/fonts/lato/lato-light.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/fonts/lato/lato-light.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/fonts/lato/lato-light.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/fonts/lato/lato-regular.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/fonts/lato/lato-regular.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/fonts/lato/lato-regular.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/fonts/lato/lato-regular.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/img/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/img/icons/png/Book.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/img/icons/png/Calendar.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/img/icons/png/Chat.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/img/icons/png/Clipboard.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/img/icons/png/Compas.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/img/icons/png/Gift-Box.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/img/icons/png/Infinity-Loop.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/img/icons/png/Mail.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/img/icons/png/Map.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/img/icons/png/Pensils.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/img/icons/png/Pocket.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/img/icons/png/Retina-Ready.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/img/icons/png/Toilet-Paper.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/img/icons/png/Watches.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/img/icons/svg/book.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/img/icons/svg/calendar.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/img/icons/svg/chat.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/img/icons/svg/clipboard.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/img/icons/svg/clocks.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/img/icons/svg/compas.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/img/icons/svg/gift-box.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/img/icons/svg/loop.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/img/icons/svg/mail.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/img/icons/svg/map.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/img/icons/svg/paper-bag.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/img/icons/svg/pencils.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/img/icons/svg/retina.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/img/icons/svg/ribbon.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/img/icons/svg/toilet-paper.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/img/login/icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/img/login/imac-2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/img/login/imac.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/img/tile/ribbon-2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/img/tile/ribbon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/js/flat-ui.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/js/flat-ui.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/js/vendor/html5shiv.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/js/vendor/jquery.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/js/vendor/jquery.min.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/js/vendor/respond.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/js/vendor/video-js.swf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/dist/js/vendor/video.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/docs/assets/css/demo.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/docs/assets/css/demo.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/docs/assets/css/docs.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/docs/assets/css/docs.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/docs/assets/css/src/demo.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/docs/assets/css/src/docs.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/docs/assets/css/src/prettyprint.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/docs/assets/img/demo/browser-2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/docs/assets/img/demo/browser-author.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/docs/assets/img/demo/browser-pic-1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/docs/assets/img/demo/browser-pic-2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/docs/assets/img/demo/browser-pic-3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/docs/assets/img/demo/browser-pic-4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/docs/assets/img/demo/browser-pic-5.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/docs/assets/img/demo/browser-pic-6.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/docs/assets/img/demo/browser.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/docs/assets/img/demo/html-icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/docs/assets/img/demo/logo-mask-2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/docs/assets/img/demo/logo-mask.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/docs/assets/img/demo/video.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/docs/assets/img/example-image.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/docs/assets/img/footer/logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/docs/assets/img/getting-started/icomoon_import.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/docs/assets/img/video/poster.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/docs/assets/js/application.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/docs/assets/js/prettify.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/docs/components.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/docs/examples/buttons.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/docs/examples/dropdowns.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/docs/examples/forms.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/docs/examples/navbar-fixed-top.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/docs/examples/navbar-static-top.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/docs/examples/navbars-with-elements.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/docs/examples/navbars.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/docs/examples/pagination.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/docs/examples/radiocheck.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/docs/examples/select.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/docs/examples/switches.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/docs/examples/tagsinput.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/docs/examples/thumbnails.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/docs/examples/tiles.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/docs/examples/todo-list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/docs/examples/tooltips.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/docs/examples/typography.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/docs/examples/vertical-slider.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/docs/getting-started.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/docs/template.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/fonts/glyphicons/flat-ui-icons-regular.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/fonts/glyphicons/flat-ui-icons-regular.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/fonts/glyphicons/flat-ui-icons-regular.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/fonts/glyphicons/flat-ui-icons-regular.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/fonts/glyphicons/selection.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/fonts/lato/lato-black.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/fonts/lato/lato-black.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/fonts/lato/lato-black.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/fonts/lato/lato-black.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/fonts/lato/lato-bold.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/fonts/lato/lato-bold.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/fonts/lato/lato-bold.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/fonts/lato/lato-bold.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/fonts/lato/lato-bolditalic.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/fonts/lato/lato-bolditalic.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/fonts/lato/lato-bolditalic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/fonts/lato/lato-bolditalic.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/fonts/lato/lato-italic.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/fonts/lato/lato-italic.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/fonts/lato/lato-italic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/fonts/lato/lato-italic.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/fonts/lato/lato-light.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/fonts/lato/lato-light.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/fonts/lato/lato-light.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/fonts/lato/lato-light.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/fonts/lato/lato-regular.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/fonts/lato/lato-regular.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/fonts/lato/lato-regular.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/fonts/lato/lato-regular.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/img/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/img/icons/png/Book.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/img/icons/png/Calendar.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/img/icons/png/Chat.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/img/icons/png/Clipboard.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/img/icons/png/Compas.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/img/icons/png/Gift-Box.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/img/icons/png/Infinity-Loop.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/img/icons/png/Mail.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/img/icons/png/Map.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/img/icons/png/Pensils.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/img/icons/png/Pocket.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/img/icons/png/Retina-Ready.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/img/icons/png/Toilet-Paper.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/img/icons/png/Watches.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/img/icons/svg/book.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/img/icons/svg/calendar.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/img/icons/svg/chat.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/img/icons/svg/clipboard.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/img/icons/svg/clocks.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/img/icons/svg/compas.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/img/icons/svg/gift-box.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/img/icons/svg/loop.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/img/icons/svg/mail.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/img/icons/svg/map.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/img/icons/svg/paper-bag.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/img/icons/svg/pencils.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/img/icons/svg/retina.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/img/icons/svg/ribbon.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/img/icons/svg/toilet-paper.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/img/login/icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/img/login/imac-2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/img/login/imac.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/img/tile/ribbon-2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/img/tile/ribbon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/js/.jscs.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/js/.jshintrc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/js/radiocheck.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/less/.csscomb.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/less/.csslintrc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/less/flat-ui.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/less/mixins.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/less/mixins/background-clip.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/less/mixins/background-variant.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/less/mixins/border-radius.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/less/mixins/buttons.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/less/mixins/center-block.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/less/mixins/clearfix.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/less/mixins/forms.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/less/mixins/gradients.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/less/mixins/grid.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/less/mixins/hide-text.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/less/mixins/image.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/less/mixins/nav-divider.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/less/mixins/navbar-vertical-align.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/less/mixins/opacity.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/less/mixins/pagination.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/less/mixins/pallets.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/less/mixins/reset-filter.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/less/mixins/resize.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/less/mixins/responsive-visibility.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/less/mixins/select.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/less/mixins/size.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/less/mixins/switches.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/less/mixins/tab-focus.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/less/mixins/text-emphasis.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/less/mixins/text-overflow.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/less/mixins/vendor-prefixes.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/less/modules/button-groups.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/less/modules/buttons.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/less/modules/code.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/less/modules/dropdowns.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/less/modules/footer.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/less/modules/forms.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/less/modules/glyphicons.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/less/modules/input-groups.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/less/modules/local-fonts.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/less/modules/login.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/less/modules/navbar.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/less/modules/pager.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/less/modules/pagination.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/less/modules/palette.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/less/modules/print.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/less/modules/progress-bars.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/less/modules/radiocheck.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/less/modules/scaffolding.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/less/modules/select.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/less/modules/share.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/less/modules/slider.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/less/modules/switch.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/less/modules/tagsinput.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/less/modules/thumbnails.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/less/modules/tiles.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/less/modules/todo-list.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/less/modules/tooltip.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/less/modules/type.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/less/modules/typeahead.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/less/modules/video.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/less/spaces.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/less/variables.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/Flat-UI-master/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/templates/BookInfo.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/templates/Cart.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/templates/FriendLink.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/templates/Login.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/templates/Order.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/templates/OrderInfo.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/templates/Register.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/templates/UserInfo.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/booktt.iml" beforeDir="false" afterPath="$PROJECT_DIR$/booktt.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/heikaqiu/booktt/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/heikaqiu/booktt/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/heikaqiu/booktt/BookttApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/heikaqiu/booktt/BookttApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/heikaqiu/booktt/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/heikaqiu/booktt/controller/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CompilerWorkspaceConfiguration">
+    <option name="MAKE_PROJECT_ON_SAVE" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -49,26 +602,27 @@
     <property name="RequestMappingsPanelWidth0" value="75" />
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/static" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="settings.github" />
+    <property name="settings.editor.selected.configurable" value="DockerRegistry" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="F:\IDEAProject\booktt\src\main\resources\static" />
-      <recent name="F:\IDEAProject\booktt\src\main\resources\static\js" />
-      <recent name="F:\IDEAProject\booktt\src\main\resources\templates" />
-      <recent name="F:\IDEAProject\booktt\src\main\resources" />
-      <recent name="F:\IDEAProject\booktt\src\main\java\cn\heikaqiu\booktt\bean" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="F:\IDEAProject\booktt\src\main\resources\static" />
       <recent name="F:\IDEAProject\booktt\src\main\resources\templates\css" />
       <recent name="F:\IDEAProject\booktt\src\main\resources\templates" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\IDEAProject\booktt\src\main\resources\static" />
+      <recent name="F:\IDEAProject\booktt\src\main\resources\templates" />
+      <recent name="F:\IDEAProject\booktt\src\main\resources\static\js" />
+      <recent name="F:\IDEAProject\booktt\src\main\resources" />
+      <recent name="F:\IDEAProject\booktt\src\main\java\cn\heikaqiu\booktt\bean" />
     </key>
   </component>
   <component name="RunManager">
@@ -110,7 +664,8 @@
       <workItem from="1580268977330" duration="2216000" />
       <workItem from="1580271599643" duration="793000" />
       <workItem from="1580272465585" duration="1229000" />
-      <workItem from="1580273790656" duration="845000" />
+      <workItem from="1580273790656" duration="3258000" />
+      <workItem from="1580281253277" duration="3521000" />
     </task>
     <task id="LOCAL-00001" summary="搭建了SpringBoot 整合SSM的项目">
       <created>1580269942342</created>
@@ -133,7 +688,21 @@
       <option name="project" value="LOCAL" />
       <updated>1580272711057</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="提交到github">
+      <created>1580274716728</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1580274716728</updated>
+    </task>
+    <task id="LOCAL-00005" summary="添加了github下载的前端页面">
+      <created>1580283668586</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1580283668586</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -184,7 +753,10 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="搭建了SpringBoot 整合SSM的项目" />
-    <option name="LAST_COMMIT_MESSAGE" value="搭建了SpringBoot 整合SSM的项目" />
+    <MESSAGE value="提交到github" />
+    <MESSAGE value="添加了github下载的前端页面" />
+    <MESSAGE value="添加了前端页面尚未写业务代码" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加了前端页面尚未写业务代码" />
   </component>
   <component name="WindowStateProjectService">
     <state x="265" y="99" key="#Notifications" timestamp="1580273701372">
@@ -199,10 +771,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1580122820017" />
-    <state x="193" y="16" key="CommitChangelistDialog2" timestamp="1580272702090">
+    <state x="422" y="14" key="CommitChangelistDialog2" timestamp="1580284893675">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="193" y="16" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1580272702090" />
+    <state x="422" y="14" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1580284893675" />
     <state x="147" y="71" key="DiffContextDialog" timestamp="1580270594529">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -219,57 +791,65 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="618" y="346" key="Github.Dialog.Accounts.Choose/0.0.1536.824@0.0.1536.824" timestamp="1580273885586" />
-    <state x="644" y="306" width="272" height="290" key="Github.ShareDialog" timestamp="1580271974629">
+    <state x="644" y="306" width="272" height="290" key="Github.ShareDialog" timestamp="1580275157674">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="644" y="306" width="272" height="290" key="Github.ShareDialog/0.0.1536.824@0.0.1536.824" timestamp="1580271974629" />
-    <state width="1493" height="203" key="GridCell.Tab.0.bottom" timestamp="1580227931332">
+    <state x="644" y="306" width="272" height="290" key="Github.ShareDialog/0.0.1536.824@0.0.1536.824" timestamp="1580275157674" />
+    <state width="1493" height="203" key="GridCell.Tab.0.bottom" timestamp="1580283306548">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="203" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1580227931332" />
-    <state width="1493" height="203" key="GridCell.Tab.0.center" timestamp="1580227931332">
+    <state width="1493" height="203" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1580283306548" />
+    <state width="1493" height="203" key="GridCell.Tab.0.center" timestamp="1580283306548">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="203" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1580227931332" />
-    <state width="1493" height="203" key="GridCell.Tab.0.left" timestamp="1580227931332">
+    <state width="1493" height="203" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1580283306548" />
+    <state width="1493" height="203" key="GridCell.Tab.0.left" timestamp="1580283306548">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="203" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1580227931332" />
-    <state width="1493" height="203" key="GridCell.Tab.0.right" timestamp="1580227931332">
+    <state width="1493" height="203" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1580283306548" />
+    <state width="1493" height="203" key="GridCell.Tab.0.right" timestamp="1580283306548">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="203" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1580227931332" />
-    <state width="1493" height="203" key="GridCell.Tab.1.bottom" timestamp="1580227931333">
+    <state width="1493" height="203" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1580283306548" />
+    <state width="1493" height="203" key="GridCell.Tab.1.bottom" timestamp="1580283306549">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="203" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1580227931333" />
-    <state width="1493" height="203" key="GridCell.Tab.1.center" timestamp="1580227931332">
+    <state width="1493" height="203" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1580283306549" />
+    <state width="1493" height="203" key="GridCell.Tab.1.center" timestamp="1580283306549">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="203" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1580227931332" />
-    <state width="1493" height="203" key="GridCell.Tab.1.left" timestamp="1580227931332">
+    <state width="1493" height="203" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1580283306549" />
+    <state width="1493" height="203" key="GridCell.Tab.1.left" timestamp="1580283306549">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="203" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1580227931332" />
-    <state width="1493" height="203" key="GridCell.Tab.1.right" timestamp="1580227931332">
+    <state width="1493" height="203" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1580283306549" />
+    <state width="1493" height="203" key="GridCell.Tab.1.right" timestamp="1580283306549">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="203" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1580227931332" />
-    <state x="85" y="93" key="SettingsEditor" timestamp="1580273671396">
+    <state width="1493" height="203" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1580283306549" />
+    <state x="349" y="78" key="Registry" timestamp="1580282961354">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="85" y="93" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1580273671396" />
+    <state x="349" y="78" key="Registry/0.0.1536.824@0.0.1536.824" timestamp="1580282961354" />
+    <state x="85" y="93" key="SettingsEditor" timestamp="1580282912518">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="85" y="93" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1580282912518" />
     <state x="490" y="154" width="543" height="524" key="StructurePopup" timestamp="1580121802580">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="490" y="154" width="543" height="524" key="StructurePopup/0.0.1536.824@0.0.1536.824" timestamp="1580121802580" />
-    <state x="440" y="129" key="Vcs.Push.Dialog.v2" timestamp="1580274366326">
+    <state x="306" y="126" key="Vcs.Push.Dialog.v2" timestamp="1580275077656">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="440" y="129" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1580274366326" />
-    <state x="471" y="204" key="git4idea.merge.GitPullDialog" timestamp="1580273365909">
+    <state x="306" y="126" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1580275077656" />
+    <state x="471" y="204" key="git4idea.merge.GitPullDialog" timestamp="1580274763057">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="471" y="204" key="git4idea.merge.GitPullDialog/0.0.1536.824@0.0.1536.824" timestamp="1580273365909" />
+    <state x="471" y="204" key="git4idea.merge.GitPullDialog/0.0.1536.824@0.0.1536.824" timestamp="1580274763057" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1580282847582">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1580282847582" />
   </component>
 </project>

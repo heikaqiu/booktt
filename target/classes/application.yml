@@ -23,11 +23,21 @@ spring:
     maxPoolPreparedStatementPerConnectionSize: 20
     useGlobalDataSourceStat: true
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+  devtools:
+    restart:
+      enabled: true  #设置开启热部署
+      additional-paths: src/main/java #重启目录
+      exclude: WEB-INF/**
+    freemarker:
+      cache: false    #页面不加载缓存，修改即时生效
 mybatis:
   # 指定全局配置文件位置
   config-location: classpath:mybatis/mybatis-config.xml
   # 指定sql映射文件位置
   mapper-locations: classpath:mybatis/mapper/*.xml
+
+
+
 
 #    schema:
 #      - classpath:sql/department.sql
