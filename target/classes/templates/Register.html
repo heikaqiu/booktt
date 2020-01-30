@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html>
-<head lang="en">
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head >
     <meta charset="UTF-8">
 
     <link href="css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet">
@@ -18,29 +18,7 @@
 </head>
 <body>
 <!-- Static navbar -->
-<div class="navbar navbar-default navbar-static-top" role="navigation">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">这什么东西</span>
-            </button>
-            <a class="navbar-brand" href="Index.html">图书商城</a>
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="Index.html">首页</a></li>
-                <li><a href="Order.html">我的订单</a></li>
-                <li><a href="UserInfo.html">个人中心</a></li>
-                <li><a href="FriendLink.html">友情链接</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right hidden-sm">
-                <li><a href="Login.html">登录</a></li>
-                <li><a href="Register.html">注册</a></li>
-                <li>
-                    <a href="Cart.html"><span class="glyphicon glyphicon-shopping-cart">购物车</span></a></li>
-            </ul>
-        </div><!--/.nav-collapse -->
-    </div>
+<div th:replace="Index :: head">
 </div>
 <!--content-->
 <div class="container">
@@ -49,33 +27,34 @@
              <h1 class="text-center" style="margin-bottom: 30px">用户注册</h1>
         </div>
         <div class="col-sm-6">
-            <form class="form-horizontal caption">
+            <form class="form-horizontal caption" action="register" method="post">
                 <div class="form-group">
                     <label for="username" class="col-sm-3 control-label">用户名</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" id="username" placeholder="用户名">
+                        <input type="text" class="form-control" id="username" placeholder="用户名" name="username">
+                        <p style="color: red" th:if="${not#strings.isEmpty(error)}" th:text="${error}"></p>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="password" class="col-sm-3 control-label">密码</label>
                     <div class="col-sm-8">
-                        <input type="password" class="form-control" id="password" placeholder="密码">
+                        <input type="password" class="form-control" id="password" placeholder="密码"  name="password">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="password" class="col-sm-3 control-label">确认密码</label>
                     <div class="col-sm-8">
-                        <input type="password" class="form-control" id="password2" placeholder="确认密码">
+                        <input type="password" class="form-control" id="password2" placeholder="确认密码"  name="password2">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inlineRadio1" class="col-sm-3 control-label">性别</label>
                     <div class="col-sm-8">
                         <label class="radio-inline">
-                            <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">男
+                            <input type="radio" name="gender" id="inlineRadio1" value="1" checked="checked">男
                         </label>
                         <label class="radio-inline">
-                            <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option1">女
+                            <input type="radio" name="gender" id="inlineRadio2" value="0">女
                         </label>
                     </div>
 
@@ -83,19 +62,59 @@
                 <div class="form-group">
                     <label for="telephone" class="col-sm-3 control-label">电话</label>
                     <div class="col-sm-8">
-                        <input type="tel" class="form-control" id="telephone" placeholder="电话号码">
+                        <input type="tel" class="form-control" id="telephone" placeholder="电话号码" name="telephone">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="address" class="col-sm-3 control-label">地址</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" id="address" placeholder="地址">
+                        <select style="width:200px" class="form-control" onchange="provinceChange(this)" value="" name="province">
+                            <option value="-1">-请选择-</option>
+                            <option value="0">北京市</option>
+                            <option value="1">天津市</option>
+                            <option value="2">上海市</option>
+                            <option value="3">重庆市</option>
+                            <option value="4">新疆自治区</option>
+                            <option value="5">西藏自治区</option>
+                            <option value="6">宁夏自治区</option>
+                            <option value="7">内蒙古自治区</option>
+                            <option value="8">广西自治区</option>
+                            <option value="9">黑龙江省</option>
+                            <option value="10">吉林省</option>
+                            <option value="11">辽宁省</option>
+                            <option value="12">河北省</option>
+                            <option value="13">山东省</option>
+                            <option value="14">江苏省</option>
+                            <option value="15">安徽省</option>
+                            <option value="16">浙江省</option>
+                            <option value="17">福建省</option>
+                            <option value="18">广东省</option>
+                            <option value="19">海南省</option>
+                            <option value="20">云南省</option>
+                            <option value="21">贵州省</option>
+                            <option value="22">四川省</option>
+                            <option value="23">湖南省</option>
+                            <option value="24">湖北省</option>
+                            <option value="25">河南省</option>
+                            <option value="26">山西省</option>
+                            <option value="27">陕西省</option>
+                            <option value="28">甘肃省</option>
+                            <option value="29">青海省</option>
+                            <option value="30">江西省</option>
+                            <option value="31">台湾省</option>
+                            <option value="32">香港特别行政区</option>
+                            <option value="33">澳门特别行政区</option>
+                        </select>
+                        <select style="width:200px" class="form-control" name="city">
+                            <option value="-1">-请选择-</option>
+                        </select>
+                        <input type="text" class="form-control" id="address" placeholder="地址" name="address">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="email" class="col-sm-3 control-label">邮箱</label>
+                    <label for="paypassword" class="col-sm-3 control-label">支付密码</label>
                     <div class="col-sm-8">
-                        <input type="email" class="form-control" id="email" placeholder="邮箱">
+                        <input type="password" class="form-control" id="paypassword" name="paypassword"  placeholder="支付密码">
                     </div>
                 </div>
                 <div class="form-group">
@@ -122,5 +141,65 @@
 <div class="navbar navbar-default navbar-static-bottom">
     版权声明区
 </div>
+
+<script>
+
+    var pArr=new Array("北京市","天津市","上海市","重庆市","新疆自治区","西藏自治区","宁夏自治区","内蒙古自治区","广西自治区","黑龙江省","吉林省","辽宁省","河北省","山东省","江苏省","安徽省","浙江省","福建省","广东省","海南省","云南省","贵州省","四川省","湖南省","湖北省","河南省","山西省","陕西省","甘肃省","青海省","江西省","台湾省","香港特别行政区","澳门特别行政区") ;
+
+    var provinceArr = new Array(33);
+    provinceArr[0]=new Array("北京市");
+    provinceArr[1]=new Array("天津市");
+    provinceArr[2]=new Array("上海市");
+    provinceArr[3]=new Array("重庆市");
+    provinceArr[4]=new Array("乌鲁木齐","克拉玛依");
+    provinceArr[5]=new Array("拉萨");
+    provinceArr[6]=new Array("银川","石嘴山","吴忠","固原","中卫");
+    provinceArr[7]=new Array("呼和浩特","包头","乌海","赤峰","通辽","鄂尔多斯","呼伦贝尔","巴彦淖尔","乌兰察布");
+    provinceArr[8]=new Array("南宁","柳州","桂林","梧州","北海","崇左","来宾","贺州","玉林","百色","河池","钦州","防城港","贵港");
+    provinceArr[9]=new Array("哈尔滨","大庆","齐齐哈尔","佳木斯","鸡西","鹤岗","双鸭山","牡丹江","伊春","七台河","黑河","绥化");
+    provinceArr[10]=new Array("长春","吉林","四平","辽源","通化","白山","松原","白城");
+    provinceArr[11]=new Array("沈阳","大连","鞍山","抚顺","本溪","丹东","锦州","营口","阜新","辽阳","盘锦","铁岭","朝阳","葫芦岛");
+    provinceArr[12]=new Array("石家庄","唐山","邯郸","秦皇岛","保定","张家口","承德","廊坊","沧州","衡水","邢台");
+    provinceArr[13]=new Array("济南","青岛","淄博","枣庄","东营","烟台","潍坊","济宁","泰安","威海","日照","莱芜","临沂","德州","聊城","菏泽","滨州");
+    provinceArr[14]=new Array("南京","镇江","常州","无锡","苏州","徐州","连云港","淮安","盐城","扬州","泰州","南通","宿迁");
+    provinceArr[15]=new Array("合肥","蚌埠","芜湖","淮南","亳州","阜阳","淮北","宿州","滁州","安庆","巢湖","马鞍山","宣城","黄山","池州","铜陵");
+    provinceArr[16]=new Array("杭州","嘉兴","湖州","宁波","金华","温州","丽水","绍兴","衢州","舟山","台州");
+    provinceArr[17]=new Array("福州","厦门","泉州","三明","南平","漳州","莆田","宁德","龙岩");
+    provinceArr[18]=new Array("广州","深圳","汕头","惠州","珠海","揭阳","佛山","河源","阳江","茂名","湛江","梅州","肇庆","韶关","潮州","东莞","中山","清远","江门","汕尾","云浮");
+    provinceArr[19]=new Array("海口","三亚");
+    provinceArr[20]=new Array("昆明","曲靖","玉溪","保山","昭通","丽江","普洱","临沧");
+    provinceArr[21]=new Array("贵阳","六盘水","遵义","安顺");
+    provinceArr[22]=new Array("成都","绵阳","德阳","广元","自贡","攀枝花","乐山","南充","内江","遂宁","广安","泸州","达州","眉山","宜宾","雅安","资阳");
+    provinceArr[23]=new Array("长沙","株洲","湘潭","衡阳","岳阳","郴州","永州","邵阳","怀化","常德","益阳","张家界","娄底");
+    provinceArr[24]=new Array("武汉","襄樊","宜昌","黄石","鄂州","随州","荆州","荆门","十堰","孝感","黄冈","咸宁");
+    provinceArr[25]=new Array("郑州","洛阳","开封","漯河","安阳","新乡","周口","三门峡","焦作","平顶山","信阳","南阳","鹤壁","濮阳","许昌","商丘","驻马店");
+    provinceArr[26]=new Array("太原","大同","忻州","阳泉","长治","晋城","朔州","晋中","运城","临汾","吕梁");
+    provinceArr[27]=new Array("西安","咸阳","铜川","延安","宝鸡","渭南","汉中","安康","商洛","榆林");
+    provinceArr[28]=new Array("兰州","天水","平凉","酒泉","嘉峪关","金昌","白银","武威","张掖","庆阳","定西","陇南");
+    provinceArr[29]=new Array("西宁");
+    provinceArr[30]=new Array("南昌","九江","赣州","吉安","鹰潭","上饶","萍乡","景德镇","新余","宜春","抚州");
+    provinceArr[31]=new Array("台北","台中","基隆","高雄","台南","新竹","嘉义");
+    provinceArr[32]=new Array("香港特别行政区");
+    provinceArr[33]=new Array("澳门特别行政区");
+
+    function provinceChange(province){
+        var city = document.getElementsByName("city")[0];
+        console.log(province.value);
+        console.log(typeof(province.value));
+        if(province.value=="-1"){
+            city.innerHTML="<option value=\"-1\">-请选择-</option>";
+            return;
+        }
+//		console.log(provinceArr[province.value]);
+        var cityArr = provinceArr[province.value];
+        city.options.length=0;
+        for(var i=0;i<cityArr.length;i++){
+            var cityOption = document.createElement("option");
+            cityOption.setAttribute("value",i);
+            cityOption.innerText=cityArr[i];
+            city.appendChild(cityOption);
+        }
+    }
+</script>
 </body>
 </html>

@@ -39,9 +39,16 @@ public interface UserMapper {
     public int deleteUserById(Integer id);
 
     @Options(useGeneratedKeys = true,keyProperty = "id")
-    @Insert("insert into ur(username) values(#{username})")
+    @Insert("insert into ur(username,password,balance,isadmin,province,city,address,gender,time,paypassword,telephone) " +
+            "values(#{username},#{password},#{balance},#{isadmin},#{province},#{city},#{address},#{gender},#{time},#{paypassword},#{telephone})")
     public int insertUser(User user);
 
     @Update("update ur set username=#{username} where id=#{id}")
     public int updateUser(User user);
+
+    @Select("select * from ur where username=#{username} and password=#{password}")
+    User getUserByUsernameAndPassword(String username, String password);
+
+    @Select("select * from ur where username=#{username}")
+    User getUserByUsername(String username);
 }
