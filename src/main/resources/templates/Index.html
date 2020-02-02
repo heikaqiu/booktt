@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en"  xmlns:th="http://www.thymeleaf.org">
-<head >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
     <meta charset="UTF-8">
 
     <link href="css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet">
@@ -10,18 +10,20 @@
     <script src="Flat-UI-master/dist/js/flat-ui.min.js"></script>
     <title></title>
     <style>
-        .row{
+        .row {
             margin-top: 20px;;
         }
-        .center{
+
+        .center {
             text-align: center;
         }
-        .pagination{
+
+        .pagination {
             background: #cccccc;
         }
     </style>
     <script>
-        $(function(){
+        $(function () {
             $('#myTabs a').click(function (e) {
                 $(this).tab('show')
             });
@@ -30,7 +32,7 @@
 </head>
 <body>
 <!-- Static navbar -->
-<div class="navbar navbar-default navbar-static-top" role="navigation" th:fragment="head" >
+<div class="navbar navbar-default navbar-static-top" role="navigation" th:fragment="head">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -40,17 +42,24 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li  th:classappend="${session.page.equals('/')} ? 'active' : '' "><a href="/">首页</a></li>
-                <li  th:classappend="${session.page.equals('order')} ? 'active' : '' "><a href="/order.html">我的订单</a></li>
-                <li  th:classappend="${session.page.equals('friendLink')} ? 'active' : '' "><a href="/friendLink.html">友情链接</a></li>
+                <li th:classappend="${session.page.equals('/')} ? 'active' : '' "><a href="/">首页</a></li>
+                <li th:classappend="${session.page.equals('order')} ? 'active' : '' "><a href="/order.html">我的订单</a>
+                </li>
+                <li th:classappend="${session.page.equals('friendLink')} ? 'active' : '' "><a href="/friendLink.html">友情链接</a>
+                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right hidden-sm">
 
-                <li th:if="${session.login_user} == null" th:classappend="${session.page.equals('login')} ? 'active' : '' "><a href="/login.html"  >登录</a></li>
-                <li th:if="${session.login_user} != null" th:classappend="${session.page.equals('userInfo')} ? 'active' : '' "><a href="/userInfo.html"  >欢迎光临<span style="color: #00a1cb" th:text="${session.login_user.username}" ></span>,进入个人中心</a></li>
-                <li th:classappend="${session.page.equals('register')} ? 'active' : '' "><a href="/register.html"  >注册</a></li>
+                <li th:if="${session.login_user} == null"
+                    th:classappend="${session.page.equals('login')} ? 'active' : '' "><a href="/login.html">登录</a></li>
+                <li th:if="${session.login_user} != null"
+                    th:classappend="${session.page.equals('userInfo')} ? 'active' : '' "><a
+                        href="/userInfo.html">欢迎光临<span style="color: #00a1cb"
+                                                        th:text="${session.login_user.username}"></span>,进入个人中心</a></li>
+                <li th:classappend="${session.page.equals('register')} ? 'active' : '' "><a href="/register.html">注册</a>
+                </li>
                 <li th:classappend="${session.page.equals('cart')} ? 'active' : '' ">
-                    <a href="/cart.html"  ><span class="glyphicon glyphicon-shopping-cart">购物车</span></a></li>
+                    <a href="/cart.html"><span class="glyphicon glyphicon-shopping-cart">购物车</span></a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
@@ -73,42 +82,42 @@
         <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
             <div class="item active">
-                <img src="image/bj.jpg" >
+                <img src="image/bj.jpg">
                 <div class="carousel-caption">
                 </div>
             </div>
             <div class="item">
-                <img src="image/bj1.jpg" >
+                <img src="image/bj1.jpg">
                 <div class="carousel-caption">
                 </div>
             </div>
             <div class="item">
-                <img src="image/bj2.jpg" >
+                <img src="image/bj2.jpg">
                 <div class="carousel-caption">
                 </div>
             </div>
             <div class="item">
-                <img src="image/bj3.jpg" >
+                <img src="image/bj3.jpg">
                 <div class="carousel-caption">
                 </div>
             </div>
             <div class="item">
-                <img src="image/bj4.jpg" >
+                <img src="image/bj4.jpg">
                 <div class="carousel-caption">
                 </div>
             </div>
             <div class="item">
-                <img src="image/bj5.jpg" >
+                <img src="image/bj5.jpg">
                 <div class="carousel-caption">
                 </div>
             </div>
             <div class="item">
-                <img src="image/bj6.jpg" >
+                <img src="image/bj6.jpg">
                 <div class="carousel-caption">
                 </div>
             </div>
             <div class="item">
-                <img src="image/bj7.jpg" >
+                <img src="image/bj7.jpg">
                 <div class="carousel-caption">
                 </div>
             </div>
@@ -125,14 +134,22 @@
         </a>
     </div>
 
+    <!--    <tr th:each="emp:${emps}">-->
+    <!--        <td th:text="${emp.id}"></td>-->
+    <!--    总结：当传参数时，数字变量直接拼接，而字符串变量需要用'\''-->
     <ul class="nav nav-tabs" id="myTabs">
-        <li class="active"><a href="/bookType/1" >计算机与科学</a></li>
-        <li><a href="/bookType/2">儿童读物</a></li>
-        <li><a href="/bookType/3">小说</a></li>
-        <li><a href="/bookType/4">历史人文</a></li>
+        <li th:each="bookType:${bookTypes}" name="bookType" th:id="bookType_a+${bookType.typeid}"
+            th:classappend="${bookType.typeid}==1? 'active':'' ">
+            <a  th:text="${bookType.typename}" th:onclick="getBookByType([[${bookType.typeid}]],0)"></a>
+
+        </li>
     </ul>
-    <div class="row">
-        <div class="col-sm-4 col-md-3">
+
+
+    <div class="row" id="BookList">
+
+    </div>
+    <!--<div class="col-sm-4 col-md-3">
             <div class="thumbnail" >
                 <a href="BookInfo.html">
                     <img style="width: 100%; height: 200px; display: block;" alt="100%x200" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzNDggMjAwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIG1lZXQiIHdpZHRoPSIzNDgiIGhlaWdodD0iMjAwIj48ZGVmcyAvPjxyZWN0IGZpbGw9IiNlZWVlZWUiIHdpZHRoPSIzNDgiIGhlaWdodD0iMjAwIiAvPjxnPjx0ZXh0IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7IGZvbnQtc2l6ZTogMjJweDsgZm9udC13ZWlnaHQ6IGJvbGQ7IGRvbWluYW50LWJhc2VsaW5lOiBjZW50cmFsOyBmaWxsOiAjYWFhYWFhOyIgeD0iMTMxLjE2IiB5PSIxMDAiPjM0OHgyMDA8L3RleHQ+PC9nPjwvc3ZnPg==" data-src="holder.js/100%x200" data-holder-rendered="true">
@@ -143,87 +160,27 @@
                     <p><a class="btn btn-primary btn-block" role="button" href="BookInfo.html">查看详情</a></p>
                 </div>
             </div>
-        </div>
-        <div class="col-sm-4 col-md-3">
-            <div class="thumbnail" >
-                <a href="BookInfo.html">
-                    <img style="width: 100%; height: 200px; display: block;" alt="100%x200" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzNDggMjAwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIG1lZXQiIHdpZHRoPSIzNDgiIGhlaWdodD0iMjAwIj48ZGVmcyAvPjxyZWN0IGZpbGw9IiNlZWVlZWUiIHdpZHRoPSIzNDgiIGhlaWdodD0iMjAwIiAvPjxnPjx0ZXh0IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7IGZvbnQtc2l6ZTogMjJweDsgZm9udC13ZWlnaHQ6IGJvbGQ7IGRvbWluYW50LWJhc2VsaW5lOiBjZW50cmFsOyBmaWxsOiAjYWFhYWFhOyIgeD0iMTMxLjE2IiB5PSIxMDAiPjM0OHgyMDA8L3RleHQ+PC9nPjwvc3ZnPg==" data-src="holder.js/100%x200" data-holder-rendered="true">
-                </a>
-                <div class="caption center">
-                    <h3>书名</h3>
-                    <p><span>价格:</span><span>100.00</span></p>
-                    <p><a class="btn btn-primary btn-block" role="button" href="#">查看详情</a></p>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-4 col-md-3">
-            <div class="thumbnail" >
-                <a href="BookInfo.html">
-                    <img style="width: 100%; height: 200px; display: block;" alt="100%x200" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzNDggMjAwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIG1lZXQiIHdpZHRoPSIzNDgiIGhlaWdodD0iMjAwIj48ZGVmcyAvPjxyZWN0IGZpbGw9IiNlZWVlZWUiIHdpZHRoPSIzNDgiIGhlaWdodD0iMjAwIiAvPjxnPjx0ZXh0IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7IGZvbnQtc2l6ZTogMjJweDsgZm9udC13ZWlnaHQ6IGJvbGQ7IGRvbWluYW50LWJhc2VsaW5lOiBjZW50cmFsOyBmaWxsOiAjYWFhYWFhOyIgeD0iMTMxLjE2IiB5PSIxMDAiPjM0OHgyMDA8L3RleHQ+PC9nPjwvc3ZnPg==" data-src="holder.js/100%x200" data-holder-rendered="true">
-                </a>
-                <div class="caption center">
-                    <h3>书名</h3>
-                    <p><span>价格:</span><span>100.00</span></p>
-                    <p><a class="btn btn-primary btn-block" role="button" href="#">查看详情</a></p>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-4 col-md-3">
-            <div class="thumbnail" >
-                <a href="BookInfo.html">
-                    <img style="width: 100%; height: 200px; display: block;" alt="100%x200" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzNDggMjAwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIG1lZXQiIHdpZHRoPSIzNDgiIGhlaWdodD0iMjAwIj48ZGVmcyAvPjxyZWN0IGZpbGw9IiNlZWVlZWUiIHdpZHRoPSIzNDgiIGhlaWdodD0iMjAwIiAvPjxnPjx0ZXh0IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7IGZvbnQtc2l6ZTogMjJweDsgZm9udC13ZWlnaHQ6IGJvbGQ7IGRvbWluYW50LWJhc2VsaW5lOiBjZW50cmFsOyBmaWxsOiAjYWFhYWFhOyIgeD0iMTMxLjE2IiB5PSIxMDAiPjM0OHgyMDA8L3RleHQ+PC9nPjwvc3ZnPg==" data-src="holder.js/100%x200" data-holder-rendered="true">
-                </a>
-                <div class="caption center">
-                    <h3>书名</h3>
-                    <p><span>价格:</span><span>100.00</span></p>
-                    <p><a class="btn btn-primary btn-block" role="button" href="#">查看详情</a></p>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-4 col-md-3">
-            <div class="thumbnail" >
-                <a href="BookInfo.html">
-                    <img style="width: 100%; height: 200px; display: block;" alt="100%x200" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzNDggMjAwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIG1lZXQiIHdpZHRoPSIzNDgiIGhlaWdodD0iMjAwIj48ZGVmcyAvPjxyZWN0IGZpbGw9IiNlZWVlZWUiIHdpZHRoPSIzNDgiIGhlaWdodD0iMjAwIiAvPjxnPjx0ZXh0IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7IGZvbnQtc2l6ZTogMjJweDsgZm9udC13ZWlnaHQ6IGJvbGQ7IGRvbWluYW50LWJhc2VsaW5lOiBjZW50cmFsOyBmaWxsOiAjYWFhYWFhOyIgeD0iMTMxLjE2IiB5PSIxMDAiPjM0OHgyMDA8L3RleHQ+PC9nPjwvc3ZnPg==" data-src="holder.js/100%x200" data-holder-rendered="true">
-                </a>
-                <div class="caption center">
-                    <h3>书名</h3>
-                    <p><span>价格:</span><span>100.00</span></p>
-                    <p><a class="btn btn-primary btn-block" role="button" href="#">查看详情</a></p>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-4 col-md-3">
-            <div class="thumbnail" >
-                <a href="BookInfo.html">
-                    <img style="width: 100%; height: 200px; display: block;" alt="100%x200" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzNDggMjAwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIG1lZXQiIHdpZHRoPSIzNDgiIGhlaWdodD0iMjAwIj48ZGVmcyAvPjxyZWN0IGZpbGw9IiNlZWVlZWUiIHdpZHRoPSIzNDgiIGhlaWdodD0iMjAwIiAvPjxnPjx0ZXh0IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7IGZvbnQtc2l6ZTogMjJweDsgZm9udC13ZWlnaHQ6IGJvbGQ7IGRvbWluYW50LWJhc2VsaW5lOiBjZW50cmFsOyBmaWxsOiAjYWFhYWFhOyIgeD0iMTMxLjE2IiB5PSIxMDAiPjM0OHgyMDA8L3RleHQ+PC9nPjwvc3ZnPg==" data-src="holder.js/100%x200" data-holder-rendered="true">
-                </a>
-                <div class="caption center">
-                    <h3>书名</h3>
-                    <p><span>价格:</span><span>100.00</span></p>
-                    <p><a class="btn btn-primary btn-block" role="button" href="#">查看详情</a></p>
-                </div>
-            </div>
-        </div>
-    </div>
+        </div>-->
 
 
     <nav class="center">
         <ul class="pagination  pagination-lg">
-            <li>
-                <a href="#" aria-label="Previous">
-                    <span aria-hidden="true">首页</span>
-                </a>
-            </li>
-            <li><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li>
-                <a href="#" aria-label="Next">
-                    <span aria-hidden="true">末页</span>
-                </a>
-            </li>
+            <div id="pageNumber">
+<!--                <li>-->
+<!--                    <a th:onclick="getPage(0);" aria-label="Previous">-->
+<!--                        <span aria-hidden="true">首页</span>-->
+<!--                    </a>-->
+<!--                </li>-->
+
+<!--                <li><a th:onclick="getPage(0);">1</a></li>-->
+
+
+<!--                <li>-->
+<!--                    <a th:onclick="getEndPage();" aria-label="Next">-->
+<!--                        <span aria-hidden="true">末页</span>-->
+<!--                    </a>-->
+<!--                </li>-->
+            </div>
         </ul>
     </nav>
 
@@ -233,5 +190,109 @@
 <div class="navbar navbar-default navbar-static-bottom">
     版权声明区
 </div>
+
+<script>
+    // index_num开始的条目   page_num每页几条，
+    var index_num = 0;
+    var page_num = 8;
+    var type_id = 1;
+
+    function getBookByType(id, index) {//因为 每页几条已经限定了 所以只需要传入一开始的条数，就可以达到分页效果
+        //更改class="activity" 的标签
+        // var bookType = document.getElementsByName("bookType");
+        // for (var j = 0; j < bookType.length; j++) {
+        //     bookType[j].class="";
+        // }
+        // var bookType_a = document.getElementById("bookType_a"+i);
+        // bookType_a.class="active";
+        type_id = id;
+        index_num = index;
+        //alert("type_id="+type_id+"&index_num="+index_num+"&page_num="+page_num);
+        var BookList = document.getElementById("BookList");
+        var html = "";//在BookList显示的HTML
+        $.ajax({
+            url: "/getBookByType?type_id=" + type_id + "&index_num=" + index_num + "&page_num=" + page_num,
+            type: "GET",
+            dataType: "json",
+            success: function (data) {//这个data就是返回来的json数据
+                var list = data.books;           //就是list<Book>
+                //alert(list);
+                if (list.length > 0) {
+                    //找到书了就拼接HTML
+                    for (var i = 0; i < list.length; i++) {
+                        //alert(book);
+                        var book = list[i];
+                        <!--width:200px;white-space: nowrap;text-overflow:ellipsis; overflow:hidden;因为只有限定了宽度才能把多余的隐藏~~~-->
+                        /*<p><a class='btn btn-primary btn-block' role='button' href='BookInfo/"+book.id+"'>查看详情</a></p>*/
+                        html += "<div class='col-sm-4 col-md-3'> <div class='thumbnail' > <a href='BookInfo/" + book.id + "'> <img style='width: 100%; height: 200px; display: block;' alt='100%x200' src='image/" + book.img + "' data-src='holder.js/100%x200' data-holder-rendered='true'></a>  <div class='caption center'>" +
+                            " <a href='BookInfo/" + book.id + "'> <div  title='" + book.name + "' style='width:250px;white-space: nowrap;text-overflow:ellipsis; overflow:hidden;'>" + book.name + "</div>  </a> " +
+                            "<p><span>价格:</span><span>" + book.price + "</span></p> <p><span>作者:</span><span>" + book.author.name + "</span></p>      </div>       </div>        </div>";
+                    }
+
+                    BookList.innerHTML = html;
+                    getLimit(type_id);
+                } else {
+                    BookList.innerHTML = "此分类无书";
+                }
+            },
+            error: function () {
+                BookList.innerHTML = '发送请求错误';
+            }
+        });
+
+    }
+
+
+    /**
+     * 获取分页查询的开始条数，将数据传到页面上
+     * 使用这个方法可以将  书本类型限制住 ，因为书本类型在这个页面是全局变量
+     * @param a
+     * @param b
+     */
+    function getPage(a) {
+        alert(a);
+        getBookByType(type_id, a);
+    }
+
+
+
+    /**
+     * 将书类型传过来形成 页号
+     */
+    function getLimit(id) {
+        var pageNumber = document.getElementById("pageNumber");
+        $.ajax({
+            url: "/getBookNumByType/" + id,
+            type: "GET",
+            dataType: "json",
+            success: function (data) {//这个data就是返回来的json数据
+                var num = data.num;           //总共几本书   15
+                var num1 = num % page_num;//表示是否刚好整除    7
+                var num2 = 0;//表示页数
+                if (num1 > 0) {
+                    //不是刚好整除的
+                    num2 = Math.floor(num / page_num) + 1;//    15/8 js中表示浮点数 向下取整
+                } else {
+                    //如果刚好整除
+                    num2 = num / page_num;//    16/8=2
+                }
+                alert("num2="+num2);
+                var s = "<li onclick='getPage(0);'> <a  aria-label='Previous'> <span aria-hidden='true'>首页</span> </a></li>";
+                for (var i = 1; i <= num2; i++) {
+                    s=s+"<li onclick='getPage("+(i-1)*page_num+");'><a >"+i+"</a></li>";
+                }
+                s=s+"<li onclick='getPage("+(num2-1)*page_num+");'> <a   aria-label='Next'>  <span aria-hidden='true'>末页</span> </a></li>";
+                pageNumber.innerHTML=s;
+
+            },
+            error: function () {
+                pageNumber.innerHTML = '获取分页信息错误';
+            }
+        });
+    }
+
+    getBookByType(type_id, index_num, page_num);//页面初始化 使用方法 将选定是Type为1 的标签
+
+</script>
 </body>
 </html>

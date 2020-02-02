@@ -18,6 +18,11 @@ import java.util.Map;
 /**
  * @author HeiKaQiu
  * @create 2020-01-27 下午 18:06
+ *              普通CRUD（uri来区分操作）            RestfulCRUD
+ * 查询           getEmp                              emp---GET
+ * 添加           addEmp?xxx                          emp---POST
+ * 修改           updateEmp?id=xxx&xxx=xx             emp/{id}---PUT
+ * 删除           deleteEmp?id=1                      emp/{id}---DELETE
  */
 
 @Controller
@@ -56,6 +61,12 @@ public class UserController {
         }
     }
 
+    /**
+     * 注册
+     * @param user
+     * @param model
+     * @return
+     */
     @PostMapping("/register")
     public String register(User user, Model model){
         //将其他数据封装进user对象中

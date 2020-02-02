@@ -43,3 +43,5 @@ logging:
 #    schema:
 #      - classpath:sql/department.sql
 #      - classpath:sql/employee.sql
+server:
+  port: 1111

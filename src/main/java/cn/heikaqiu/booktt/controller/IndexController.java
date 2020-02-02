@@ -1,12 +1,16 @@
 package cn.heikaqiu.booktt.controller;
 
+import cn.heikaqiu.booktt.bean.BookType;
+import cn.heikaqiu.booktt.service.BookTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.data.ConditionalOnRepositoryType;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
+import java.util.List;
 
 /**
  * @author HeiKaQiu
@@ -17,6 +21,23 @@ public class IndexController {
 
     @Autowired
     private HttpSession session;
+
+    @Autowired
+    private BookTypeService bookTypeService;
+
+    /**
+     * 首页
+     * @return
+     */
+    @RequestMapping("/")
+    public String index(Model model) {
+        //获取所有书本的类型
+        List<BookType> bookTypes=bookTypeService.getAllType();
+        model.addAttribute("bookTypes",bookTypes);
+        session.setAttribute("page","/");
+        return "Index";
+    }
+
     /**
      * 我的订单页面
      * @return
@@ -68,15 +89,7 @@ public class IndexController {
     }
 
 
-    /**
-     * 首页
-     * @return
-     */
-    @RequestMapping("/")
-    public String index() {
-        session.setAttribute("page","/");
-        return "Index";
-    }
+
 
     /**
      * 注册页面

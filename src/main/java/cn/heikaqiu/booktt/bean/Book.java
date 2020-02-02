@@ -15,6 +15,9 @@ public class Book {
 	
 	//这本书的作者
 	private  Author author;
+
+	//这本书的类型
+	private BookType bookType;
 	
 	
 	//收藏这本书的用户
@@ -25,12 +28,33 @@ public class Book {
 	
 	//把这本书加入购物车的用户
 	private List<User> usersShopcart=new ArrayList<User>();
-	
-	
-	
-	
-	
-	
+
+	@Override
+	public String toString() {
+		return "Book{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				", synopsis='" + synopsis + '\'' +
+				", price=" + price +
+				", remainder=" + remainder +
+				", img='" + img + '\'' +
+				", isshop=" + isshop +
+				", author=" + author +
+				", bookType=" + bookType +
+				", userCollection=" + userCollection +
+				", comments=" + comments +
+				", usersShopcart=" + usersShopcart +
+				'}';
+	}
+
+	public BookType getBookType() {
+		return bookType;
+	}
+
+	public void setBookType(BookType bookType) {
+		this.bookType = bookType;
+	}
+
 	public boolean isIsshop() {
 		return isshop;
 	}

@@ -14,24 +14,6 @@ import java.util.List;
 //@Mapper
 public interface UserMapper {
 
-//    private Integer id;
-//    private String username;
-//    private String password;
-//    private Float balance;
-//    private boolean isadmin; //管理员 1为是  0为否
-//    private String address;
-//    private boolean gender;//性别  1 为男    0为女
-//    private Date time;
-//    private String paypassword;
-//    //用户收藏的书
-//    private List<Book> booksCollection=new ArrayList<Book>();
-//    //用户评价的书
-//    private List<Book> booksComment=new ArrayList<Book>();
-//    //用户回复的留言
-//    private List<Comment> comments=new ArrayList<Comment>();
-//    //用户购物车中的商品
-//    private List<Book> books=new ArrayList<Book>();
-
     @Select("select * from ur where id=#{id}")
     public User getUserById(Integer id);
 
