@@ -1,15 +1,20 @@
 package cn.heikaqiu.booktt.controller;
 
 import cn.heikaqiu.booktt.bean.Book;
+import cn.heikaqiu.booktt.bean.User;
 import cn.heikaqiu.booktt.service.BookService;
+import cn.heikaqiu.booktt.service.CollectionService;
+import cn.heikaqiu.booktt.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import com.alibaba.fastjson.JSONObject;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,6 +28,15 @@ public class BookController {
 
     @Autowired
     private BookService bookService;
+
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private HttpSession session;
+
+    @Autowired
+    private CollectionService collectionService;
 
     /**
      * 获取当前书本类型id下的所有的书
@@ -85,13 +99,39 @@ public class BookController {
      * @return
      */
     @GetMapping("/BookInfo/{id}")
-    @ResponseBody
     public String BookInfo(@PathVariable("id") Integer id, Model model){
+
+
+        //测试使用的登录 TODO
+        User user=new User();
+        user.setUsername("heikaqiu");
+        user.setPassword("123456");
+        userService.login(user);
+
+
 
         Book book=bookService.getBookInfoById(id);
         model.addAttribute("book",book);
         System.out.println(book);
+
+
+        //查看用户是否已经收藏
+        User login_user = (User) session.getAttribute("login_user");
+        if(login_user==null){
+            //不用去找
+            model.addAttribute("isCollection", false);
+        }else{
+            //有用户登录 就去找
+            boolean isCollection=collectionService.isCollection(login_user.getId(),book.getId());
+            model.addAttribute("isCollection", isCollection);
+            System.out.println(isCollection);
+
+        }
+
         return "BookInfo";
     }
+
+
+
 
 }

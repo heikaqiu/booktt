@@ -1,13 +1,28 @@
 package cn.heikaqiu.booktt.config;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
+import org.springframework.web.filter.HiddenHttpMethodFilter;
 
 /**
  * @author HeiKaQiu
  * @create 2020-01-30 19:14
  */
-@Component
+@Configuration
 public class OtherConfig {
+
+    /**
+     * 用于解决 前端发送DELETE 以及PUT 请求 后端必须使用RequestMapping的问题
+     * @return
+     */
+    @Bean
+    public HiddenHttpMethodFilter hiddenHttpMethodFilter() {
+        HiddenHttpMethodFilter hiddenHttpMethodFilter = new HiddenHttpMethodFilter();
+        hiddenHttpMethodFilter.setBeanName("HiddenHttpMethodFilter");
+        hiddenHttpMethodFilter.setMethodParam("_method");
+        return hiddenHttpMethodFilter;
+    }
 
     public String getProvince(int province_num){
         String[] pArr=new String[]{"北京市","天津市","上海市","重庆市","新疆自治区","西藏自治区","宁夏自治区","内蒙古自治区","广西自治区","黑龙江省","吉林省","辽宁省","河北省","山东省","江苏省","安徽省","浙江省","福建省","广东省","海南省","云南省","贵州省","四川省","湖南省","湖北省","河南省","山西省","陕西省","甘肃省","青海省","江西省","台湾省","香港特别行政区","澳门特别行政区"};

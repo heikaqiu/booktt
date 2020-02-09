@@ -59,7 +59,7 @@ public class User {
 				", booksCollection=" + booksCollection +
 				", booksComment=" + booksComment +
 				", comments=" + comments +
-				", books=" + books +
+
 				'}';
 	}
 

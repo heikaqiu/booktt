@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
 
-    <link href="css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="Flat-UI-master/dist/css/flat-ui.min.css"/>
-    <script src="Flat-UI-master/dist/js/vendor/jquery.min.js"></script>
-    <script src="js/bootstrap/3.3.6/bootstrap.min.js"></script>
-    <script src="Flat-UI-master/dist/js/flat-ui.min.js"></script>
-    <title></title>
+    <link href="/css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/Flat-UI-master/dist/css/flat-ui.min.css"/>
+    <script src="/Flat-UI-master/dist/js/vendor/jquery.min.js"></script>
+    <script src="/js/bootstrap/3.3.6/bootstrap.min.js"></script>
+    <script src="/Flat-UI-master/dist/js/flat-ui.min.js"></script>
+
+    <title>FriendLink</title>
     <style>
         .row{
             margin-left: 20px;
@@ -69,7 +70,7 @@
 </head>
 <body>
 <!-- Static navbar -->
-<div th:replace="Index :: head">
+<div th:replace="Index :: head_item">
 </div>
 <!--content-->
 <div class="container">
@@ -121,8 +122,7 @@
 </div>
 
 <!--footer-->
-<div class="navbar navbar-default navbar-static-bottom">
-    版权声明区
+<div th:replace="Index :: end">
 </div>
 </body>
 </html>

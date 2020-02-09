@@ -1,31 +1,51 @@
 <!DOCTYPE html>
-<html lang="en"  xmlns:th="http://www.thymeleaf.org">
-<head >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
     <meta charset="UTF-8">
+
 
     <link href="css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="Flat-UI-master/dist/css/flat-ui.min.css"/>
     <script src="Flat-UI-master/dist/js/vendor/jquery.min.js"></script>
     <script src="js/bootstrap/3.3.6/bootstrap.min.js"></script>
     <script src="Flat-UI-master/dist/js/flat-ui.min.js"></script>
-    <title></title>
+
+    <title>Cart</title>
+    <script>
+        function toload1() {
+            if (window.name != "hasLoad") {
+                //alert(1);
+                location.reload();
+                window.name = "hasLoad";//重新刷新一遍  这类似于一个出口
+            } else {
+                //alert(2);
+                window.name = "";
+            }
+        }
+
+        toload1();
+    </script>
     <style>
-        .row{
+        .row {
             margin-left: 20px;
             margin-right: 20px;;
         }
-        .line-center{
-            line-height:50px;
+
+        .line-center {
+            line-height: 50px;
             text-align: center;
         }
-        .row input{
+
+        .row input {
             width: 50px;
         }
     </style>
+
+
 </head>
 <body>
 <!-- Static navbar -->
-<div th:replace="Index :: head">
+<div th:replace="Index :: head_item">
 </div>
 <!--content-->
 <div class="container">
@@ -36,86 +56,291 @@
         <div class=" list-group">
 
             <div class="col-sm-12 thumbnail">
-                <div class="col-sm-4 line-center">图书</div>
+                <div class="col-sm-2 line-center">全选<input type="checkbox" id="checkBookAll" onclick="changecheckbox()">
+                </div>
+                <div class="col-sm-2 line-center">图书</div>
                 <div class="col-sm-1 line-center">单价</div>
-                <div class="col-sm-4 line-center">数量 </div>
+                <div class="col-sm-3 line-center">数量</div>
                 <div class="col-sm-2 line-center">小计</div>
-                <div class="col-sm-1 line-center">操作</div>
+                <div class="col-sm-2 line-center">操作</div>
             </div>
-            <div class="col-sm-12  list-group-item">
-                <div class="col-sm-1 line-center" style="width: 50px;height: 50px;">
 
-                    <img src="../Flat-UI-master/dist/img/icons/png/Book.png" style="height: 100%;" alt=""/>
+
+            <!-- 不为null -->
+            <div th:if="${message} ne null">[[${message}]]</div>
+            <div th:if="${shopcartList} ne null" id="shopcart_father">
+                <div class="col-sm-12  list-group-item" th:each="shopcart:${shopcartList}"
+                     th:id="'shopcart_'+${shopcart.id}">
+                    <div class="col-sm-1 line-center"><input type="checkbox" name="checkBook"
+                                                             th:id="'checkBook'+${shopcart.id}" onclick="changeAll()">
+                    </div>
+                    <input type="hidden" th:value="${shopcart.book.id}" th:id="'bookid'+${shopcart.id}">
+                    <div class="col-sm-3 line-center" th:text="${shopcart.book.name}">书名</div>
+                    <div class="col-sm-1 line-center" th:id="'price_'+${shopcart.id}" th:text="${shopcart.book.price}">
+                        单价
+                    </div>
+                    <div class="col-sm-3 line-center">
+                        <!-- 加了引号就是传字符串 -->
+                        <button type="button" class="btn btn-default" th:onclick="reduce('num_'+[[${shopcart.id}]])">
+                            <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+                        </button>
+                        <input name="bookNum" type="text" class="small" th:id="'num_'+${shopcart.id}"
+                               th:value="${shopcart.number}"
+                               th:onchange="numToChange([[${shopcart.id}]],[[${shopcart.book.price}]],this.value)">
+                        <!-- Thymeleaf 模版引擎传名字直接给我传了Dom对象 不加引号 会直接到页面中找DOM对象-->
+                        <button type="button" class="btn btn-default" th:onclick="add(num_[[${shopcart.id}]])">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                    <div class="col-sm-2 line-center">小计:
+                        <span th:id="'moneySum'+${shopcart.id}" name="moneySum">123</span>
+                    </div>
+                    <div class="col-sm-2 line-center">
+                        <button class="btn btn-danger" th:onclick="todelete(shopcart_[[${shopcart.id}]])">删除</button>
+                    </div>
                 </div>
-                <div class="col-sm-3 line-center">书名</div>
-                <div class="col-sm-1 line-center">单价</div>
-                <div class="col-sm-4 line-center">
-                    <button type="button" class="btn btn-default">
-                        <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
-                    </button>
-                    <input type="text" class="small" value="123"/>
-                    <button type="button" class="btn btn-default">
-                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                    </button>
-                </div>
-                <div class="col-sm-2 line-center">小计</div>
-                <div class="col-sm-1 line-center"><button class="btn btn-danger">删除</button></div>
             </div>
-            <div class="col-sm-12  list-group-item">
-                <div class="col-sm-1 line-center" style="width: 50px;height: 50px;">
-                    <img src="../Flat-UI-master/dist/img/icons/png/Book.png" style="height: 100%;" alt=""/>
-                </div>
-                <div class="col-sm-3 line-center">书名</div>
-                <div class="col-sm-1 line-center">单价</div>
-                <div class="col-sm-4 line-center">
-                    <button type="button" class="btn btn-default">
-                        <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
-                    </button>
-                    <input type="text" class="small" value="123"/>
-                    <button type="button" class="btn btn-default">
-                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                    </button>
-                </div>
-                <div class="col-sm-2 line-center">小计</div>
-                <div class="col-sm-1 line-center"><button class="btn btn-danger">删除</button></div>
-            </div>
-            <div class="col-sm-12  list-group-item">
-                <div class="col-sm-1 line-center" style="width: 50px;height: 50px;">
-                    <img src="../Flat-UI-master/dist/img/icons/png/Book.png" style="height: 100%;" alt=""/>
-                </div>
-                <div class="col-sm-3 line-center">书名</div>
-                <div class="col-sm-1 line-center">单价</div>
-                <div class="col-sm-4 line-center">
-                    <button type="button" class="btn btn-default">
-                        <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
-                    </button>
-                    <input type="text" class="small" value="123"/>
-                    <button type="button" class="btn btn-default">
-                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                    </button>
-                </div>
-                <div class="col-sm-2 line-center">小计</div>
-                <div class="col-sm-1 line-center"><button class="btn btn-danger">删除</button></div>
-            </div>
+
 
             <div class="col-sm-12 thumbnail">
-                <div class=" col-sm-offset-4 col-sm-2 text-right">总数：</div>
-                <div class="col-sm-2">342</div>
+                <div class=" col-sm-offset-4 col-sm-2 text-right">总数：<span></span></div>
+                <div class="col-sm-2" id="ALLBookSum">0</div>
                 <div class="col-sm-2 text-right">总价：</div>
-                <div class="col-sm-2">342</div>
+                <div class="col-sm-2" id="ALLMoneySum">0</div>
             </div>
         </div>
         <div class="col-sm-offset-7 col-sm-5" style="padding: 30px;">
-            <div class="col-sm-6 btn btn-success btn-block">继续购物</div>
-            <div class="col-sm-6  btn btn-success btn-block">提交订单</div>
+            <div class="col-sm-6 btn btn-success btn-block" onclick="toindex()">继续购物</div>
+            <div th:if="${session.login_user} ne null">
+                <div class="col-sm-6  btn btn-success btn-block"
+                     th:onclick="'toBuy('+${session.login_user.paypassword}+','+${session.login_user.id}+')'">提交订单
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
 
 <!--footer-->
-<div class="navbar navbar-default navbar-static-bottom">
-    版权声明区
+<div th:replace="Index :: end">
 </div>
+
+<script type="text/javascript" defer="defer" th:inline="javascript">
+
+
+    function toBuy(paypassword_pass,userid) {
+        var checkId = $("input[name='checkBook']:checked");
+
+        if (checkId.length == 0) {
+            alert("请选择商品");
+            return;
+        }
+
+        //选择付款方式
+        //当选择是账户余额时 弹出支付密码框
+        for (var j = 1; j <= 3; j++) {
+
+
+            var paypassword = prompt("请输入支付密码", "");
+            if (paypassword == null) {
+                //按了取消就是 未付款订单
+                var orderState = 1;
+                j = 4;
+            }
+            // alert("paypassword" + paypassword);
+            // alert("paypassword_pass" + paypassword_pass);
+
+            if (paypassword == paypassword_pass) {
+                //输入支付密码正确
+                j = 4;
+                var orderState = 2;
+
+            } else {
+                if (j == 3) {
+                    alert("支付密码错误次数过多，请在30分钟内完成支付");
+                    var orderState = 1;
+                    // 添加订单 到等待买家付款
+                }
+                alert("输错" + j + "次");
+            }
+        }
+        //获取所有选中的 书的id
+        var bookidList = [];//获取书本的id
+        var booknumList = [];//获取书本的数量
+        var totalPrice = document.getElementById("ALLMoneySum").innerText//总价
+        for (var i = 0; i < checkId.length; i++) {
+            var id = checkId[i].id.slice(9);
+            bookidList.push(document.getElementById("bookid" + id).value);
+            booknumList.push(document.getElementById("num_" + id).value);
+        }
+
+        $.ajax({
+            url: "/toBuyList",
+            type: "POST",
+            dataType: "json",
+            data: {
+                'bookidList': bookidList,
+                'booknumList': booknumList,
+                'userid': userid,
+                'totalPrice': totalPrice,
+                'paypassword_pass': paypassword_pass,
+                'orderState': orderState
+            },
+            success: function (data) {//这个data就是返回来的json数据
+                alert(data.message);
+                if (data.message == "付款成功，等待卖家发货" || data.message == "付款密码错误三次，请三十分钟内完成支付") {
+
+                    // 去订单页面
+                    toOrder();
+                }
+
+            },
+            error: function () {
+                alert("服务器错误,购买失败");
+            }
+        });
+
+
+    }
+
+    function toOrder() {
+        location.href = "/order.html";
+    }
+
+    function changecheckbox() {
+        //获得所有名字叫checkBook的input
+        var checkId = $("input[name='checkBook']");
+        for (var i = 0; i < checkId.length; i++) {
+            checkId[i].checked = document.getElementById("checkBookAll").checked;
+        }
+        changeAll();
+    }
+
+    //获取选中的书
+    function changeAll() {
+        //获得所有名字叫checkBook并且选中的input
+        var checkId = $("input[name='checkBook']:checked");
+        var ALLMoneySum1 = [];
+        var bookNumber1 = [];
+        for (var i = 0; i < checkId.length; i++) {
+
+            var check = checkId[i];
+            var id = check.id.slice(9);
+            ALLMoneySum1.push(document.getElementById("moneySum" + id));
+            bookNumber1.push(document.getElementById("num_" + id));
+        }
+        ALLMoneySum(ALLMoneySum1);
+        bookNumber(bookNumber1);
+
+    }
+
+    function ALLMoneySum(moneySumList) {
+        //参数是选中的Array
+        var ALLMoneySum = 0;
+        for (var i = 0; i < moneySumList.length; i++) {
+
+            var moneySum = moneySumList[i];
+            ALLMoneySum += Number(moneySum.innerText);
+        }
+        document.getElementById("ALLMoneySum").innerText = ALLMoneySum.toFixed(2);
+    }
+
+    function bookNumber(bookNum) {
+        //参数是选中的Array
+        var AllBookNumber = 0;
+        for (var i = 0; i < bookNum.length; i++) {
+            AllBookNumber += Number(bookNum[i].value);
+        }
+        document.getElementById("ALLBookSum").innerText = AllBookNumber;
+    }
+
+    function moneySum() {
+        var moneySumList = document.getElementsByName("moneySum");
+        for (var i = 0; i < moneySumList.length; i++) {
+            var moneySum = moneySumList[i];
+            var id = moneySum.id.slice(8);
+            var price_ = document.getElementById("price_" + id).innerText;
+            var num_ = document.getElementById("num_" + id).value;
+            //alert("price_:"+price_);
+            //alert("num_:"+num_);
+            moneySum.innerText = (Number(price_) * Number(num_)).toFixed(1);
+        }
+        changeAll();
+    }
+
+    moneySum();
+
+    function numToChange(id, price, number) {
+        document.getElementById("moneySum" + id).innerText = (Number(price) * Number(number)).toFixed(2);
+        changeAll();
+
+    }
+
+
+    function add(num_id) {
+        var numValue = num_id.value;
+        //alert(numValue);
+        numValue++;
+        num_id.value = numValue;
+        var id = num_id.id.slice(4);
+        var price_ = document.getElementById("price_" + id).innerText;
+        numToChange(id, price_, numValue);
+
+    }
+
+    function todelete(shopcart_id) {
+        //shopcart_id.style.display="none";//隐藏此条
+
+        var shopcart = shopcart_id.id.slice(9);
+        document.getElementById("shopcart_father").removeChild(shopcart_id);
+        $.ajax({
+            url: "/deleteShopcart/" + shopcart,
+            type: "POST",
+            data: {_method: "DELETE"},
+            dataType: "json",
+            success: function (data) {//这个data就是返回来的json数据
+                alert(data.message);
+
+            },
+            error: function () {
+                alert("服务器错误");
+            }
+        });
+        changeAll();
+    }
+
+    function reduce(num_id) {
+        //alert(num_id);
+        var numValue = document.getElementById(num_id).value;
+        //alert(numValue);
+        if (numValue == 1) {
+            var gnl = confirm("当前购物车中此商品为一件是否在购物车中删除此商品");
+            if (gnl == true) {
+                //按下确定
+                num_id = num_id.slice(4);//截取前4位，保留后面几位
+                var shopcart_ = document.getElementById("shopcart_" + num_id);
+                //alert(shopcart_);
+
+                todelete(shopcart_);
+            } else {
+                //按下取消
+            }
+        } else {
+            numValue--;
+            //alert(numValue);
+            document.getElementById(num_id).value = numValue;
+            var id = num_id.slice(4);
+            var price_ = document.getElementById("price_" + id).innerText;
+            numToChange(id, price_, numValue);
+        }
+
+    }
+
+    function toindex() {
+        location.href = "/";
+    }
+
+
+</script>
 </body>
 </html>

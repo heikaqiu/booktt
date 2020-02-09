@@ -1,52 +1,47 @@
 <!DOCTYPE html>
-<html lang="en"  xmlns:th="http://www.thymeleaf.org">
-<head >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
     <meta charset="UTF-8">
 
-    <link href="css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="Flat-UI-master/dist/css/flat-ui.min.css"/>
-    <script src="Flat-UI-master/dist/js/vendor/jquery.min.js"></script>
-    <script src="js/bootstrap/3.3.6/bootstrap.min.js"></script>
-    <script src="Flat-UI-master/dist/js/flat-ui.min.js"></script>
-    <title></title>
+    <link href="/css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/Flat-UI-master/dist/css/flat-ui.min.css"/>
+    <script src="/Flat-UI-master/dist/js/vendor/jquery.min.js"></script>
+    <script src="/js/bootstrap/3.3.6/bootstrap.min.js"></script>
+    <script src="/Flat-UI-master/dist/js/flat-ui.min.js"></script>
+
+    <title>Order</title>
     <style>
-        .row{
+        .row {
             margin-left: 20px;
             margin-right: 20px;;
         }
-        .line-center{
-            line-height:50px;
+
+        .line-center {
+            line-height: 50px;
             text-align: center;
         }
-        .row input{
+
+        .row input {
             width: 50px;
         }
-        .list-group-item:hover{
+
+        .list-group-item:hover {
             background: #27ae60;
 
         }
-        .list-group-item div:first-child:hover{
+
+        .list-group-item div:first-child:hover {
 
             cursor: pointer;
         }
     </style>
-    <script>
-        function myClick(n){
-           location.href = "OrderInfo.html";
-        }
-        function btnClick(){
-            alert("btn");
-            return false;
-        }
-        $(function(){
 
-        })
-    </script>
 </head>
 <body>
 <!-- Static navbar -->
-<div th:replace="Index :: head">
+<div th:replace="Index :: head_item">
 </div>
+
 <!--content-->
 <div class="container">
     <div class="row thumbnail center">
@@ -56,62 +51,60 @@
         <div class="col-sm-12 thumbnail">
             <div class="col-sm-3 line-center">订单编号</div>
             <div class="col-sm-2 line-center">订单状态</div>
-            <div class="col-sm-2 line-center">商品数量 </div>
+            <div class="col-sm-2 line-center">商品数量</div>
             <div class="col-sm-2 line-center">订单总价</div>
             <div class="col-sm-3 line-center">操作</div>
         </div>
-        <div class="list-group">
-            <div class="col-sm-12  list-group-item" >
-                <div class="col-sm-3 line-center" onclick="myClick(1)">ahiudsfhjk-23423-23asd-12</div>
-                <div class="col-sm-2 line-center">未付款</div>
-                <div class="col-sm-2 line-center">12 </div>
-                <div class="col-sm-2 line-center">1231.00元</div>
-                <div class="col-sm-3 line-center">
-                    <button class="btn btn-danger">删除订单</button>
-                    <button class="btn btn-success">提交订单</button>
 
-                </div>
-            </div>
-            <div class="col-sm-12  list-group-item" >
-                <div class="col-sm-3 line-center" onclick="myClick(2)">ahiudsfhjk-23423-23asd-12</div>
-                <div class="col-sm-2 line-center">未付款</div>
-                <div class="col-sm-2 line-center">12 </div>
-                <div class="col-sm-2 line-center">1231.00元</div>
-                <div class="col-sm-3 line-center">
-                    <button class="btn btn-danger">删除订单</button>
-                    <button class="btn btn-success">提交订单</button>
+        <div th:if="${message} ne null">[[${message}]]</div>
+        <div th:if="${orderList} ne null">   <!--如果订单不为空 -->
+            <div class="list-group" id="order_father">
 
-                </div>
-            </div>
-            <div class="col-sm-12  list-group-item" >
-                <div class="col-sm-3 line-center" onclick="myClick(3)">ahiudsfhjk-23423-23asd-12</div>
-                <div class="col-sm-2 line-center">未付款</div>
-                <div class="col-sm-2 line-center">12 </div>
-                <div class="col-sm-2 line-center">1231.00元</div>
-                <div class="col-sm-3 line-center">
-                    <button class="btn btn-danger">删除订单</button>
-                    <button class="btn btn-success">提交订单</button>
+                <form action="/orderInfo" method="post" th:id="'order_'+${order.id}" th:each="order:${orderList}">
+                    <input type="hidden" name="userid" th:value="${session.login_user.id}">
+                    <input type="hidden" name="orderid" th:value="${order.id}">
+                    <div class="col-sm-12  list-group-item">
+                        <div class="col-sm-3 line-center">[[${order.id}]]</div>
+                        <div class="col-sm-2 line-center" th:text="${order.state.name}">未付款</div>
+                        <div class="col-sm-2 line-center" th:text="${order.number}">12</div>
+                        <div class="col-sm-2 line-center" th:text="${order.totalPrice}">1231.00元</div>
+                        <div class="col-sm-3 line-center">
+<!--                            <button class="btn btn-danger" th:onclick="'deleteOrder('+${order.id}+')'">删除订单</button>-->
+                            <button class="btn btn-success" type="submit">查看订单</button>
+                            <!-- 如果是未付款的订单 查看订单界面付款 -->
+                        </div>
+                    </div>
+                </form>
 
-                </div>
             </div>
-            <div class="col-sm-12  list-group-item" >
-                <div class="col-sm-3 line-center" onclick="myClick(4)">ahiudsfhjk-23423-23asd-12</div>
-                <div class="col-sm-2 line-center">未付款</div>
-                <div class="col-sm-2 line-center">12 </div>
-                <div class="col-sm-2 line-center">1231.00元</div>
-                <div class="col-sm-3 line-center">
-                    <button class="btn btn-danger">删除订单</button>
-                    <button class="btn btn-success">提交订单</button>
-                </div>
-            </div>
-
+        </div>
     </div>
 </div>
+<script th:inline="javascript">
+
+    function deleteOrder(orderid) {
+        var order_ = document.getElementById("order_" + orderid);
+        document.getElementById("order_father").removeChild(order_);
+        //alert(orderid);
+
+        $.ajax({
+            url: "/deleteOrder/" + orderid,
+            type: "POST",
+            data: {_method: "DELETE"},
+            dataType: "json",
+            success: function (data) {//这个data就是返回来的json数据
+                alert(data.message);
+            },
+            error: function () {
+                alert("服务器错误");
+            }
+        });
+    }
 
 
+</script>
 <!--footer-->
-<div class="navbar navbar-default navbar-static-bottom">
-    版权声明区
+<div th:replace="Index :: end">
 </div>
 </body>
 </html>

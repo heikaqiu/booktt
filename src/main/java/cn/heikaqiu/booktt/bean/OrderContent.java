@@ -11,6 +11,7 @@ public class OrderContent {
 	private Book book;
 	//哪份订单的
 	private Order order;
+
 	public Integer getId() {
 		return id;
 	}
@@ -41,8 +42,16 @@ public class OrderContent {
 	public void setOrder(Order order) {
 		this.order = order;
 	}
-	
-	
-	
 
+
+	@Override
+	public String toString() {
+		return "OrderContent{" +
+				"id=" + id +
+				", price=" + price +
+				", number=" + number +
+				", book=" + book +
+				", order=" + order +
+				'}';
+	}
 }

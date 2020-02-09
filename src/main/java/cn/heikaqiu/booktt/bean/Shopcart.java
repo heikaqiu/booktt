@@ -9,10 +9,17 @@ public class Shopcart {
 	
 	//此商品被添加
 	private Book book;
-	
-	
-	
-	
+
+	@Override
+	public String toString() {
+		return "Shopcart{" +
+				"id=" + id +
+				", number=" + number +
+				", user=" + user +
+				", book=" + book +
+				'}';
+	}
+
 	public User getUser() {
 		return user;
 	}
@@ -37,9 +44,6 @@ public class Shopcart {
 	public void setNumber(Integer number) {
 		this.number = number;
 	}
-	@Override
-	public String toString() {
-		return "Shopcart [id=" + id + ", number=" + number + ", book=" + book + "]";
-	}
+
 
 }

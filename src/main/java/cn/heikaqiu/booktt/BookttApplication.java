@@ -5,11 +5,18 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 //启动
+
 @SpringBootApplication
+@MapperScan(value = "cn.heikaqiu.booktt.mapper")
 public class BookttApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(BookttApplication.class, args);
+        try {
+            SpringApplication.run(BookttApplication.class, args);
+        }catch (Exception e){
+            System.out.println("<-------------------->"+e.getMessage());
+        }
+
     }
 
 }

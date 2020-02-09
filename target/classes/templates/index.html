@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
 
-    <link href="css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="Flat-UI-master/dist/css/flat-ui.min.css"/>
-    <script src="Flat-UI-master/dist/js/vendor/jquery.min.js"></script>
-    <script src="js/bootstrap/3.3.6/bootstrap.min.js"></script>
-    <script src="Flat-UI-master/dist/js/flat-ui.min.js"></script>
-    <title></title>
+    <link href="/css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/Flat-UI-master/dist/css/flat-ui.min.css"/>
+    <script src="/Flat-UI-master/dist/js/vendor/jquery.min.js"></script>
+    <script src="/js/bootstrap/3.3.6/bootstrap.min.js"></script>
+    <script src="/Flat-UI-master/dist/js/flat-ui.min.js"></script>
+    <title>Index</title>
     <style>
         .row {
             margin-top: 20px;;
@@ -32,7 +32,7 @@
 </head>
 <body>
 <!-- Static navbar -->
-<div class="navbar navbar-default navbar-static-top" role="navigation" th:fragment="head">
+<div class="navbar navbar-default navbar-static-top" role="navigation" th:fragment="head_item">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -53,13 +53,25 @@
                 <li th:if="${session.login_user} == null"
                     th:classappend="${session.page.equals('login')} ? 'active' : '' "><a href="/login.html">登录</a></li>
                 <li th:if="${session.login_user} != null"
-                    th:classappend="${session.page.equals('userInfo')} ? 'active' : '' "><a
-                        href="/userInfo.html">欢迎光临<span style="color: #00a1cb"
-                                                        th:text="${session.login_user.username}"></span>,进入个人中心</a></li>
+                    th:classappend="${session.page.equals('userInfo')} ? 'active' : '' ">
+
+                    <a  onclick="toUserInfo()">欢迎光临
+                        <span style="color: #00a1cb" th:text="${session.login_user.username}"></span>,进入个人中心
+                    </a>
+                    <form action="/userInfo.html" id="formid" method='post'>
+                        <input type="hidden" th:value="${session.login_user.id}" name="userid">
+                    </form>
+                    <script>
+                        //提交form表单
+                        function toUserInfo() {
+                            document.getElementById("formid").submit();
+                        }
+                    </script>
+                </li>
                 <li th:classappend="${session.page.equals('register')} ? 'active' : '' "><a href="/register.html">注册</a>
                 </li>
                 <li th:classappend="${session.page.equals('cart')} ? 'active' : '' ">
-                    <a href="/cart.html"><span class="glyphicon glyphicon-shopping-cart">购物车</span></a></li>
+                    <a href="/cart.html" target="_blank"><span class="glyphicon glyphicon-shopping-cart">购物车</span></a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
@@ -187,7 +199,7 @@
 </div>
 
 <!--footer-->
-<div class="navbar navbar-default navbar-static-bottom">
+<div class="navbar navbar-default navbar-static-bottom" th:fragment="end">
     版权声明区
 </div>
 
@@ -196,6 +208,10 @@
     var index_num = 0;
     var page_num = 8;
     var type_id = 1;
+
+
+
+
 
     function getBookByType(id, index) {//因为 每页几条已经限定了 所以只需要传入一开始的条数，就可以达到分页效果
         //更改class="activity" 的标签
@@ -224,8 +240,8 @@
                         var book = list[i];
                         <!--width:200px;white-space: nowrap;text-overflow:ellipsis; overflow:hidden;因为只有限定了宽度才能把多余的隐藏~~~-->
                         /*<p><a class='btn btn-primary btn-block' role='button' href='BookInfo/"+book.id+"'>查看详情</a></p>*/
-                        html += "<div class='col-sm-4 col-md-3'> <div class='thumbnail' > <a href='BookInfo/" + book.id + "'> <img style='width: 100%; height: 200px; display: block;' alt='100%x200' src='image/" + book.img + "' data-src='holder.js/100%x200' data-holder-rendered='true'></a>  <div class='caption center'>" +
-                            " <a href='BookInfo/" + book.id + "'> <div  title='" + book.name + "' style='width:250px;white-space: nowrap;text-overflow:ellipsis; overflow:hidden;'>" + book.name + "</div>  </a> " +
+                        html += "<div class='col-sm-4 col-md-3'> <div class='thumbnail' > <a target='_blank' href='/BookInfo/" + book.id + "'> <img style='width: 100%; height: 200px; display: block;' alt='100%x200' src='image/" + book.img + "' data-src='holder.js/100%x200' data-holder-rendered='true'></a>  <div class='caption center'>" +
+                            " <a target='_blank' href='/BookInfo/" + book.id + "'> <div  title='" + book.name + "' style='width:250px;white-space: nowrap;text-overflow:ellipsis; overflow:hidden;'>" + book.name + "</div>  </a> " +
                             "<p><span>价格:</span><span>" + book.price + "</span></p> <p><span>作者:</span><span>" + book.author.name + "</span></p>      </div>       </div>        </div>";
                     }
 
@@ -250,7 +266,7 @@
      * @param b
      */
     function getPage(a) {
-        alert(a);
+        //alert(a);
         getBookByType(type_id, a);
     }
 
@@ -276,7 +292,7 @@
                     //如果刚好整除
                     num2 = num / page_num;//    16/8=2
                 }
-                alert("num2="+num2);
+                //alert("num2="+num2);
                 var s = "<li onclick='getPage(0);'> <a  aria-label='Previous'> <span aria-hidden='true'>首页</span> </a></li>";
                 for (var i = 1; i <= num2; i++) {
                     s=s+"<li onclick='getPage("+(i-1)*page_num+");'><a >"+i+"</a></li>";

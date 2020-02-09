@@ -1,1 +1,38 @@
 Mapper使用注解代替原先使用的XML https://blog.csdn.net/wfq784967698/article/details/78786001
+
+thymeleaf 页面取值方式常用 https://blog.csdn.net/csdn565973850/article/details/98613478
+
+target='_blank' 新页面 js整数相除会有小数
+
+th:src="@{/image/{filename}(filename=${book.img})}"   开始必须有/
+
+thymeleaf 条件判断https://blog.csdn.net/qq_31424825/article/details/79052192?utm_source=blogxgwz8
+
+
+ajax 发送 DELETE 和 PUT 请求
+https://blog.csdn.net/liuyuanjiang109/article/details/78972644
+/**
+ * @author HeiKaQiu
+ * @create 2020-01-27 下午 18:06
+ *              普通CRUD（uri来区分操作）            RestfulCRUD
+ * 查询           getEmp                              emp---GET
+ * 添加           addEmp?xxx                          emp---POST
+ * 修改           updateEmp?id=xxx&xxx=xx             emp/{id}---PUT
+ * 删除           deleteEmp?id=1                      emp/{id}---DELETE
+ */
+
+ DECIMAL(10,2) mysql数据库表示小数  总共10位数 两位小数整数八位
+ 因为MyBatis 查找小数的时候转为Float会失真小数会四舍五入 所以需要查找的时候将数据转为String 在转换为Float就可以了
+ @Select("select balance from ur where id=#{userId}")
+     String getBalanceByUserId(Integer userId);
+
+
+     ajax 传json字符串或者直接传数组 SpringMvc如何接收https://blog.csdn.net/husky_long/article/details/81670251
+
+     2020 2/7 计划完成 订单显示页面      (2.7做到这里)   修改个人信息  以及 书本的评论 收藏功能
+     2020 2/8 计划完成  后台所有的界面
+     2020 2/9 计划完成 支付方式 以及 短信登录  微信登录 等功能
+     2020 2/10 计划完成 所有 并将项目发布到 阿里云
+
+
+     使用JSON ajax传送对象到后端https://www.cnblogs.com/jpfss/p/9547004.html

@@ -41,9 +41,7 @@ public class Book {
 				", isshop=" + isshop +
 				", author=" + author +
 				", bookType=" + bookType +
-				", userCollection=" + userCollection +
-				", comments=" + comments +
-				", usersShopcart=" + usersShopcart +
+
 				'}';
 	}
 

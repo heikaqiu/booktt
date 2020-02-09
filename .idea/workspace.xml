@@ -2,101 +2,103 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5a75ba0b-3883-4ebf-9b69-9ac052ca8d63" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_alibaba_fastjson_1_2_51.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_databind_2_8_8.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_gson_gson_2_8_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/heikaqiu/booktt/bean/BookType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/heikaqiu/booktt/controller/BookController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/heikaqiu/booktt/mapper/AuthorMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/heikaqiu/booktt/mapper/BookMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/heikaqiu/booktt/mapper/BookTypeMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/heikaqiu/booktt/service/BookService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/heikaqiu/booktt/service/BookTypeService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/heikaqiu/booktt/service/imp/BookServiceImp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/heikaqiu/booktt/service/imp/BookTypeServiceImp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/image/img/C++编程思想.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/image/img/Java编程思想 （第4版）.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/image/img/java编程思想.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/image/img/《疯狂Java讲义》.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/image/img/《疯狂Java讲义》的第5版.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/image/img/一只特立独行的猪.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/image/img/天黑以后.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/image/img/我在未来等你.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/image/img/挪威的森林.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/image/img/智慧的疆界：从图灵机到人工智能.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/image/img/材料成形原理.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/image/img/材料成形设备(周志明).jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/image/img/沉默的大多数.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/image/img/深入理解Java虚拟机.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/image/img/爱你就像爱生命.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/image/img/特种铸造.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/image/img/疯狂Android讲义（Kotlin版）.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/image/img/疯狂Android讲义（第3版）.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/image/img/疯狂Python讲义.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/image/img/疯狂Swift讲义.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/image/img/白夜行.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/image/img/让我留在你身边.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/image/img/轻量级Java EE企业应用实战（第5版）.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/image/img/郑渊洁十二生肖童话（全12册）.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/image/img/长相思套装(全三册）.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/image/img/非标专机设计制造实用技术.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/image/img/黄金时代.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/cn/heikaqiu/booktt/bean/BookType.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/cn/heikaqiu/booktt/controller/BookController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/cn/heikaqiu/booktt/mapper/AuthorMapper.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/cn/heikaqiu/booktt/mapper/BookMapper.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/cn/heikaqiu/booktt/mapper/BookTypeMapper.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/cn/heikaqiu/booktt/service/BookService.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/cn/heikaqiu/booktt/service/BookTypeService.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/cn/heikaqiu/booktt/service/imp/BookServiceImp.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/cn/heikaqiu/booktt/service/imp/BookTypeServiceImp.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/image/img/C++编程思想.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/image/img/Java编程思想 （第4版）.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/image/img/java编程思想.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/image/img/《疯狂Java讲义》.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/image/img/《疯狂Java讲义》的第5版.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/image/img/一只特立独行的猪.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/image/img/天黑以后.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/image/img/我在未来等你.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/image/img/挪威的森林.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/image/img/智慧的疆界：从图灵机到人工智能.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/image/img/材料成形原理.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/image/img/材料成形设备(周志明).jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/image/img/沉默的大多数.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/image/img/深入理解Java虚拟机.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/image/img/爱你就像爱生命.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/image/img/特种铸造.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/image/img/疯狂Android讲义（Kotlin版）.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/image/img/疯狂Android讲义（第3版）.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/image/img/疯狂Python讲义.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/image/img/疯狂Swift讲义.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/image/img/白夜行.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/image/img/让我留在你身边.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/image/img/轻量级Java EE企业应用实战（第5版）.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/image/img/郑渊洁十二生肖童话（全12册）.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/image/img/长相思套装(全三册）.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/image/img/非标专机设计制造实用技术.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/image/img/黄金时代.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/笔记" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_databind_2_10_2.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_aspectj_aspectjweaver_1_9_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_aop_2_2_4_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/heikaqiu/booktt/config/TransactionManagerConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/heikaqiu/booktt/controller/CollectionController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/heikaqiu/booktt/controller/OrderController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/heikaqiu/booktt/controller/ShopcartController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/heikaqiu/booktt/mapper/CollectionMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/heikaqiu/booktt/mapper/OrderMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/heikaqiu/booktt/mapper/ShopcartMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/heikaqiu/booktt/service/CollectionService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/heikaqiu/booktt/service/OrderService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/heikaqiu/booktt/service/ShopcartService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/heikaqiu/booktt/service/imp/CollectionServiceImp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/heikaqiu/booktt/service/imp/OrderServiceImp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/heikaqiu/booktt/service/imp/ShopcartServiceImp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/css/Admin/Admin.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/css/Admin/Admin.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/admin/demo2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/cn/heikaqiu/booktt/config/TransactionManagerConfig.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/cn/heikaqiu/booktt/controller/CollectionController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/cn/heikaqiu/booktt/controller/OrderController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/cn/heikaqiu/booktt/controller/ShopcartController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/cn/heikaqiu/booktt/mapper/CollectionMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/cn/heikaqiu/booktt/mapper/OrderMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/cn/heikaqiu/booktt/mapper/ShopcartMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/cn/heikaqiu/booktt/service/CollectionService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/cn/heikaqiu/booktt/service/OrderService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/cn/heikaqiu/booktt/service/ShopcartService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/cn/heikaqiu/booktt/service/imp/CollectionServiceImp.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/cn/heikaqiu/booktt/service/imp/OrderServiceImp.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/cn/heikaqiu/booktt/service/imp/ShopcartServiceImp.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/css/Admin/Admin.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/css/Admin/Admin.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/templates/admin/demo2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_databind_2_8_8.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_databind_2_10_2.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/booktt.iml" beforeDir="false" afterPath="$PROJECT_DIR$/booktt.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/heikaqiu/booktt/BookttApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/heikaqiu/booktt/BookttApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cn/heikaqiu/booktt/bean/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/heikaqiu/booktt/bean/Book.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/heikaqiu/booktt/bean/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/heikaqiu/booktt/bean/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/heikaqiu/booktt/bean/OrderContent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/heikaqiu/booktt/bean/OrderContent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/heikaqiu/booktt/bean/Shopcart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/heikaqiu/booktt/bean/Shopcart.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/heikaqiu/booktt/bean/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/heikaqiu/booktt/bean/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/heikaqiu/booktt/config/OtherConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/heikaqiu/booktt/config/OtherConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/heikaqiu/booktt/controller/BookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/heikaqiu/booktt/controller/BookController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cn/heikaqiu/booktt/controller/IndexController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/heikaqiu/booktt/controller/IndexController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cn/heikaqiu/booktt/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/heikaqiu/booktt/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/heikaqiu/booktt/mapper/AuthorMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/heikaqiu/booktt/mapper/AuthorMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/heikaqiu/booktt/mapper/BookMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/heikaqiu/booktt/mapper/BookMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/heikaqiu/booktt/mapper/BookTypeMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/heikaqiu/booktt/mapper/BookTypeMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cn/heikaqiu/booktt/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/heikaqiu/booktt/mapper/UserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/heikaqiu/booktt/service/BookService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/heikaqiu/booktt/service/BookService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/heikaqiu/booktt/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/heikaqiu/booktt/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/heikaqiu/booktt/service/imp/UserServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/heikaqiu/booktt/service/imp/UserServiceImp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/EmployeeMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/EmployeeMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/BookInfo.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/BookInfo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/Cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/Cart.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/FriendLink.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/FriendLink.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/Index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/Index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/Login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/Login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/Order.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/Order.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/OrderInfo.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/OrderInfo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/Register.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/Register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/UserInfo.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/UserInfo.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/cn/heikaqiu/booktt/BookttApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/cn/heikaqiu/booktt/BookttApplicationTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/heikaqiu/booktt/BookttApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/heikaqiu/booktt/BookttApplication.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/cn/heikaqiu/booktt/bean/Book.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/heikaqiu/booktt/bean/Book.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/heikaqiu/booktt/bean/Order$State.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/heikaqiu/booktt/bean/Order$State.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/heikaqiu/booktt/bean/Order.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/heikaqiu/booktt/bean/Order.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/heikaqiu/booktt/bean/OrderContent.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/heikaqiu/booktt/bean/OrderContent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/heikaqiu/booktt/bean/Shopcart.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/heikaqiu/booktt/bean/Shopcart.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/heikaqiu/booktt/bean/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/heikaqiu/booktt/bean/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/heikaqiu/booktt/config/OtherConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/heikaqiu/booktt/config/OtherConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/heikaqiu/booktt/controller/BookController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/heikaqiu/booktt/controller/BookController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/cn/heikaqiu/booktt/controller/IndexController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/heikaqiu/booktt/controller/IndexController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/cn/heikaqiu/booktt/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/heikaqiu/booktt/controller/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/heikaqiu/booktt/mapper/AuthorMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/heikaqiu/booktt/mapper/AuthorMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/heikaqiu/booktt/mapper/BookMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/heikaqiu/booktt/mapper/BookMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/heikaqiu/booktt/mapper/BookTypeMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/heikaqiu/booktt/mapper/BookTypeMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/heikaqiu/booktt/mapper/UserMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/heikaqiu/booktt/mapper/UserMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/heikaqiu/booktt/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/heikaqiu/booktt/service/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/heikaqiu/booktt/service/imp/UserServiceImp.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/heikaqiu/booktt/service/imp/UserServiceImp.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/mybatis/mapper/EmployeeMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mybatis/mapper/EmployeeMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/BookInfo.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/BookInfo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/Cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/Cart.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/FriendLink.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/FriendLink.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/Login.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/Login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/Order.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/Order.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/OrderInfo.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/OrderInfo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/Register.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/Register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/UserInfo.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/UserInfo.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/cn/heikaqiu/booktt/BookttApplicationTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/cn/heikaqiu/booktt/BookttApplicationTests.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/笔记" beforeDir="false" afterPath="$PROJECT_DIR$/笔记" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,7 +137,9 @@
     </option>
   </component>
   <component name="ProjectId" id="1WyKC6HcsvHMCVUbEWkxWEsHDdq" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -151,7 +155,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="js.last.introduce.type" value="VAR" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/static/image/img" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/static/js/jquery/2.0.0" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -159,16 +163,18 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\IDEAProject\booktt\src\main\resources\templates\admin" />
+      <recent name="F:\IDEAProject\booktt\src\main\resources\static\css\Yeti" />
       <recent name="F:\IDEAProject\booktt\src\main\resources\static" />
       <recent name="F:\IDEAProject\booktt\src\main\resources\templates\css" />
       <recent name="F:\IDEAProject\booktt\src\main\resources\templates" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\IDEAProject\booktt\src\main\resources\static\js\jquery\2.0.0" />
+      <recent name="F:\IDEAProject\booktt\src\main\resources\templates" />
+      <recent name="F:\IDEAProject\booktt\src\main\resources\static\css" />
       <recent name="F:\IDEAProject\booktt\src\main\resources\static\image\img" />
       <recent name="F:\IDEAProject\booktt\src\main\resources\static\image" />
-      <recent name="F:\IDEAProject\booktt\src\main\resources\static" />
-      <recent name="F:\IDEAProject\booktt\src\main\resources\templates" />
-      <recent name="F:\IDEAProject\booktt\src\main\resources\static\js" />
     </key>
     <key name="CreateClassDialog.RecentsKey">
       <recent name="cn.heikaqiu.booktt.mapper" />
@@ -192,6 +198,38 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="BookttApplicationTests.contextLoads1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="booktt" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="cn.heikaqiu.booktt.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="cn.heikaqiu.booktt" />
+      <option name="MAIN_CLASS_NAME" value="cn.heikaqiu.booktt.BookttApplicationTests" />
+      <option name="METHOD_NAME" value="contextLoads1" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BookttApplicationTests.contextLoads2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="booktt" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="cn.heikaqiu.booktt.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="cn.heikaqiu.booktt" />
+      <option name="MAIN_CLASS_NAME" value="cn.heikaqiu.booktt.BookttApplicationTests" />
+      <option name="METHOD_NAME" value="contextLoads2" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="BookttApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="booktt" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="cn.heikaqiu.booktt.BookttApplication" />
@@ -201,6 +239,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.BookttApplicationTests.contextLoads2" />
+        <item itemvalue="JUnit.BookttApplicationTests.contextLoads1" />
         <item itemvalue="JUnit.BookttApplicationTests.contextLoads" />
       </list>
     </recent_temporary>
@@ -249,7 +289,27 @@
       <workItem from="1580615886422" duration="607000" />
       <workItem from="1580616767481" duration="2357000" />
       <workItem from="1580619320904" duration="12382000" />
-      <workItem from="1580650428054" duration="3118000" />
+      <workItem from="1580650428054" duration="3431000" />
+      <workItem from="1580654245147" duration="506000" />
+      <workItem from="1580695273931" duration="2439000" />
+      <workItem from="1580697830791" duration="13556000" />
+      <workItem from="1580792582991" duration="7164000" />
+      <workItem from="1580823894371" duration="1961000" />
+      <workItem from="1580826077275" duration="1025000" />
+      <workItem from="1580867429190" duration="10455000" />
+      <workItem from="1580881522637" duration="4401000" />
+      <workItem from="1580890583597" duration="4247000" />
+      <workItem from="1580896192582" duration="12110000" />
+      <workItem from="1580916529616" duration="497000" />
+      <workItem from="1580955905806" duration="10652000" />
+      <workItem from="1580971437085" duration="1976000" />
+      <workItem from="1580977105537" duration="15846000" />
+      <workItem from="1581037742119" duration="28729000" />
+      <workItem from="1581081952666" duration="7011000" />
+      <workItem from="1581133831563" duration="3472000" />
+      <workItem from="1581137435515" duration="16247000" />
+      <workItem from="1581211861521" duration="13338000" />
+      <workItem from="1581264278752" duration="459000" />
     </task>
     <task id="LOCAL-00001" summary="搭建了SpringBoot 整合SSM的项目">
       <created>1580269942342</created>
@@ -300,7 +360,14 @@
       <option name="project" value="LOCAL" />
       <updated>1580392722623</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="完成了Index.html,下一步完成书本详细页面">
+      <created>1580653788272</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1580653788272</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -355,9 +422,15 @@
     <MESSAGE value="添加了github下载的前端页面" />
     <MESSAGE value="添加了前端页面尚未写业务代码" />
     <MESSAGE value="登录注册功能基本实现，添加了轮播图" />
-    <option name="LAST_COMMIT_MESSAGE" value="登录注册功能基本实现，添加了轮播图" />
+    <MESSAGE value="完成了Index.html,下一步完成书本详细页面" />
+    <MESSAGE value="完成了前台功能，下一步完成后台" />
+    <option name="LAST_COMMIT_MESSAGE" value="完成了前台功能，下一步完成后台" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="322" y="141" key="#Inspections" timestamp="1580881926074">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="322" y="141" key="#Inspections/0.0.1536.824@0.0.1536.824" timestamp="1580881926073" />
     <state x="265" y="99" key="#Notifications" timestamp="1580273701372">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -370,26 +443,30 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="522" y="215" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.824@0.0.1536.824" timestamp="1580543064101" />
-    <state x="574" y="122" key="#com.intellij.ide.util.MemberChooser" timestamp="1580653634871">
+    <state x="574" y="122" key="#com.intellij.ide.util.MemberChooser" timestamp="1581222315503">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="574" y="122" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1580653634871" />
-    <state x="499" y="188" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1580467387503">
+    <state x="574" y="122" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1581222315503" />
+    <state x="499" y="188" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1581214362748">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="499" y="188" key="#com.intellij.ide.util.PackageChooserDialog/0.0.1536.824@0.0.1536.824" timestamp="1580467387503" />
+    <state x="499" y="188" key="#com.intellij.ide.util.PackageChooserDialog/0.0.1536.824@0.0.1536.824" timestamp="1581214362748" />
     <state x="757" y="98" key="#com.intellij.refactoring.encapsulateFields.EncalpsulateFieldsDialog" timestamp="1580121489566">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="757" y="98" key="#com.intellij.refactoring.encapsulateFields.EncalpsulateFieldsDialog/0.0.1536.824@0.0.1536.824" timestamp="1580121489566" />
+    <state x="548" y="271" width="439" height="291" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1581138393141">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="548" y="271" width="439" height="291" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1536.824@0.0.1536.824" timestamp="1581138393141" />
     <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1580539130743">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1580539130743" />
-    <state x="422" y="14" key="CommitChangelistDialog2" timestamp="1580392712253">
+    <state x="503" y="16" key="CommitChangelistDialog2" timestamp="1581264769863">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="422" y="14" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1580392712253" />
+    <state x="503" y="16" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1581264769863" />
     <state x="147" y="71" key="DiffContextDialog" timestamp="1580270594529">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -410,38 +487,58 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="644" y="306" width="272" height="290" key="Github.ShareDialog/0.0.1536.824@0.0.1536.824" timestamp="1580275157674" />
-    <state width="1493" height="203" key="GridCell.Tab.0.bottom" timestamp="1580651825874">
+    <state width="1493" height="203" key="GridCell.Tab.0.bottom" timestamp="1581237562383">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="203" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1580651825874" />
-    <state width="1493" height="203" key="GridCell.Tab.0.center" timestamp="1580651825859">
+    <state width="1493" height="203" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1581237562383" />
+    <state width="1493" height="203" key="GridCell.Tab.0.center" timestamp="1581237562383">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="203" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1580651825859" />
-    <state width="1493" height="203" key="GridCell.Tab.0.left" timestamp="1580651825859">
+    <state width="1493" height="203" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1581237562383" />
+    <state width="1493" height="203" key="GridCell.Tab.0.left" timestamp="1581237562366">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="203" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1580651825859" />
-    <state width="1493" height="203" key="GridCell.Tab.0.right" timestamp="1580651825874">
+    <state width="1493" height="203" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1581237562366" />
+    <state width="1493" height="203" key="GridCell.Tab.0.right" timestamp="1581237562383">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="203" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1580651825874" />
-    <state width="1493" height="203" key="GridCell.Tab.1.bottom" timestamp="1580651825874">
+    <state width="1493" height="203" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1581237562383" />
+    <state width="1493" height="203" key="GridCell.Tab.1.bottom" timestamp="1581237562384">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="203" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1580651825874" />
-    <state width="1493" height="203" key="GridCell.Tab.1.center" timestamp="1580651825874">
+    <state width="1493" height="203" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1581237562384" />
+    <state width="1493" height="203" key="GridCell.Tab.1.center" timestamp="1581237562383">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="203" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1580651825874" />
-    <state width="1493" height="203" key="GridCell.Tab.1.left" timestamp="1580651825874">
+    <state width="1493" height="203" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1581237562383" />
+    <state width="1493" height="203" key="GridCell.Tab.1.left" timestamp="1581237562383">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="203" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1580651825874" />
-    <state width="1493" height="203" key="GridCell.Tab.1.right" timestamp="1580651825874">
+    <state width="1493" height="203" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1581237562383" />
+    <state width="1493" height="203" key="GridCell.Tab.1.right" timestamp="1581237562384">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="203" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1580651825874" />
+    <state width="1493" height="203" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1581237562384" />
+    <state width="1493" height="252" key="GridCell.Tab.2.bottom" timestamp="1581089065713">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="252" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1581089065713" />
+    <state width="1493" height="252" key="GridCell.Tab.2.center" timestamp="1581089065713">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="252" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1581089065713" />
+    <state width="1493" height="252" key="GridCell.Tab.2.left" timestamp="1581089065713">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="252" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1581089065713" />
+    <state width="1493" height="252" key="GridCell.Tab.2.right" timestamp="1581089065713">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="252" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1581089065713" />
+    <state x="242" y="136" key="Maven.ArtifactSearchDialog" timestamp="1580998497902">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="242" y="136" key="Maven.ArtifactSearchDialog/0.0.1536.824@0.0.1536.824" timestamp="1580998497902" />
     <state x="349" y="78" key="Registry" timestamp="1580282961354">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -454,21 +551,32 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="490" y="154" width="543" height="524" key="StructurePopup/0.0.1536.824@0.0.1536.824" timestamp="1580121802580" />
-    <state x="306" y="126" key="Vcs.Push.Dialog.v2" timestamp="1580393396420">
+    <state x="306" y="126" key="Vcs.Push.Dialog.v2" timestamp="1580653829350">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="306" y="126" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1580393396420" />
+    <state x="306" y="126" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1580653829350" />
+    <state x="526" y="131" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1581043547349">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="526" y="131" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1536.824@0.0.1536.824" timestamp="1581043547349" />
     <state x="471" y="204" key="git4idea.merge.GitPullDialog" timestamp="1580274763057">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="471" y="204" key="git4idea.merge.GitPullDialog/0.0.1536.824@0.0.1536.824" timestamp="1580274763057" />
-    <state x="425" y="189" key="run.anything.popup" timestamp="1580638537902">
+    <state x="511" y="40" key="refactoring.ChangeSignatureDialog" timestamp="1581086788870">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="425" y="189" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1580638537902" />
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1580570215272">
+    <state x="511" y="40" key="refactoring.ChangeSignatureDialog/0.0.1536.824@0.0.1536.824" timestamp="1581086788870" />
+    <state x="425" y="189" key="run.anything.popup" timestamp="1581071871099">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1580570215272" />
+    <state x="425" y="189" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1581071871099" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1581236273857">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1581236273857" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/booktt$BookttApplication.ic" NAME="BookttApplication Coverage Results" MODIFIED="1581072626022" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

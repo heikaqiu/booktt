@@ -1,65 +1,62 @@
 <!DOCTYPE html>
-<html lang="en"  xmlns:th="http://www.thymeleaf.org">
-<head >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
     <meta charset="UTF-8">
 
-    <link href="css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="Flat-UI-master/dist/css/flat-ui.min.css"/>
-    <script src="Flat-UI-master/dist/js/vendor/jquery.min.js"></script>
-    <script src="js/bootstrap/3.3.6/bootstrap.min.js"></script>
-    <script src="Flat-UI-master/dist/js/flat-ui.min.js"></script>
-    <title></title>
+    <link href="/css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/Flat-UI-master/dist/css/flat-ui.min.css"/>
+    <script src="/Flat-UI-master/dist/js/vendor/jquery.min.js"></script>
+    <script src="/js/bootstrap/3.3.6/bootstrap.min.js"></script>
+    <script src="/Flat-UI-master/dist/js/flat-ui.min.js"></script>
+
+    <title>OrderInfo</title>
     <style>
-        .row{
+        .row {
             margin-left: 20px;
             margin-right: 20px;;
         }
-        .line-center{
-            line-height:50px;
+
+        .line-center {
+            line-height: 50px;
             text-align: center;
         }
-        .row input{
+
+        .row input {
             width: 50px;
         }
-        .list-group-item:hover{
+
+        .list-group-item:hover {
             background: #27ae60;
 
         }
-        .list-group-item div:first-child:hover{
+
+        .list-group-item div:first-child:hover {
 
             cursor: pointer;
         }
-        th{
+
+        th {
             text-align: right;
             width: 200px;;
         }
-        td{
+
+        td {
             text-align: left;
             padding: 10px;
         }
-        .table th{
+
+        .table th {
             text-align: center;
         }
-        .table td{
+
+        .table td {
             text-align: center;
         }
     </style>
-    <script>
-        function myClick(n){
-            location.href = "OrderInfo.html";
-        }
-        function btnClick(){
-            alert("btn");
-            return false;
-        }
-        $(function(){
-
-        })
-    </script>
 </head>
 <body>
 <!-- Static navbar -->
-<div th:replace="Index :: head">
+<div th:replace="Index :: head_item">
 </div>
 <!--content-->
 <div class="container">
@@ -68,101 +65,222 @@
             <h1 class="text-center" style="margin-bottom: 30px">订单详情</h1>
         </div>
 
-        <div class="col-sm-12 ">
-           <table>
-               <tr>
-                   <th>订单编号：</th><td>123-131-4234-1314-131</td>
-               </tr>
-               <tr>
-                   <th>订单状态：</th><td>未付款</td>
-               </tr>
-               <tr>
-                   <th>收货人姓名：</th><td>侯龙超</td>
-               </tr>
-               <tr>
-                   <th>收货人地址：</th><td>内蒙古科技大学</td>
-               </tr>
-               <tr>
-                   <th>收货人电话：</th><td>12345678901</td>
-               </tr>
-           </table>
-        </div>
-        <div class="col-sm-12">
-            <table class="table table-striped table-condensed">
-                <tr>
-                    <th>书名</th>
-                    <th>单价</th>
-                    <th>数量</th>
-                    <th>小计</th>
-                </tr>
-                <tr>
-                    <td>书名</td>
-                    <td>单价</td>
-                    <td>数量</td>
-                    <td>小计</td>
-                </tr>
-                <tr>
-                    <td>书名</td>
-                    <td>单价</td>
-                    <td>数量</td>
-                    <td>小计</td>
-                </tr>
-                <tr>
-                    <td>书名</td>
-                    <td>单价</td>
-                    <td>数量</td>
-                    <td>小计</td>
-                </tr>
-                <tr></tr>
-            </table>
+        <div th:if="${message} ne null">[[${message}]]</div>
+        <div th:if="${order} ne null">   <!--如果订单不为空 -->
+            <div class="col-sm-12 ">
+                <table>
+                    <tr>
+                        <th>订单编号：</th>
+                        <td>[[${order.id}]]</td>
+                    </tr>
+                    <tr>
+                        <th>订单状态：</th>
+                        <td>[[${order.state.name}]]</td>
+                    </tr>
+                    <tr>
+                        <th>收货人姓名：</th>
+                        <td>[[${order.user.username}]]</td>
+                    </tr>
+                    <tr>
+                        <th>收货人地址：</th>
+                        <td>[[${order.user.province}]][[${order.user.city}]][[${order.user.address}]]</td>
+                    </tr>
+                    <tr>
+                        <th>收货人电话：</th>
+                        <td>[[${order.user.telephone}]]</td>
+                    </tr>
+                    <div th:if="${order.state.value} eq 1"><!-- 如果是未付款的 则显示付款倒计时 -->
+                        <tr>
+                            <th>最后付款时间：</th>
+                            <td th:text="${#dates.format(order.paymentaTime, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                        </tr>
+                        <tr>
+                            <th>倒计时：</th>
+                            <td th:id="LastTime"></td>
+                        </tr>
+                    </div>
+                    <div th:if="${order.state.value eq 2||order.state.value eq 3||order.state.value eq 4}">
+                        <!-- 如果是等待卖家发货的 则显示订单提交的时间 -->
+                        <tr>
+                            <th>订单提交：</th>
+                            <td th:text="${#dates.format(order.submitTime, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                        </tr>
+                    </div>
+                    <div th:if="${order.state.value eq 3||order.state.value eq 4}"><!-- 如果是卖家已发货的 则显示快递单号 -->
+                        <tr>
+                            <th>快递单号：</th>
+                            <td>[[${order.expressnumber}]]</td>
+                        </tr>
+                    </div>
+                    <div th:if="${order.state.value} eq 4"><!-- 如果是订单已经完成的 则显示订单完成时间 -->
+                        <tr>
+                            <th>订单完成时间：</th>
+                            <td th:text="${#dates.format(order.finishTime, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                        </tr>
+                    </div>
 
-            <!--<div class="list-group">-->
-                <!--<div class="col-sm-12  list-group-item" >-->
-                    <!--<div class="col-sm-4 line-center">-->
-                        <!--书名-->
-                    <!--</div>-->
-                    <!--<div class="col-sm-3 line-center">单价</div>-->
-                    <!--<div class="col-sm-2 line-center">数量 </div>-->
-                    <!--<div class="col-sm-3 line-center">小计</div>-->
-                <!--</div>-->
-                <!--<div class="col-sm-12  list-group-item" >-->
-                    <!--<div class="col-sm-4 line-center">-->
-                        <!--书名-->
-                    <!--</div>-->
-                    <!--<div class="col-sm-3 line-center">单价</div>-->
-                    <!--<div class="col-sm-2 line-center">数量 </div>-->
-                    <!--<div class="col-sm-3 line-center">小计</div>-->
-                <!--</div>-->
-                <!--<div class="col-sm-12  list-group-item" >-->
-                    <!--<div class="col-sm-4 line-center">-->
-                        <!--书名-->
-                    <!--</div>-->
-                    <!--<div class="col-sm-3 line-center">单价</div>-->
-                    <!--<div class="col-sm-2 line-center">数量 </div>-->
-                    <!--<div class="col-sm-3 line-center">小计</div>-->
-                <!--</div>-->
 
-            <!--</div>-->
-        </div>
+                </table>
+            </div>
 
-        <div class="col-sm-12 ">
-            <table>
-                <tr>
-                   <th> </th><th></th> <th>商品总数：</th><td>12</td> <th>订单总价：</th><td><span class="text-danger">123.0元</span></label></td>
-                </tr>
-            </table>
+            <div class="col-sm-12">
+                <table class="table table-striped table-condensed">
+
+                    <tr>
+                        <th>书名</th>
+                        <th>单价</th>
+                        <th>数量</th>
+                        <th>小计</th>
+                    </tr>
+
+                    <tr th:each="orderContent:${order.orderContents}">
+                        <td th:text="${orderContent.book.name}"></td>
+                        <td th:text="${orderContent.price}" th:id="'price_'+${orderContent.id}"></td><!--这个价格是买入的价格 -->
+                        <td th:text="${orderContent.number}" th:id="'number_'+${orderContent.id}"></td>
+                        <td name="sum_" th:id="${orderContent.id}"></td>
+                    </tr>
+
+                    <tr></tr>
+                </table>
+            </div>
+
+            <div class="col-sm-12 ">
+                <table>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th>商品总数：</th>
+                        <td>[[${order.number}]]</td>
+                        <th>订单总价：</th>
+                        <td><span class="text-danger">[[${order.totalPrice}]]元</span></label></td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
     <div></div>
     <div class="col-sm-offset-7 col-sm-5" style="padding: 30px;">
-        <div class="col-sm-6 btn btn-success btn-block">继续购物</div>
-        <div class="col-sm-6  btn btn-success btn-block">提交订单</div>
+        <div class="col-sm-6 btn btn-success btn-block" onclick="toindex()">继续购物</div>
+        <div th:if="${order.state.value} eq 1"><!-- 如果是未付款的 则显示付款按钮 -->
+            <div class="col-sm-6  btn btn-success btn-block" onclick="toBuy()">支付</div>
+        </div>
+
     </div>
 </div>
 
-    <!--footer-->
-    <div class="navbar navbar-default navbar-static-bottom ">
-        版权声明区
-    </div>
+<script th:inline="javascript">
+
+    function toBuy() {
+        //选择付款方式
+        //当选择是账户余额时 弹出支付密码框
+        todo:
+        for (var j = 1; j <= 3; j++) {
+            var paypassword = prompt("请输入支付密码", "");
+            if(paypassword==null){
+                //按了取消就是 取消付款
+                break todo;
+            }
+            var paypassword_pass = /*[[${session.login_user.paypassword}]]*/;
+            var order = /*[[${order}]]*/;
+            if (paypassword == paypassword_pass) {
+                //输入支付密码正确
+                $.ajax({
+                    url: "/toBuyOrder",
+                    type: "POST",
+                    dataType: "json",
+                    data: {
+                        "order_id" : order.id,
+                        "order_user_id" : order.user.id,
+                        "paypassword" : paypassword
+                    },
+                    success: function (data) {//这个data就是返回来的json数据
+                        alert(data.message);
+                        // 去订单页面
+                        toOrder();
+                    },
+                    error: function () {
+                        alert("服务器错误,购买失败");
+                    }
+                });
+                return;
+            } else {
+                alert("输错" + j + "次");
+                if (j == 3) {
+
+
+                    //这里应该锁定账单了或者直接将订单改为订单取消
+                    $.ajax({
+                        url: "/closeOrder",
+                        type: "POST",
+                        dataType: "json",
+                        data: {
+                            "order_id" : order.id
+                        },
+                        success: function (data) {//这个data就是返回来的json数据
+                            alert(data.message);
+                            // 去订单页面
+                            toOrder();
+                        },
+                        error: function () {
+                            alert("服务器错误,关闭订单错误");
+                        }
+                    });
+                    return;
+                }
+
+            }
+        }
+
+
+    }
+
+    function toOrder() {
+        location.href = "/order.html";
+    }
+
+
+    function toindex() {
+        location.href = "/";
+    }
+
+    function moneySum() {
+        var sum_ = document.getElementsByName("sum_");
+        for (var i = 0; i < sum_.length; i++) {
+            var moneySum = sum_[i];
+            var id = moneySum.id;
+            var price_ = document.getElementById("price_" + id).innerText;
+            var number_ = document.getElementById("number_" + id).innerText;
+            moneySum.innerText = (Number(price_) * Number(number_)).toFixed(1);
+        }
+    }
+
+    moneySum();
+
+    function ifOrderStateisOne() {
+        var state =/*[[${order.state.value}]]*/;
+        if (state == 1) {
+            var interval = setInterval(function () {
+                var date = new Date();//系统时间
+                var d =/*[[${order.paymentaTime}]]*/;
+                var date_time = new Date(d);//最后付款时间
+                var date1 = new Date(date_time - date);//离最后付款时间多久
+                var s = date1.getMinutes() + "分" + date1.getSeconds() + "秒";
+                if ((date_time - date) <= 0) {
+                    //停止计时器并且  重新发请求 加载页面
+                    clearInterval(interval);
+                    location.reload();
+                    return;
+                }
+                document.getElementById("LastTime").innerHTML = s;
+            }, 1000);
+        }
+    }
+    ifOrderStateisOne();
+
+</script>
+
+<!--footer-->
+<div th:replace="Index :: end">
+</div>
 </body>
 </html>

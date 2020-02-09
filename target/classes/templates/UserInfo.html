@@ -1,67 +1,60 @@
 <!DOCTYPE html>
-<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
 
-    <link href="css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="Flat-UI-master/dist/css/flat-ui.min.css"/>
-    <script src="Flat-UI-master/dist/js/vendor/jquery.min.js"></script>
-    <script src="js/bootstrap/3.3.6/bootstrap.min.js"></script>
-    <script src="Flat-UI-master/dist/js/flat-ui.min.js"></script>
-    <title></title>
+    <link href="/css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/Flat-UI-master/dist/css/flat-ui.min.css"/>
+    <script src="/Flat-UI-master/dist/js/vendor/jquery.min.js"></script>
+    <script src="/js/bootstrap/3.3.6/bootstrap.min.js"></script>
+    <script src="/Flat-UI-master/dist/js/flat-ui.min.js"></script>
+
+    <title>UserInfo</title>
     <style>
-        .row{
+        .row {
             margin-left: 20px;
             margin-right: 20px;;
         }
-        .line-center{
-            line-height:50px;
+
+        .line-center {
+            line-height: 50px;
             text-align: center;
         }
-        .row input{
-            width: 50px;
-        }
-        .list-group-item:hover{
+
+
+        .list-group-item:hover {
             background: #27ae60;
 
         }
-        .list-group-item div:first-child:hover{
+
+        .list-group-item div:first-child:hover {
 
             cursor: pointer;
         }
-        th{
+
+        th {
             text-align: right;
             width: 10%;;
             padding: 10px;
         }
-        td{
+
+        td {
             text-align: left;
             width: 30%;;
             padding: 10px;
         }
-        .table th{
+
+        .table th {
             text-align: center;
         }
-        .table td{
+
+        .table td {
             text-align: center;
         }
     </style>
     <script>
-        function myClick(n){
-            location.href = "OrderInfo.html";
-        }
-        function btnClick(){
-            alert("btn");
-            return false;
-        }
-        $(function(){
-
-        })
-    </script>
-    <script>
-        $(function(){
+        $(function () {
             $('#myTabs a').click(function (e) {
-
                 $(this).tab('show')
             });
         })
@@ -69,35 +62,401 @@
 </head>
 <body>
 <!-- Static navbar -->
-<div th:replace="Index :: head">
+<div th:replace="Index :: head_item">
 </div>
 <!--content-->
 <div class="container">
     <div class="row thumbnail center col-sm-12">
         <div class="col-sm-12">
             <h1 class="text-center" style="margin-bottom: 30px">个人中心</h1>
+            <div th:if="${user} ne null">
+                <button onclick="exitLogin()">退出登录</button>
+            </div>
         </div>
 
         <ul class="nav nav-tabs nav-justified" id="myTabs">
-            <li class="active"><a href="#userHome" >个人中心</a></li>
+            <li class="active"><a href="#userHome">个人中心</a></li>
             <li><a href="#editInfo">信息修改</a></li>
             <li><a href="#editPassword">密码修改</a></li>
-            <li><a href="#orderManager">订单管理</a></li>
+            <li><a href="#selectCollection">查看收藏</a></li>
         </ul>
 
         <!-- Tab panes -->
-        <div class="tab-content">
-            <div role="tabpanel" class="tab-pane active" id="userHome">个人中心</div>
-            <div role="tabpanel" class="tab-pane" id="editInfo">信息修改</div>
-            <div role="tabpanel" class="tab-pane" id="editPassword">密码修改</div>
-            <div role="tabpanel" class="tab-pane" id="orderManager">订单管理</div>
+        <div th:if="${user} ne null">
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="userHome">
+
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-6">
+
+                        <div class="form-group">
+                            <label for="username" class="col-sm-3 control-label">用户名</label>
+                            <div>
+                                [[${user.username}]]
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inlineRadio1" class="col-sm-3 control-label">性别</label>
+                            <div>
+                                <div th:if="${user.gender eq true}">男</div>
+                                <div th:if="${user.gender eq false}">女</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="telephone" class="col-sm-3 control-label">电话</label>
+                            <div>
+                                [[${user.telephone}]]
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="address" class="col-sm-3 control-label">地址</label>
+                            <div id="getAddress"></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3"></div>
+                </div>
+
+
+                <div role="tabpanel" class="tab-pane " id="editInfo">
+
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-6">
+                        <form class="form-horizontal caption " action="/updateUserInformation" method="post">
+                            <input type="hidden" name="id" th:value="${user.id}">
+                            <div class="form-group">
+                                <label for="username" class="col-sm-3 control-label">用户名</label>
+                                <div class="col-sm-8">
+                                    <input type="text" th:value="${user.username}" class="form-control" id="username"
+                                           placeholder="用户名" name="username">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inlineRadio1" class="col-sm-3 control-label">性别</label>
+                                <div class="col-sm-8">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="gender" id="inlineRadio1" value="1"
+                                               th:checked="${user.gender eq true}">男
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="gender" id="inlineRadio2" value="0"
+                                               th:checked="${user.gender eq false}">女
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="telephone" class="col-sm-3 control-label">电话</label>
+                                <div class="col-sm-8">
+                                    <input type="tel" class="form-control" id="telephone" placeholder="电话号码"
+                                           th:value="${user.telephone}"
+                                           name="telephone">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="address" class="col-sm-3 control-label">地址</label>
+                                <div class="col-sm-8">
+                                    <select style="width:200px" class="form-control" onchange="provinceChange(this)"
+                                            id="select" value="" name="province">
+                                        <option value="-1">-请选择-</option>
+                                        <option value="0">北京市</option>
+                                        <option value="1">天津市</option>
+                                        <option value="2">上海市</option>
+                                        <option value="3">重庆市</option>
+                                        <option value="4">新疆自治区</option>
+                                        <option value="5">西藏自治区</option>
+                                        <option value="6">宁夏自治区</option>
+                                        <option value="7">内蒙古自治区</option>
+                                        <option value="8">广西自治区</option>
+                                        <option value="9">黑龙江省</option>
+                                        <option value="10">吉林省</option>
+                                        <option value="11">辽宁省</option>
+                                        <option value="12">河北省</option>
+                                        <option value="13">山东省</option>
+                                        <option value="14">江苏省</option>
+                                        <option value="15">安徽省</option>
+                                        <option value="16">浙江省</option>
+                                        <option value="17">福建省</option>
+                                        <option value="18">广东省</option>
+                                        <option value="19">海南省</option>
+                                        <option value="20">云南省</option>
+                                        <option value="21">贵州省</option>
+                                        <option value="22">四川省</option>
+                                        <option value="23">湖南省</option>
+                                        <option value="24">湖北省</option>
+                                        <option value="25">河南省</option>
+                                        <option value="26">山西省</option>
+                                        <option value="27">陕西省</option>
+                                        <option value="28">甘肃省</option>
+                                        <option value="29">青海省</option>
+                                        <option value="30">江西省</option>
+                                        <option value="31">台湾省</option>
+                                        <option value="32">香港特别行政区</option>
+                                        <option value="33">澳门特别行政区</option>
+                                    </select>
+                                    <select style="width:200px" class="form-control" name="city">
+                                        <option value="-1">-请选择-</option>
+                                    </select>
+                                    <input type="text" class="form-control" id="address" placeholder="地址" name="address"
+                                           th:value="${user.address}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-3 col-sm-5">
+                                    <button type="submit" class="btn btn-success btn-block">更改信息</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-sm-3"></div>
+                </div>
+
+
+                <div role="tabpanel" class="tab-pane" id="editPassword">
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-6">
+                        <form class="form-horizontal caption " action="/updatePassword" method="post">
+                            <input type="hidden" name="userid" th:value="${user.id}">
+                            <div class="form-group">
+                                <label for="password" class="col-sm-3 control-label">旧密码</label>
+                                <div class="col-sm-8">
+                                    <input type="password" class="form-control" id="old_password" placeholder="密码"
+                                           name="old_password">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password" class="col-sm-3 control-label">密码</label>
+                                <div class="col-sm-8">
+                                    <input type="password" class="form-control" id="password" placeholder="密码"
+                                           name="password">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="col-sm-3 control-label">确认密码</label>
+                                <div class="col-sm-8">
+                                    <input type="password" class="form-control" id="password2" placeholder="确认密码"
+                                           name="password2">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="paypassword" class="col-sm-3 control-label">支付密码</label>
+                                <div class="col-sm-8">
+                                    <input type="password" class="form-control" id="paypassword" name="paypassword"
+                                           placeholder="支付密码">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-3 col-sm-5">
+                                    <button type="submit" class="btn btn-success btn-block">更改密码</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+
+                <div role="tabpanel" class="tab-pane" id="selectCollection">
+
+                    <div class="col-sm-12">
+                        <h1 class="text-center" style="margin-bottom: 30px">我的收藏</h1>
+                    </div>
+                    <div class="col-sm-12 thumbnail">
+                        <div class="col-sm-4 line-center">书本图片</div>
+                        <div class="col-sm-3 line-center">书本名称</div>
+                        <div class="col-sm-2 line-center">作者名称</div>
+                        <div class="col-sm-3 line-center">操作</div>
+                    </div>
+                    <div class="list-group" id="books_father">
+                        <div class="col-sm-12  list-group-item" th:each="book:${user.booksCollection}"
+                             th:id="'book_'+${book.id}">
+                            <div class="col-sm-4 line-center">
+                                <img style="width: 30%" th:src="@{/image/{filename}(filename=${book.img})}" alt="">
+                            </div>
+                            <div class="col-sm-3 line-center" th:text="${book.name}">未付款</div>
+                            <div class="col-sm-2 line-center" th:text="${book.author.name}">12</div>
+                            <div class="col-sm-3 line-center">
+                                <button class="btn btn-danger"
+                                        th:onclick="'deleteCollection('+${user.id}+','+${book.id}+')'">取消收藏
+                                </button>
+                                <button class="btn btn-success" th:onclick="'toBookInfo('+${book.id}+')'">查看图书</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+        <div th:if="${user} eq null"> 请先登录</div>
     </div>
+</div>
 </div>
 
 <!--footer-->
-<div class="navbar navbar-default navbar-static-bottom">
-    版权声明区
+<div th:replace="Index :: end">
 </div>
+
+
+<script th:inline="javascript">
+
+    function toBookInfo(bookid) {
+        location.href = "/BookInfo/" + bookid;
+    }
+
+
+    function deleteCollection(userid, bookid) {
+
+        var book_ = document.getElementById("book_" + bookid);
+        document.getElementById("books_father").removeChild(book_);
+        $.ajax({
+            url: "/deleteCollection/" + bookid,
+            type: "POST",
+            dataType: "json",
+            data: {
+                _method: "DELETE",
+                "userid": userid
+            },
+            success: function (data) {//这个data就是返回来的json数据
+                alert("取消收藏成功");
+            },
+            error: function () {
+                alert("服务器错误,修改信息失败");
+            }
+        });
+    }
+
+    function exitLogin() {
+        $.ajax({
+            url: "/exitLogin",
+            type: "POST",
+            dataType: "json",
+            data: {
+                "userid": /*[[${user.id}]]*/
+            },
+            success: function (data) {//这个data就是返回来的json数据
+                toindex();
+            },
+            error: function () {
+                alert("服务器错误,修改信息失败");
+            }
+        });
+    }
+
+    function toindex() {
+        location.href = "/";
+    }
+
+    var pArr = new Array("北京市", "天津市", "上海市", "重庆市", "新疆自治区", "西藏自治区", "宁夏自治区", "内蒙古自治区", "广西自治区", "黑龙江省", "吉林省", "辽宁省", "河北省", "山东省", "江苏省", "安徽省", "浙江省", "福建省", "广东省", "海南省", "云南省", "贵州省", "四川省", "湖南省", "湖北省", "河南省", "山西省", "陕西省", "甘肃省", "青海省", "江西省", "台湾省", "香港特别行政区", "澳门特别行政区");
+
+    var provinceArr = new Array(33);
+    provinceArr[0] = new Array("北京市");
+    provinceArr[1] = new Array("天津市");
+    provinceArr[2] = new Array("上海市");
+    provinceArr[3] = new Array("重庆市");
+    provinceArr[4] = new Array("乌鲁木齐", "克拉玛依");
+    provinceArr[5] = new Array("拉萨");
+    provinceArr[6] = new Array("银川", "石嘴山", "吴忠", "固原", "中卫");
+    provinceArr[7] = new Array("呼和浩特", "包头", "乌海", "赤峰", "通辽", "鄂尔多斯", "呼伦贝尔", "巴彦淖尔", "乌兰察布");
+    provinceArr[8] = new Array("南宁", "柳州", "桂林", "梧州", "北海", "崇左", "来宾", "贺州", "玉林", "百色", "河池", "钦州", "防城港", "贵港");
+    provinceArr[9] = new Array("哈尔滨", "大庆", "齐齐哈尔", "佳木斯", "鸡西", "鹤岗", "双鸭山", "牡丹江", "伊春", "七台河", "黑河", "绥化");
+    provinceArr[10] = new Array("长春", "吉林", "四平", "辽源", "通化", "白山", "松原", "白城");
+    provinceArr[11] = new Array("沈阳", "大连", "鞍山", "抚顺", "本溪", "丹东", "锦州", "营口", "阜新", "辽阳", "盘锦", "铁岭", "朝阳", "葫芦岛");
+    provinceArr[12] = new Array("石家庄", "唐山", "邯郸", "秦皇岛", "保定", "张家口", "承德", "廊坊", "沧州", "衡水", "邢台");
+    provinceArr[13] = new Array("济南", "青岛", "淄博", "枣庄", "东营", "烟台", "潍坊", "济宁", "泰安", "威海", "日照", "莱芜", "临沂", "德州", "聊城", "菏泽", "滨州");
+    provinceArr[14] = new Array("南京", "镇江", "常州", "无锡", "苏州", "徐州", "连云港", "淮安", "盐城", "扬州", "泰州", "南通", "宿迁");
+    provinceArr[15] = new Array("合肥", "蚌埠", "芜湖", "淮南", "亳州", "阜阳", "淮北", "宿州", "滁州", "安庆", "巢湖", "马鞍山", "宣城", "黄山", "池州", "铜陵");
+    provinceArr[16] = new Array("杭州", "嘉兴", "湖州", "宁波", "金华", "温州", "丽水", "绍兴", "衢州", "舟山", "台州");
+    provinceArr[17] = new Array("福州", "厦门", "泉州", "三明", "南平", "漳州", "莆田", "宁德", "龙岩");
+    provinceArr[18] = new Array("广州", "深圳", "汕头", "惠州", "珠海", "揭阳", "佛山", "河源", "阳江", "茂名", "湛江", "梅州", "肇庆", "韶关", "潮州", "东莞", "中山", "清远", "江门", "汕尾", "云浮");
+    provinceArr[19] = new Array("海口", "三亚");
+    provinceArr[20] = new Array("昆明", "曲靖", "玉溪", "保山", "昭通", "丽江", "普洱", "临沧");
+    provinceArr[21] = new Array("贵阳", "六盘水", "遵义", "安顺");
+    provinceArr[22] = new Array("成都", "绵阳", "德阳", "广元", "自贡", "攀枝花", "乐山", "南充", "内江", "遂宁", "广安", "泸州", "达州", "眉山", "宜宾", "雅安", "资阳");
+    provinceArr[23] = new Array("长沙", "株洲", "湘潭", "衡阳", "岳阳", "郴州", "永州", "邵阳", "怀化", "常德", "益阳", "张家界", "娄底");
+    provinceArr[24] = new Array("武汉", "襄樊", "宜昌", "黄石", "鄂州", "随州", "荆州", "荆门", "十堰", "孝感", "黄冈", "咸宁");
+    provinceArr[25] = new Array("郑州", "洛阳", "开封", "漯河", "安阳", "新乡", "周口", "三门峡", "焦作", "平顶山", "信阳", "南阳", "鹤壁", "濮阳", "许昌", "商丘", "驻马店");
+    provinceArr[26] = new Array("太原", "大同", "忻州", "阳泉", "长治", "晋城", "朔州", "晋中", "运城", "临汾", "吕梁");
+    provinceArr[27] = new Array("西安", "咸阳", "铜川", "延安", "宝鸡", "渭南", "汉中", "安康", "商洛", "榆林");
+    provinceArr[28] = new Array("兰州", "天水", "平凉", "酒泉", "嘉峪关", "金昌", "白银", "武威", "张掖", "庆阳", "定西", "陇南");
+    provinceArr[29] = new Array("西宁");
+    provinceArr[30] = new Array("南昌", "九江", "赣州", "吉安", "鹰潭", "上饶", "萍乡", "景德镇", "新余", "宜春", "抚州");
+    provinceArr[31] = new Array("台北", "台中", "基隆", "高雄", "台南", "新竹", "嘉义");
+    provinceArr[32] = new Array("香港特别行政区");
+    provinceArr[33] = new Array("澳门特别行政区");
+
+    function provinceChange(province) {
+        var city = document.getElementsByName("city")[0];
+        console.log(province.value);
+        console.log(typeof (province.value));
+        if (province.value == "-1") {
+            city.innerHTML = "<option value=\"-1\">-请选择-</option>";
+            return;
+        }
+//		console.log(provinceArr[province.value]);
+        var cityArr = provinceArr[province.value];
+        city.options.length = 0;
+        for (var i = 0; i < cityArr.length; i++) {
+            var cityOption = document.createElement("option");
+            cityOption.setAttribute("value", i);
+            cityOption.innerText = cityArr[i];
+            city.appendChild(cityOption);
+        }
+    }
+
+
+    function changeAddress() {
+        var province =/*[[${user.province}]]*/;
+        var city =/*[[${user.city}]]*/;
+        var provinceid = 0;
+        var cityeid = 0;
+
+        for (var i = 0; i < pArr.length; i++) {
+            if (province == pArr[i]) {
+                provinceid = i;
+            }
+        }
+
+        for (var i = 0; i < provinceArr[provinceid].length; i++) {
+            if (provinceArr[provinceid][i] == city) {
+                cityeid = i;
+            }
+        }
+        //alert(provinceid);
+        //alert(cityeid);
+        //得到位置之后可以选择 option到底是哪个了TODO
+
+
+        var opts = document.getElementById("select");
+        if (provinceid != "") {
+            for (var i = 0; i < opts.options.length; i++) {
+                if (provinceid == opts.options[i].value) {
+                    opts.options[i].selected = 'selected';
+                    //alert(opts.options[i].value);
+                    break;
+                }
+            }
+        }
+        var city = document.getElementsByName("city")[0];
+        var cityArr = provinceArr[provinceid];
+        city.options.length = 0;
+        for (var i = 0; i < cityArr.length; i++) {
+            var cityOption = document.createElement("option");
+            cityOption.setAttribute("value", i);
+            cityOption.innerText = cityArr[i];
+            city.appendChild(cityOption);
+        }
+        city.options[cityeid].selected = 'selected';
+    }
+
+    changeAddress();
+
+
+    function getAddress() {
+        var province =/*[[${user.province}]]*/;
+        var city =/*[[${user.city}]]*/;
+        var address =/*[[${user.address}]]*/;
+
+        document.getElementById("getAddress").innerHTML = province + city + address;
+    }
+
+    getAddress()
+</script>
 </body>
 </html>

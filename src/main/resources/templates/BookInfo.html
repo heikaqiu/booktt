@@ -1,20 +1,22 @@
 <!DOCTYPE html>
-<html lang="en"  xmlns:th="http://www.thymeleaf.org">
-<head >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
     <meta charset="UTF-8">
 
-    <link href="css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="Flat-UI-master/dist/css/flat-ui.min.css"/>
-    <script src="Flat-UI-master/dist/js/vendor/jquery.min.js"></script>
-    <script src="js/bootstrap/3.3.6/bootstrap.min.js"></script>
-    <script src="Flat-UI-master/dist/js/flat-ui.min.js"></script>
-    <title></title>
+    <link href="/css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/Flat-UI-master/dist/css/flat-ui.min.css"/>
+    <script src="/Flat-UI-master/dist/js/vendor/jquery.min.js"></script>
+    <script src="/js/bootstrap/3.3.6/bootstrap.min.js"></script>
+    <script src="/Flat-UI-master/dist/js/flat-ui.min.js"></script>
+
+    <title>BookInfo</title>
     <style>
-        .row{
+        .row {
             margin-left: 20px;
             margin-right: 20px;;
         }
-        .center{
+
+        .center {
             text-align: center;
         }
     </style>
@@ -22,34 +24,180 @@
 <body>
 
 <!-- Static navbar -->
-<div th:replace="Index :: head">
+<div th:replace="Index :: head_item">
 </div>
 
 <!--content-->
-<div class="row thumbnail">
-    <div class="col-sm-4">
-            <img style="width: 100%; height: 500px; display: block;" src=""  data-holder-rendered="true">
-            <div class="caption center">
-                <h3>书名</h3>
-                <p>作者</p>
-                <p>出版日期</p>
-                <p><a class="btn btn-primary btn-block" role="button" href="#">立即购买</a> <a class="btn btn-default btn-block" role="button" href="#">加入购物车</a></p>
-            </div>
+<div style="width: 80%;margin-left: 10%;" class="row thumbnail">
+    <div class="col-sm-4 center">
+        <img style="width: 100%; height: 500px; display: block;" th:src="@{/image/{filename}(filename=${book.img})}"
+             data-holder-rendered="true">
+        <h3>书名:<span th:text="${book.name}"></span></h3>
     </div>
     <div class="col-sm-8">
+
         <div class="caption">
-                <h3>图书介绍</h3>
-                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-
+            <h3>图书介绍</h3>
+            <p th:text="${book.synopsis}"></p>
+            <p>作者:<span th:text="${book.author.name}"></span></p>
+            <p>单价:<span th:text="${book.price}"></span></p>
+            <p>库存:<span th:text="${book.remainder}"></span></p>
+            <p>选择购买数量:<input id="buynum" type="number" min="0" th:max="${book.remainder}" value="1"></p>
+            <p style="width: 50%;">
+            <div th:if="${session.login_user} ne null">
+                <a class="btn btn-primary btn-block" role="button"
+                   th:onclick="buyBook([[${book.id}]],[[${session.login_user.id}]],[[${session.login_user.paypassword}]])">立即购买</a>
+                <a class="btn btn-default btn-block" role="button"
+                   th:onclick="andToCart([[${book.id}]],[[${session.login_user.id}]])">加入购物车</a>
+                <div th:if="${isCollection} eq true" style="margin-top: 5px;">
+                    <a class="btn btn btn-info btn-block" role="button"
+                       href="/userInfo.html#selectCollection">已收藏，查看收藏</a>
+                </div>
+                <div th:if="${isCollection} eq false" style="margin-top: 5px;">
+                    <a class="btn btn btn-info btn-block" role="button"
+                       th:onclick="andToCollection([[${book.id}]],[[${session.login_user.id}]])">收藏本书</a>
+                </div>
             </div>
-
+            <div th:if="${session.login_user} eq null">
+                <a class="btn btn-primary btn-block" role="button"
+                   th:onclick="toLogin()">立即购买</a>
+                <a class="btn btn-default btn-block" role="button"
+                   th:onclick="toLogin()">加入购物车</a>
+                <a class="btn btn btn-info btn-block" role="button"
+                   th:onclick="toLogin()">收藏本书</a>
+            </div>
+            </p>
+        </div>
     </div>
-
 </div>
+</div>
+
+
+
+
+
+<script th:inline="javascript">
+
+
+    function toLogin() {
+        alert("请登录");
+        location.href = "/login.html";
+    }
+
+
+    function andToCollection(bookid, userid) {
+        $.ajax({
+            url: "/andToCollection",
+            type: "POST",
+            data: {
+                'user_id': userid,
+                'book_id': bookid
+            },
+            dataType: "json",
+            success: function (data) {//这个data就是返回来的json数据
+                alert(data.message);
+            },
+            error: function () {
+                alert("服务器错误");
+            }
+        });
+    }
+
+
+    function andToCart(bookid, userid) {
+        var buynum = document.getElementById("buynum");
+        var buy_num = buynum.value;
+        $.ajax({
+            url: "/andToCart",
+            type: "POST",
+            data: {
+                'user_id': userid,
+                'book_id': bookid,
+                'buy_num': buy_num
+            },
+            dataType: "json",
+            success: function (data) {//这个data就是返回来的json数据
+                alert(data.message);
+            },
+            error: function () {
+                alert("服务器错误");
+            }
+        });
+    }
+
+    function toOrder() {
+        location.href = "/order.html";
+    }
+
+
+    function buyBook(bookid, userid,paypassword_pass) {
+        var buynum = document.getElementById("buynum");
+        var buy_num = buynum.value;
+        var totalPrice =/*[[${book.price}]]*/;
+        for (var j = 1; j <= 3; j++) {
+            var paypassword = prompt("请输入支付密码", "");
+            if (paypassword == null) {
+                //按了取消就是 未付款订单
+                var orderState = 1;
+                j = 4;
+            }
+
+
+            if (paypassword == paypassword_pass) {
+                //输入支付密码正确
+                j = 4;
+                var orderState = 2;
+
+            } else {
+                if (j == 3) {
+                    alert("支付密码错误次数过多，请在30分钟内完成支付");
+                    var orderState = 1;
+                    // 添加订单 到等待买家付款
+                }
+                alert("输错" + j + "次");
+            }
+        }
+
+
+        $.ajax({
+            url: "/buyBook",
+            type: "POST",
+            data: {
+                'user_id': userid,
+                'book_id': bookid,
+                'buy_num': buy_num,
+                'orderState': orderState,
+                'paypassword_pass': paypassword_pass,
+                'totalPrice': totalPrice
+            },
+            dataType: "json",
+            success: function (data) {//这个data就是返回来的json数据
+                alert(data.message);
+                if (data.message == "付款成功，等待卖家发货" || data.message == "付款密码错误三次，请三十分钟内完成支付") {
+
+                    // 去订单页面
+                    toOrder();
+                }
+
+            },
+            error: function () {
+                alert("服务器错误");
+            }
+        });
+    }
+</script>
+
+
+
+
 
 <!--footer-->
-<div class="navbar navbar-default navbar-static-bottom">
-    版权声明区
+<div th:replace="Index :: end">
 </div>
+
+
+
+
+
 </body>
 </html>
