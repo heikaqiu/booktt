@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>订单统计</title>
+
+    <!-- Bootstrap -->
+    <link href="/css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/bootstrap-daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" href="/assets/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <style>
+    </style>
+
+</head>
+<body>
+
+<!-- 导航栏 -->
+<div th:replace="/admin/index :: admin_index_navigationbar">
+</div>
+
+
+<div class="wrapper">
+
+
+    <!-- 侧边栏 -->
+    <div th:replace="/admin/index :: admin_index_sidebar">
+    </div>
+
+    <div class="main-container">
+        <div class="padding">
+            <ol class="breadcrumb">
+                <li><a href="/admin/">首页</a></li>
+                <li>订单管理</li>
+                <li class="active">订单统计</li>
+            </ol>
+            <div class="box">
+                <div class="box-inner">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <section class="box-label-block theme">
+                                <div class="symbol">
+                                    <i class="fa fa-paper-plane" aria-hidden="true"></i>
+                                </div>
+                                <div class="content">
+                                    <h4 class="title">总订单数</h4>
+                                    <p>[[${allOrderNum}]]</p>
+                                </div>
+                            </section>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <section class="box-label-block cyellow">
+                                <div class="symbol">
+                                    <i class="fa fa-database" aria-hidden="true"></i>
+                                </div>
+                                <div class="content">
+                                    <h4 class="title">昨日订单数</h4>
+                                    <p>[[${yesterdayOrderNum}]]</p>
+                                </div>
+                            </section>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <section class="box-label-block terques">
+                                <div class="symbol">
+                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                </div>
+                                <div class="content">
+                                    <h4 class="title">今日订单数</h4>
+                                    <p>[[${todayOrderNum}]]</p>
+                                </div>
+                            </section>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <section class="box-label-block cred">
+                                <div class="symbol">
+                                    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+                                </div>
+                                <div class="content">
+                                    <h4 class="title">净增长率（今昨差/昨天）</h4>
+                                    <p>[[${growthDifference}]]</p>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box">
+                <div class="heading">
+                    <h3 class="title">订单查询<span class="box-toggle"><i class="fa fa-chevron-up"></i></span></h3>
+                </div>
+                <div class="box-inner">
+
+                    <div class="form-inline form-label-search" role="form">
+                    <div class="form-group">
+                        <label class="control-label">订单号</label>
+                        <input type="text" class="form-control" placeholder="按订单号搜索" name="order_id">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">用户名</label>
+                        <input type="text" class="form-control" placeholder="按用户名搜索" name="user_username">
+                        <span style="color: red" id="nameNotFound"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">日期范围</label>
+                        <input type="text" class="form-control input-daterange" placeholder="按日期范围搜索"
+                               name="order_time">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">订单数量范围</label>
+                        <input type="number" class="form-control" placeholder="按订单数量范围搜索" name="first_num_number">-
+                        <input type="number" class="form-control" placeholder="按订单数量范围搜索" name="last_num_number">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">订单总价范围</label>
+                        <input type="number" class="form-control" placeholder="按订单总价范围搜索" name="first_price_number">-
+                        <input type="number" class="form-control" placeholder="按订单总价范围搜索" name="last_price_number">
+                    </div>
+
+                    <button class="btn btn-success pull-right btn-search" onclick="submitOrderInformation()">搜索</button>
+                    </div>
+
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active"><a role="tab"
+                                                                  data-toggle="tab"
+                                                                  aria-controls="WAIT_DELIVER_GOODS"
+                                                                  aria-expanded="true"
+                                                                  onclick="flushtoPage(2)">等待卖家发货</a>
+                        </li>
+                        <li role="presentation"><a role="tab" data-toggle="tab"
+                                                   aria-controls="DELIVER_GOODS" onclick="flushtoPage(3)">卖家已发货</a>
+                        </li>
+                        <li role="presentation"><a role="tab" data-toggle="tab"
+                                                   aria-controls="FINISH_ORDER" onclick="flushtoPage(4)">订单完成</a>
+                        </li>
+                        <li role="presentation"><a role="tab" data-toggle="tab"
+                                                   aria-controls="WAIT_PAYMENT" onclick="flushtoPage(1)">等待买家付款</a>
+                        </li>
+                        <li role="presentation"><a role="tab" data-toggle="tab"
+                                                   aria-controls="CLOSE" onclick="flushtoPage(5)">订单关闭</a>
+                        </li>
+
+                    </ul>
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane fade in active" id="WAIT_DELIVER_GOODS"
+                             aria-labelledby="WAIT_DELIVER_GOODS-tab">
+
+                            <div class="box">
+                                <div class="box-inner">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped">
+                                            <thead>
+                                            <tr>
+                                                <th>订单id</th>
+                                                <th>用户id</th>
+                                                <th>用户名称</th>
+                                                <th>提交时间</th>
+                                                <th>最后付款时间</th>
+                                                <th>订单数量</th>
+                                                <th>订单总价</th>
+                                                <th>查看订单</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody id="orderList">
+
+                                            <tr th:each="order:${orderList}">
+                                                <td>[[${order.id}]]</td>
+                                                <td>[[${order.user.id}]]</td>
+                                                <td>[[${order.user.username}]]</td>
+                                                <td th:text="${#dates.format(order.submitTime, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                                                <td th:text="${#dates.format(order.paymentaTime, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                                                <td>[[${order.number}]]</td>
+                                                <td>[[${order.totalPrice}]]</td>
+                                                <td><a  target="_blank" th:href="'/admin/orderInfo.html/'+${order.id}"  class="link-show-confirm">查看订单</a>
+                                                </td>
+                                            </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <nav class="text-center">
+                                        <ul class="pagination" id="order_pagenum">
+                                            <li><a href="#">&laquo;</a></li>
+                                            <li class="active"><a href="#">1</a></li>
+                                            <li><a href="#">&raquo;</a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+
+
+                            <script th:inline="javascript">
+
+
+                                var pageNumCount = 0;//总共有多少订单的数量
+                                var order_pagenum = 0;//获取到页码的DOM
+                                var pageNumber = 0;//总共有几页
+                                var pageList = [];//第一条active
+                                var first_page = "<li><a onclick='toPage(" + 0 + ")'>&laquo;</a></li>"; //首页
+                                var one_page = "<li class='active'><a onclick='toPage(" + 0 + ")'>1</a></li>";//第一页
+                                var point_page = 1;
+                                var last_page = "";//末页
+                                var orderListHTML = document.getElementById("orderList");
+
+                                function getPageNum(page_num) {
+                                    order_pagenum = document.getElementById("order_pagenum");
+                                    pageNumCount =/*[[${orderByInformationNum}]]*/;
+                                    if (page_num != null) {
+                                        //不等于null 就给他赋值
+                                        pageNumCount = page_num;
+                                    }
+
+                                    if (pageNumCount <= 0) {
+                                        order_pagenum.innerHTML = "没有找到订单";
+                                        return;
+                                    }
+                                    pageNumber = Math.ceil(pageNumCount / 5); //向上取整   成页码数
+                                    last_page = "<li><a onclick='toPage(" + (pageNumber - 1) * 5 + ")'>&raquo;</a></li>";
+                                    pageList = [];
+                                    pageList.push(first_page);
+                                    pageList.push(one_page);
+                                    var s = "";//HTML语句
+                                    for (var i = 2; i <= pageNumber; i++) {
+                                        var pageListString = "<li><a onclick='toPage(" + (i - 1) * 5 + ")'>" + i + "</a></li>";
+                                        pageList.push(pageListString);
+                                    }
+                                    pageList.push(last_page);
+                                    if (pageList.length <= 7) {
+                                        //如果页面只有5或者比5少则
+                                        for (var i = 0; i < pageList.length - 1; i++) {
+                                            s += pageList[i];
+                                        }
+                                    } else {
+                                        //如果页面比5大则只显示前五条
+                                        for (var i = 0; i < 6; i++) {
+                                            s += pageList[i];
+                                        }
+                                    }
+                                    s += pageList[pageList.length - 1];
+                                    //alert(s);
+                                    order_pagenum.innerHTML = s;
+
+                                }
+
+                                getPageNum();
+
+
+                                var order_State = 2;
+
+
+                                //只需要向后端发送获取第几条  其他都会在session中找
+                                function toPage(num) {
+                                    //将所有li都没class的赋值给pageList
+
+                                    //这种写法是错误的 因为都是引用类型
+                                    // pageList = pageList2;
+                                    pageList[point_page] = "<li><a onclick='toPage(" + (point_page - 1) * 5 + ")'>" + point_page + "</a></li>";
+                                    point_page = num / 5 + 1;
+                                    pageList[num / 5 + 1] = "<li class='active'><a onclick='toPage(" + num + ")'>" + (num / 5 + 1) + "</a></li>";
+                                    var s = "";
+                                    if (pageList.length <= 7) {
+                                        //如果页面只有5或者比5少则
+                                        for (var i = 0; i < pageList.length - 1; i++) {
+                                            s += pageList[i];
+                                        }
+                                    } else {
+                                        //如果页面比5大则显示num/5+1的左右两条  为什么是-4 因为右边有两页还有最后的标志还有因为从0开始
+                                        s = pageList.length[0];
+                                        if ((num / 5 + 1) < 3) {
+                                            for (var i = 1; i < 6; i++) {
+                                                s += pageList[i];
+                                            }
+                                        } else {
+                                            if ((num / 5 + 1) > (pageList.length - 4)) {
+
+                                                for (var i = pageList.length - 6; i <= pageList.length - 2; i++) {
+                                                    s += pageList.length[i];
+                                                }
+                                            } else {
+                                                for (var i = (num / 5 + 1) - 2; i <= (num / 5 + 1) + 2; i++) {
+                                                    s += pageList.length[i];
+                                                }
+                                            }
+                                        }
+                                    }
+                                    s += pageList[pageList.length - 1];
+                                    //alert(s);
+                                    order_pagenum.innerHTML = s;
+
+                                    $.ajax({
+                                        url: "/admin/toPageOrder/" + num,
+                                        type: "POST",
+                                        dataType: "json",
+                                        success: function (data) {//这个data就是返回来的json数据
+                                            //包含了得到的order信息 TODO 获取到了信息 之后如何显示
+                                            // maps.put("orderList", orderList);
+                                            // maps.put("orderByInformationNum", orderByInformationNum);
+                                            var orderList = data.orderList;
+                                            changeOrderList(orderList);
+                                        },
+                                        error: function () {
+                                            document.getElementById("order_pagenum").innerHTML = '获取信息错误';
+                                        }
+                                    });
+                                }
+
+                                function changeOrderList(orderList) {
+                                    var s = "";
+                                    for (var i = 0; i < orderList.length; i++) {
+                                        var date = formatDate(new Date(orderList[i].submitTime));
+                                        var date1 = formatDate(new Date(orderList[i].paymentaTime));
+                                        s += "<tr><td>" + orderList[i].id + "</td>" +
+                                            "<td>" + orderList[i].user.id + "</td>" +
+                                            "<td>" + orderList[i].user.username + "</td>" +
+                                            "<td>" + date + "</td>" +
+                                            "<td>" + date1 + "</td>" +
+                                            "<td>" + orderList[i].number + "</td>" +
+                                            "<td>" + orderList[i].totalPrice + "</td>" +
+                                            "<td><a  target='_blank' href='/admin/orderInfo.html/"+orderList[i].id+"'  class='link-show-confirm'>查看订单</a></td></tr>";
+                                    }
+                                    orderListHTML.innerHTML = s;
+                                }
+
+                                function formatDate(now) {
+                                    var year = now.getFullYear();
+                                    var month = now.getMonth() + 1;
+                                    var date = now.getDate();
+                                    var hour = now.getHours();
+                                    var minute = now.getMinutes();
+                                    var second = now.getSeconds();
+                                    return year + "-" + month + "-" + date + " " + hour + ":" + minute + ":" + second;
+                                }
+
+
+                                function submitOrderInformation() {
+                                    var order_id = document.getElementsByName("order_id")[0].value;
+                                    var user_username = document.getElementsByName("user_username")[0].value;
+                                    var order_time = document.getElementsByName("order_time")[0].value;
+                                    var first_num_number = document.getElementsByName("first_num_number")[0].value;
+                                    var last_num_number = document.getElementsByName("last_num_number")[0].value;
+                                    var first_price_number = document.getElementsByName("first_price_number")[0].value;
+                                    var last_price_number = document.getElementsByName("last_price_number")[0].value;
+                                    $.ajax({
+                                        url: "/admin/orderInformation",
+                                        type: "POST",
+                                        data: {
+                                            'order_id': order_id,
+                                            'user_username': user_username,
+                                            'order_time': order_time,
+                                            'first_num_number': first_num_number,
+                                            'last_num_number': last_num_number,
+                                            'first_price_number': first_price_number,
+                                            'last_price_number': last_price_number
+                                        },
+                                        dataType: "json",
+                                        success: function (data) {//这个data就是返回来的json数据
+                                            //是否将信息 放到了session中
+                                            if (data.message == "用户不存在") {
+                                                document.getElementById("nameNotFound").innerHTML = "用户不存在请重试";
+                                            } else if (data.message == "搜索成功") {
+                                                //刷新 并改为状态为2
+                                                document.getElementById("nameNotFound").innerHTML ="";
+                                                flushtoPage(2);
+                                            }
+                                        },
+                                        error: function () {
+                                            document.getElementById("order_pagenum").innerHTML = '获取信息错误';
+                                        }
+                                    });
+                                }
+
+                                function flushtoPage(state_value) {
+                                    order_State = state_value;
+                                    $.ajax({
+                                        url: "/admin/toPageOrder/0",
+                                        type: "POST",
+                                        data: {
+                                            'order_State': order_State
+                                        },
+                                        dataType: "json",
+                                        success: function (data) {//这个data就是返回来的json数据
+                                            //刷新页面
+                                            getPageNum(data.orderByInformationNum);
+
+                                            changeOrderList(data.orderList);
+                                        },
+                                        error: function () {
+                                            document.getElementById("order_pagenum").innerHTML = '获取信息错误';
+                                        }
+                                    });
+                                }
+                            </script>
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="scroll-to-top"><i class="fa fa-chevron-up fa-lg"></i></div>
+
+
+<script src="/js/jquery/2.0.0/jquery.min.js"></script>
+<script src="/js/bootstrap/3.3.6/bootstrap.min.js"></script>
+<script src="/assets/bootstrap-daterangepicker/moment.min.js"></script>
+<script src="/assets/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script src="/js/main.js"></script>
+</body>
+
+</html>

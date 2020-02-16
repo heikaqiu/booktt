@@ -149,5 +149,16 @@ public class UserServiceImp implements UserService {
         }
     }
 
+    @Override
+    public User findUserByusername(String user_username) {
+        User userByUsername = userMapper.getUserByUsername(user_username);
+        if(user_username!=null){
+            return userByUsername;
+        }else{
+            return null;
+        }
+
+    }
+
 
 }

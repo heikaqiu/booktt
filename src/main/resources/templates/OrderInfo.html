@@ -109,7 +109,7 @@
                     <div th:if="${order.state.value eq 3||order.state.value eq 4}"><!-- 如果是卖家已发货的 则显示快递单号 -->
                         <tr>
                             <th>快递单号：</th>
-                            <td>[[${order.expressnumber}]]</td>
+                            <td>[[${order.expressNumber}]]</td>
                         </tr>
                     </div>
                     <div th:if="${order.state.value} eq 4"><!-- 如果是订单已经完成的 则显示订单完成时间 -->

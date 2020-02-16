@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 //启动
 
 @SpringBootApplication
-@MapperScan(value = "cn.heikaqiu.booktt.mapper")
+//@MapperScan(value = "cn.heikaqiu.booktt.mapper")
 public class BookttApplication {
 
     public static void main(String[] args) {

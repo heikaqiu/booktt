@@ -1,5 +1,6 @@
 package cn.heikaqiu.booktt.service;
 
+import cn.heikaqiu.booktt.bean.FindOrderByInformation;
 import cn.heikaqiu.booktt.bean.Order;
 
 import java.util.List;
@@ -22,6 +23,13 @@ public interface OrderService {
      * @return
      */
     boolean deleteOrder(Long orderid);
+
+    /**
+     * 通过orderid查找 订单信息
+     * @param order_id
+     * @return
+     */
+    Order getOrderInfoByOrderId(Long order_id);
 
     /**
      * 通过userid 与 orderid查找 订单信息
@@ -53,4 +61,45 @@ public interface OrderService {
      * @return
      */
     boolean closeOrder(Long order_id);
+
+    /**
+     * 获取全部订单的总数
+     * @return
+     */
+    Long getAllCountOrder();
+
+    /**
+     * 获取任意时间内的订单总数
+     * @param start_time
+     * @param last_time
+     * @return
+     */
+    Long getAnydayCountOrder(Long start_time, Long last_time);
+
+
+    /**
+     * 需要查找订单 并分页
+     * @param state_num
+     * @param page_num
+     * @param orderByInformation
+     * @return
+     */
+    List<Order> getOrderInfoLimit(Integer state_num, Integer page_num, FindOrderByInformation orderByInformation);
+
+    /**
+     * 需要查找订单 的总数
+     * @param orderByInformation
+     * @return
+     */
+    Long getOrderByInformationNum(FindOrderByInformation orderByInformation);
+
+    Long getCountByOrderState(Order.State state);
+
+    /**
+     * 发货
+     * @param orderid
+     * @param expressNumber
+     * @return
+     */
+    Integer toDeliverGoods(String orderid, String expressNumber);
 }

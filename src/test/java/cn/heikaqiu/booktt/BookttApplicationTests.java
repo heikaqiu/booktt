@@ -2,6 +2,7 @@ package cn.heikaqiu.booktt;
 
 import cn.heikaqiu.booktt.bean.Book;
 import cn.heikaqiu.booktt.bean.BookType;
+import cn.heikaqiu.booktt.config.OtherConfig;
 import cn.heikaqiu.booktt.mapper.BookMapper;
 import cn.heikaqiu.booktt.mapper.UserMapper;
 import cn.heikaqiu.booktt.service.BookTypeService;
@@ -10,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.sound.midi.Soundbank;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @SpringBootTest
 class BookttApplicationTests {
@@ -23,6 +26,9 @@ class BookttApplicationTests {
 
     @Autowired
     private BookMapper bookMapper;
+
+    @Autowired
+    private OtherConfig otherConfig;
     @Test
     void contextLoads() {
         List<BookType> allType = bookTypeService.getAllType();
@@ -47,6 +53,16 @@ class BookttApplicationTests {
         userMapper.updateUserBalance(1,10.03f);
         String Balance2 = userMapper.getBalanceByUserId(1);
         System.out.println("2-"+Balance2);
+
+    }
+
+    @Test
+    void textGetTime(){
+        Map<String, Long> time = otherConfig.getTime();
+        Long today_zero = time.get("today_zero");
+        Date date = new Date(today_zero);
+        System.out.println(date);
+
 
     }
 

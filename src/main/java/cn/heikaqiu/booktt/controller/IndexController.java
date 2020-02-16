@@ -1,12 +1,15 @@
 package cn.heikaqiu.booktt.controller;
 
 import cn.heikaqiu.booktt.bean.*;
+import cn.heikaqiu.booktt.config.OtherConfig;
 import cn.heikaqiu.booktt.service.*;
+import com.fasterxml.jackson.databind.annotation.JsonAppend;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.jws.Oneway;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,10 +39,18 @@ public class IndexController {
     @Autowired
     private CollectionService collectionService;
 
-    @RequestMapping("/demo2")
-    public String demo2(Model model) {
-        return "admin/demo2";
+    @Autowired
+    private OtherConfig otherConfig;
+
+
+    /**
+     * 管理员首页
+     */
+    @RequestMapping("/admin")
+    public String admin() {
+        return "redirect:/admin/";
     }
+
 
     /**
      * 首页
@@ -48,6 +59,12 @@ public class IndexController {
      */
     @RequestMapping("/")
     public String index(Model model) {
+
+
+        //测试使用的登录 TODO
+        otherConfig.testLogin();
+
+
         //获取所有书本的类型
         List<BookType> bookTypes = bookTypeService.getAllType();
         model.addAttribute("bookTypes", bookTypes);
@@ -66,31 +83,22 @@ public class IndexController {
         session.setAttribute("page", "order");
 
 
-
         //测试使用的登录 TODO
-        User user=new User();
-        user.setUsername("heikaqiu");
-        user.setPassword("123");
-        userService.login(user);
-
-
-
+        otherConfig.testLogin();
 
 
         User login_user = (User) session.getAttribute("login_user");
 
 
-
-
-        if(login_user==null){
-            model.addAttribute("message","请登录");
-        }else{
+        if (login_user == null) {
+            model.addAttribute("message", "请登录");
+        } else {
 
             //首先更改订单状态
             orderService.updateOrderStateIfOutTime(login_user.getId());
 
-            List<Order> orderList=orderService.getAllOrderByUserId(login_user.getId());
-            model.addAttribute("orderList",orderList);
+            List<Order> orderList = orderService.getAllOrderByUserId(login_user.getId());
+            model.addAttribute("orderList", orderList);
         }
 
         return "Order";
@@ -113,18 +121,18 @@ public class IndexController {
      * @return
      */
     @RequestMapping("/userInfo.html")
-    public String  userInfo(Integer userid ,Model model) {
+    public String userInfo(Integer userid, Model model) {
 
-        if(userid==null){
+        if (userid == null) {
             //如果没传进来 默认是用session中的
-            userid=((User)session.getAttribute("login_user")).getId();
+            userid = ((User) session.getAttribute("login_user")).getId();
         }
 
         System.out.println(userid);
-        User user=userService.getUserById(userid);
-        System.out.println("user:"+ user );
+        User user = userService.getUserById(userid);
+        System.out.println("user:" + user);
         session.setAttribute("page", "userInfo");
-        model.addAttribute("user",user);
+        model.addAttribute("user", user);
         return "UserInfo";
 
     }
@@ -148,18 +156,17 @@ public class IndexController {
     @RequestMapping("/cart.html")
     public String cart(Model model) {
         session.setAttribute("page", "cart");
-        List<Shopcart> shopcartList=new ArrayList<>();
+        List<Shopcart> shopcartList = new ArrayList<>();
 
         User login_user = (User) session.getAttribute("login_user");
         if (login_user != null) {
             //用户已经登录
-            shopcartList=shopcartService.getShopcartByUserId(login_user.getId());
-            for(Shopcart shopcart:shopcartList){
+            shopcartList = shopcartService.getShopcartByUserId(login_user.getId());
+            for (Shopcart shopcart : shopcartList) {
                 System.out.println(shopcart);
             }
-            model.addAttribute("shopcartList",shopcartList);
-        }
-        else {
+            model.addAttribute("shopcartList", shopcartList);
+        } else {
             //用户没登陆
             model.addAttribute("message", "未登录，无购物车信息");
         }

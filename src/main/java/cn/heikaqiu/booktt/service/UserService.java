@@ -66,4 +66,11 @@ public interface UserService {
      * @return
      */
     boolean updateUserPassword(Integer userid, String old_password, String password, String paypassword) throws Exception;
+
+    /**
+     *通过用户名查找用户
+     * @param user_username
+     * @return
+     */
+    User findUserByusername(String user_username);
 }

@@ -2,11 +2,9 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.heikaqiu.springboot.mapper.EmployeeMapper">
+<mapper namespace="cn.heikaqiu.booktt.mapper.BookMapper">
    <!--    public Employee getEmpById(Integer id);
 
     public void insertEmp(Employee employee);-->
-
-
 
 </mapper>

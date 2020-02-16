@@ -1,5 +1,6 @@
 package cn.heikaqiu.booktt.service.imp;
 
+import cn.heikaqiu.booktt.bean.FindOrderByInformation;
 import cn.heikaqiu.booktt.bean.Order;
 import cn.heikaqiu.booktt.bean.OrderContent;
 import cn.heikaqiu.booktt.bean.User;
@@ -53,6 +54,11 @@ public class OrderServiceImp implements OrderService {
     }
 
     @Override
+    public Order getOrderInfoByOrderId(Long order_id) {
+        return orderMapper.getOrderInfoByOrderId(order_id);
+    }
+
+    @Override
     public Order getOrderInfo(Long order_id, Integer user_id) {
         return orderMapper.getOrderInfo(order_id,user_id);
     }
@@ -72,7 +78,7 @@ public class OrderServiceImp implements OrderService {
                 for (int j = 0; j <allOrderContent.size() ; j++) {
                     bookMapper.updateBookRemainder(allOrderContent.get(j).getBook().getId(),allOrderContent.get(j).getNumber()*(-1));
                 }
-                orderMapper.updateOrderState(order.getId(),Order.State.CLOSE.getValue());
+                orderMapper.updateOrderState(order.getId(),Order.State.CLOSE.getValue(),null);
 
             }
         }
@@ -101,15 +107,15 @@ public class OrderServiceImp implements OrderService {
         //实现购买
         //将用户的余额扣除
         userMapper.updateUserBalance(user.getId(),order.getTotalPrice());
-        //将订单的状态更改
-        orderMapper.updateOrderState(order.getId(), Order.State.WAIT_DELIVER_GOODS.getValue());
+        //将订单的状态更改  并将最后付款时间更改为现在
+        orderMapper.updateOrderState(order.getId(), Order.State.WAIT_DELIVER_GOODS.getValue(),new Date());
         return 1;
     }
 
     @Override
     public boolean closeOrder(Long order_id) {
         try{
-            orderMapper.updateOrderState(order_id,Order.State.CLOSE.getValue());
+            orderMapper.updateOrderState(order_id,Order.State.CLOSE.getValue(),null);
             return true;
         }catch (Exception e){
             e.getMessage();
@@ -117,4 +123,89 @@ public class OrderServiceImp implements OrderService {
         }
 
     }
+
+    @Override
+    public Long getAllCountOrder() {
+        Long AllCountOrder=orderMapper.getAllCountOrder();
+        if(AllCountOrder==null||AllCountOrder<0L){
+            AllCountOrder= 0L;
+        }
+        return AllCountOrder;
+    }
+
+    @Override
+    public Long getAnydayCountOrder(Long start_time, Long last_time) {
+        Long AnydayCountOrder=0L;
+        if(start_time==null||last_time==null){
+            //有一个为空
+            AnydayCountOrder = -1L;
+            return AnydayCountOrder;
+        }
+        if(last_time>start_time){
+            //后面的时间大于前面的时间
+            AnydayCountOrder=orderMapper.getAnydayCountOrder(new Date(start_time),new Date(last_time));
+
+            if(AnydayCountOrder==null||AnydayCountOrder<0L){
+                AnydayCountOrder=0L;
+            }
+            return AnydayCountOrder;
+        }else {
+            //前者大于后者  显然是不对的  -1 表示错误
+            AnydayCountOrder=-1L;
+            return AnydayCountOrder;
+        }
+
+
+
+    }
+
+    @Override
+    public List<Order> getOrderInfoLimit(Integer state_num, Integer page_num, FindOrderByInformation orderByInformation) {
+        if(state_num<0){
+            state_num=0;
+        }
+        return orderMapper.getOrderInfoLimit(state_num,page_num,orderByInformation);
+    }
+
+    @Override
+    public Long getOrderByInformationNum(FindOrderByInformation orderByInformation) {
+        return orderMapper.getOrderByInformationNum(orderByInformation);
+    }
+
+    @Override
+    public Long getCountByOrderState(Order.State state) {
+
+        return orderMapper.getCountByOrderState(state.getValue());
+
+    }
+
+    @Override
+    public Integer toDeliverGoods(String orderid, String expressNumber) {
+        if(expressNumber==null||expressNumber.equals("")){
+            return 1;//快递号为空
+        }
+        if(orderid==null||orderid.equals("")){
+            return  2;//订单号为空
+        }
+        //查找快递单号是否存在了
+        Integer ExpressNumber=orderMapper.findExpressNumber(expressNumber);
+        if(ExpressNumber>0){
+            return  3;//快递号已经被使用了
+        }else {
+            //查找订单是否有快递单号了
+            String ExpressNumberByorderid=orderMapper.findExpressNumberByorderid(orderid);
+            if(ExpressNumberByorderid==null||ExpressNumberByorderid.equals("")){
+                orderMapper.toDeliverGoods( orderid, expressNumber);
+                //改变订单状态
+                orderMapper.updateOrderState(Long.valueOf(orderid), Order.State.DELIVER_GOODS.getValue(),null);
+                return  5;// 快递号添加成功
+            }
+            else{
+                return 4;//订单已经有快递号了
+            }
+
+        }
+
+    }
+
 }

@@ -1,9 +1,17 @@
 package cn.heikaqiu.booktt.config;
 
+import cn.heikaqiu.booktt.bean.User;
+import cn.heikaqiu.booktt.service.UserService;
+import com.sun.jmx.snmp.Timestamp;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.TimeZone;
 
 /**
  * @author HeiKaQiu
@@ -11,6 +19,48 @@ import org.springframework.web.filter.HiddenHttpMethodFilter;
  */
 @Configuration
 public class OtherConfig {
+
+    @Autowired
+    private UserService userService;
+
+    public void testLogin(){
+        User user1 = new User();
+        user1.setUsername("heikaqiu");
+        user1.setPassword("123");
+        userService.login(user1);
+    }
+
+
+    public Map<String,Long> getTime(){
+        Long current=System.currentTimeMillis();//当前时间毫秒数
+        //零点是24小时轮回的零界点。所以我们把当前时间戳取24小时毫秒数取余，然后用当前毫秒时间戳减这个余就行。
+        Long today_zero=current/(1000*3600*24)*(1000*3600*24)- TimeZone.getDefault().getRawOffset();//今天00:00:00的毫秒数
+        Long twelve=today_zero+24*60*60*1000-1000;//今天23:59:59的毫秒数
+        Long yesterday=System.currentTimeMillis()-24*60*60*1000;//昨天的这一时间的毫秒数
+        Long yesterday_zero=today_zero-(1000*60*60*24);//昨天00:00:00
+        Long tomorrow_zero=today_zero+24*60*60*1000;//明天00:00:00
+
+        System.out.println(new Timestamp(yesterday_zero));
+        System.out.println(new Timestamp(yesterday));
+        System.out.println(new Timestamp(today_zero));
+        System.out.println(new Timestamp(current));
+        System.out.println(new Timestamp(twelve));
+        System.out.println(new Timestamp(tomorrow_zero));
+
+        Map<String,Long> timeMap=new HashMap<>();
+        timeMap.put("yesterday_zero",yesterday_zero);//昨天00:00:00
+        timeMap.put("yesterday",yesterday);//昨天这个时候的毫秒数
+        timeMap.put("today_zero",today_zero);//今天00:00:00
+        timeMap.put("current",current);//现在的毫秒数
+        timeMap.put("twelve",twelve);//今天23:59:59
+        timeMap.put("tomorrow_zero",tomorrow_zero);//明天00:00:00
+
+
+        return timeMap;
+
+    }
+
+
 
     /**
      * 用于解决 前端发送DELETE 以及PUT 请求 后端必须使用RequestMapping的问题

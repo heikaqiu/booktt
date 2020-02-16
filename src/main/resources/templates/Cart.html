@@ -113,7 +113,7 @@
             <div class="col-sm-6 btn btn-success btn-block" onclick="toindex()">继续购物</div>
             <div th:if="${session.login_user} ne null">
                 <div class="col-sm-6  btn btn-success btn-block"
-                     th:onclick="'toBuy('+${session.login_user.paypassword}+','+${session.login_user.id}+')'">提交订单
+                     th:onclick="toBuy([[${session.login_user.paypassword}]],[[${session.login_user.id}]])">提交订单
                 </div>
             </div>
         </div>
@@ -128,7 +128,7 @@
 <script type="text/javascript" defer="defer" th:inline="javascript">
 
 
-    function toBuy(paypassword_pass,userid) {
+    function toBuy(paypassword_pass, userid) {
         var checkId = $("input[name='checkBook']:checked");
 
         if (checkId.length == 0) {

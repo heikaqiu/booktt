@@ -8,6 +8,8 @@ import java.util.List;
 //这个只代表 一本书   如果一次订单 将order_id分为组
 public class Order {
 
+
+    //只有订单状态不为未付款和 关闭 才算提交的
     private Long id;
 
     //提交订单时间
@@ -16,6 +18,7 @@ public class Order {
     //提交订单时  这是 最后付款时间
     //当付款时 判断 如果小于 则更新付款时间
     //否则 则是超时付款  设为取消订单
+    // 今日昨日订单 按照最后付款时间算
     private Date paymentaTime;
     //完成订单时间
     private Date finishTime;
@@ -29,7 +32,7 @@ public class Order {
     private List<OrderContent> orderContents = new ArrayList<OrderContent>();
 
     //快递单号
-    private String expressnumber;
+    private String expressNumber;
 
     //订单的总数
     private Integer number;
@@ -48,7 +51,7 @@ public class Order {
                 ", state=" + state +
                 ", user=" + user +
                 ", orderContents=" + orderContents +
-                ", expressnumber='" + expressnumber + '\'' +
+                ", expressnumber='" + expressNumber + '\'' +
                 ", number=" + number +
                 ", totalPrice=" + totalPrice +
                 '}';
@@ -110,12 +113,12 @@ public class Order {
         this.orderContents = orderContents;
     }
 
-    public String getExpressnumber() {
-        return expressnumber;
+    public String getExpressNumber() {
+        return expressNumber;
     }
 
-    public void setExpressnumber(String expressnumber) {
-        this.expressnumber = expressnumber;
+    public void setExpressNumber(String expressNumber) {
+        this.expressNumber = expressNumber;
     }
 
     public Integer getNumber() {
@@ -134,6 +137,13 @@ public class Order {
         this.totalPrice = totalPrice;
     }
 
+    /**
+     * 买家提交订单 但是未付款 是1
+     * 付完款是2  并且提醒后台的工作人员
+     * 卖家发货 填写了快递单号是3
+     * 买家点击订单 到了  或者是过了14天则是4
+     * 买家提交30分钟未付款是5
+     */
     public enum State {
         WAIT_PAYMENT("等待买家付款", 1),
         WAIT_DELIVER_GOODS("等待卖家发货", 2),

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>首页</title>
+
+    <!-- Bootstrap -->
+    <link href="/css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/bootstrap-daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" href="/assets/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/main.css">
+
+
+</head>
+<body>
+
+<!-- 导航栏 -->
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation" th:fragment="admin_index_navigationbar">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <span class="navbar-sidebar-toggle" data-toggle="tooltip" data-placement="right" title="菜单栏收缩或展开">
+                <i class="fa fa-bars" aria-hidden="true"></i>
+            </span>
+            <a class="navbar-brand" href="/admin/">图书商城后台管理</a>
+        </div>
+
+        <div class="navbar-end">
+            <div class="nav-notifications">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-noti" data-toggle="dropdown">
+                        <i class="fa fa-envelope fa-lg"></i>
+                        <span class="badge badge-terques">5</span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                    </ul>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-noti" data-toggle="dropdown">
+                        <i class="fa fa-bell fa-lg"></i>
+                        <span class="badge badge-yellow">3</span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                    </ul>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-noti" data-toggle="dropdown">
+                        <i class="fa fa-comments fa-lg"></i>
+                        <span class="badge badge-red">2</span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="navbar-dropdownmenu"
+                        data-toggle="dropdown">
+                    <img src="/image/avatar-mini.jpg" alt="Admin">
+                    [[${session.login_user.username}]]
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="navbar-dropdownmenu">
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="/">前往前台</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="/admin/exitLogin">退出登录</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+<div class="wrapper">
+
+    <!-- 侧边栏 -->
+    <aside class="sidebar-menu" th:fragment="admin_index_sidebar">
+        <div class="separator-50"></div>
+        <ul class="menu-list">
+            <li class="menu-item " id="首页" name="listList">
+                <a href="/admin/"><i class="fa fa-home" aria-hidden="true"></i>首页</a>
+            </li>
+            <li class="separator-20"></li>
+            <li class="menu-item" name="listList" id="订单">
+                <a href="javascript:void(0)"><i class="fa fa-list-alt" aria-hidden="true"></i>订单管理</a>
+                <ul class="sub-menu-list">
+                    <li class="sub-menu-item"><a href="/admin/allOrder.html">订单统计</a></li>
+                    <li class="sub-menu-item"><a href="/admin/allOrderManage.html">订单管理</a></li>
+                </ul>
+            </li>
+            <li class="menu-item" name="listList" id="用户">
+                <a href="javascript:void(0)"><i class="fa fa-user" aria-hidden="true"></i>用户管理</a>
+                <ul class="sub-menu-list">
+                    <li class="sub-menu-item"><a href="/admin/allUser.html">用户统计</a></li>
+                    <li class="sub-menu-item"><a href="/admin/allUserManage.html">用户管理</a></li>
+                </ul>
+            </li>
+            <li class="menu-item" name="listList" id="作者">
+                <a href="javascript:void(0)"><i class="fa fa-pencil" aria-hidden="true"></i>作者管理</a>
+                <ul class="sub-menu-list">
+                    <li class="sub-menu-item"><a href="/admin/allAuthor.html">作者统计</a></li>
+                    <li class="sub-menu-item"><a href="/admin/allAuthorManage.html">作者管理</a></li>
+                </ul>
+            </li>
+            <li class="menu-item" name="listList" id="图书">
+                <a href="javascript:void(0)"><i class="fa fa-book" aria-hidden="true"></i>图书管理</a>
+                <ul class="sub-menu-list">
+                    <li class="sub-menu-item"><a href="/admin/allBook.html">图书统计</a></li>
+                    <li class="sub-menu-item"><a href="/admin/allBookManager.html">图书管理</a></li>
+                </ul>
+            </li>
+            <li class="menu-item" name="listList" id="新增">
+                <a href="javascript:void(0)"><i class="fa fa-newspaper-o" aria-hidden="true"></i>新增订单<span
+                        class="badge">4</span></a>
+                <ul class="sub-menu-list">
+                    <li class="sub-menu-item"><a href="#">空白页面</a></li>
+                </ul>
+            </li>
+            <li class="menu-item" name="listList" id="其他">
+                <a href="javascript:void(0)"><i class="fa fa-list" aria-hidden="true"></i>其他</a>
+                <ul class="sub-menu-list">
+                    <li class="sub-menu-item"><a href="/admin/mail.html">邮件</a></li>
+                    <li class="sub-menu-item"><a href="/admin/advise.html">建议</a></li>
+                </ul>
+            </li>
+
+            <li class="separator-30"></li>
+
+            <li class="menu-item">
+                <a href="/admin/exitLogin"><i class="fa fa-sign-out" aria-hidden="true"></i>安全退出</a>
+            </li>
+
+        </ul>
+
+        <script th:inline="javascript">
+            /**
+             * 更改actived样式
+             */
+            function changeActived() {
+                var title = document.getElementsByTagName("title")[0];
+                var listliList = document.getElementsByName("listList");
+                for (var i = 0; i < listliList.length; i++) {
+                    listliList[i].classList.remove("actived");
+                }
+                switch (title.innerHTML) {
+                    case "首页":
+                        document.getElementById("首页").classList.add("actived");
+                        break;
+                    case "订单统计":
+                    case "订单管理":
+                        document.getElementById("订单").classList.add("actived");
+                        break;
+                    case "用户统计":
+                    case "用户管理":
+                        document.getElementById("用户").classList.add("actived");
+                        break;
+                    case "作者统计":
+                    case "作者管理":
+                        document.getElementById("订单").classList.add("actived");
+                        break;
+                    case "图书统计":
+                    case "图书管理":
+                        document.getElementById("图书").classList.add("actived");
+                        break;
+                    case "空白页面":
+                        document.getElementById("新增").classList.add("actived");
+                        break;
+                    default:
+                        document.getElementById("其他").classList.add("actived");
+                        break;
+                }
+            }
+
+            changeActived();
+        </script>
+    </aside>
+
+
+    <!-- 显示内容的 -->
+    <div class="main-container">
+        <div class="padding">
+            <ol class="breadcrumb">
+                <li class="active">首页</li>
+            </ol>
+            <div class="box">
+                <div class="heading">
+                    <h3 class="title">提醒<a href="inbox.html" class="link-right">更多>></a></h3>
+                </div>
+
+                <div class="box-inner">
+                    <div class="alert alert-success" role="alert">
+                        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span
+                                class="sr-only">Close</span></button>
+                        恭喜[[${session.login_user.username}]]，成功登录图书管理后台系统
+                    </div>
+                    <div class="alert alert-warning alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span
+                                class="sr-only">Close</span></button>
+                        <strong>Warning!</strong> Better check yourself, you're not looking too good.
+                    </div>
+                    <div class="alert alert-info alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span
+                                class="sr-only">Close</span></button>
+                        <strong>Warning!</strong> Better check yourself, you're not looking too good.
+                    </div>
+                    <div class="alert alert-success alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span
+                                class="sr-only">Close</span></button>
+                        <strong>Warning!</strong> Better check yourself, you're not looking too good.
+                    </div>
+                    <div class="alert alert-danger alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span
+                                class="sr-only">Close</span></button>
+                        <strong>Warning!</strong> Better check yourself, you're not looking too good.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <footer class="main-footer">
+        <p>937921168@qq.com DreamBoy 版权所有</p>
+    </footer>
+</div>
+
+<div class="scroll-to-top"><i class="fa fa-chevron-up fa-lg"></i></div>
+
+<script src="/js/jquery/2.0.0/jquery.min.js"></script>
+<script src="/js/bootstrap/3.3.6/bootstrap.min.js"></script>
+<script src="/assets/bootstrap-daterangepicker/moment.min.js"></script>
+<script src="/assets/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script src="/js/main.js"></script>
+</body>
+</html>
