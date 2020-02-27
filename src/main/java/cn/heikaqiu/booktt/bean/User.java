@@ -13,7 +13,7 @@ public class User {
 	//余额
 	private Float balance;
 	//管理员 1为是  0为否
-	private boolean isadmin;
+	private Boolean isadmin;
 	//省
 	private String province;
 	//市
@@ -21,25 +21,33 @@ public class User {
 	//详细地址
 	private String address;
 	//性别  1 为男    0为女
-	private boolean gender;
+	private Boolean gender;
 	//注册时间
 	private Date time;
 	//支付密码
 	private String paypassword;
 	//电话
 	private String telephone;
+	//最后使用时间
+	private Date lastusetime;
+
+	//用户头像
+	private String img;
+
+
 	
 	//用户收藏的书
 	private List<Book> booksCollection=new ArrayList<Book>();
 	
-	//用户评价的书
-	private List<Book> booksComment=new ArrayList<Book>();
+	//用户的回复
+	private List<Reply> replys=new ArrayList<Reply>();
 	
-	//用户回复的留言
+	//用户的评价
 	private List<Comment> comments=new ArrayList<Comment>();
 
 	//用户购物车中的商品
 	private List<Book> books=new ArrayList<Book>();
+
 
 	@Override
 	public String toString() {
@@ -56,11 +64,29 @@ public class User {
 				", time=" + time +
 				", paypassword='" + paypassword + '\'' +
 				", telephone='" + telephone + '\'' +
+				", lastusetime=" + lastusetime +
 				", booksCollection=" + booksCollection +
-				", booksComment=" + booksComment +
+				", replys=" + replys +
 				", comments=" + comments +
-
+				", books=" + books +
+				", img=" + img +
 				'}';
+	}
+
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
+	}
+
+	public Date getLastusetime() {
+		return lastusetime;
+	}
+
+	public void setLastusetime(Date lastusetime) {
+		this.lastusetime = lastusetime;
 	}
 
 	public Integer getId() {
@@ -87,21 +113,15 @@ public class User {
 		this.password = password;
 	}
 
-	public Float getBalance() {
-		return balance;
+	public String getBalance() {
+		return balance.toString();
 	}
 
 	public void setBalance(Float balance) {
 		this.balance = balance;
 	}
 
-	public boolean isIsadmin() {
-		return isadmin;
-	}
 
-	public void setIsadmin(boolean isadmin) {
-		this.isadmin = isadmin;
-	}
 
 	public String getProvince() {
 		return province;
@@ -127,13 +147,7 @@ public class User {
 		this.address = address;
 	}
 
-	public boolean isGender() {
-		return gender;
-	}
 
-	public void setGender(boolean gender) {
-		this.gender = gender;
-	}
 
 	public Date getTime() {
 		return time;
@@ -167,12 +181,28 @@ public class User {
 		this.booksCollection = booksCollection;
 	}
 
-	public List<Book> getBooksComment() {
-		return booksComment;
+	public Boolean getIsadmin() {
+		return isadmin;
 	}
 
-	public void setBooksComment(List<Book> booksComment) {
-		this.booksComment = booksComment;
+	public void setIsadmin(Boolean isadmin) {
+		this.isadmin = isadmin;
+	}
+
+	public Boolean getGender() {
+		return gender;
+	}
+
+	public void setGender(Boolean gender) {
+		this.gender = gender;
+	}
+
+	public List<Reply> getReplys() {
+		return replys;
+	}
+
+	public void setReplys(List<Reply> replys) {
+		this.replys = replys;
 	}
 
 	public List<Comment> getComments() {

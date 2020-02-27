@@ -1,6 +1,6 @@
 package cn.heikaqiu.booktt.service.imp;
 
-import cn.heikaqiu.booktt.bean.Book;
+import cn.heikaqiu.booktt.bean.FindUserByInformation;
 import cn.heikaqiu.booktt.bean.User;
 import cn.heikaqiu.booktt.mapper.BookMapper;
 import cn.heikaqiu.booktt.mapper.ShopcartMapper;
@@ -10,8 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author HeiKaQiu
@@ -38,6 +37,7 @@ public class UserServiceImp implements UserService {
         User findUser = userMapper.getUserByUsernameAndPassword(user.getUsername(), user.getPassword());
         if (findUser != null) {
             //不为空 表示数据库中有对象
+            userMapper.updateLastUseTime(findUser.getId(), new Date());//更改账户最后使用的时间
             session.setAttribute("login_user", findUser);
             return true;
         } else {
@@ -51,6 +51,7 @@ public class UserServiceImp implements UserService {
         User userByUsername = userMapper.getUserByUsername(user.getUsername());
         if (userByUsername == null) {
             //没有重复用户名
+            user.setLastusetime(new Date());
             int id = userMapper.insertUser(user);
             user.setId(id);
             session.setAttribute("login_user", user);
@@ -105,7 +106,7 @@ public class UserServiceImp implements UserService {
         if (login_user.getId() == userid) {
             session.removeAttribute("login_user");
             return true;
-        }else {
+        } else {
             return false;
         }
 
@@ -114,14 +115,14 @@ public class UserServiceImp implements UserService {
     @Override
     public boolean updateUserInformation(User user) throws Exception {
         User userByUsername = userMapper.getUserByUsername(user.getUsername());
-        if(userByUsername!=null){
+        if (userByUsername != null) {
             return false;//名字已经有人注册了
         }
-        Integer line=userMapper.updateUserInformationByUser(user);
-        System.out.println("line: "+line);
-        if(line==1){
+        Integer line = userMapper.updateUserInformationByUser(user);
+        System.out.println("line: " + line);
+        if (line == 1) {
             return true;
-        }else{
+        } else {
             throw new Exception("修改用户错误");
 
         }
@@ -131,19 +132,18 @@ public class UserServiceImp implements UserService {
     public boolean updateUserPassword(Integer userid, String old_password, String password, String paypassword) throws Exception {
 
         //对比旧密码是否一致
-        String userpassword=userMapper.getUserPasswordByUserid(userid);
-        if(userpassword.equals(old_password)){
+        String userpassword = userMapper.getUserPasswordByUserid(userid);
+        if (userpassword.equals(old_password)) {
             //旧密码正确
-            Integer line=userMapper.updateUserPasswordByUserid(userid,password,paypassword);
-            System.out.println("Passwordline: "+line);
-            if(line==1){
+            Integer line = userMapper.updateUserPasswordByUserid(userid, password, paypassword);
+            System.out.println("Passwordline: " + line);
+            if (line == 1) {
                 return true;
-            }else{
+            } else {
                 //更改的不止一行或者 没有修改
                 throw new Exception("修改用户密码错误");
             }
-        }
-        else{
+        } else {
             //旧密码错误
             return false;
         }
@@ -152,10 +152,133 @@ public class UserServiceImp implements UserService {
     @Override
     public User findUserByusername(String user_username) {
         User userByUsername = userMapper.getUserByUsername(user_username);
-        if(user_username!=null){
+        if (user_username != null) {
             return userByUsername;
-        }else{
+        } else {
             return null;
+        }
+
+    }
+
+    @Override
+    public Long getAllCountUser() {
+        Long allCountUser = userMapper.getAllCountUser();
+        if (allCountUser == null || allCountUser < 0L) {
+            allCountUser = 0L;
+        }
+        return allCountUser;
+    }
+
+    @Override
+    public Long getAnydayLastUserCountUser(Long start_time, Long last_time) {
+        Long anydayCountUser = 0L;
+        if (start_time == null || last_time == null) {
+            //有一个为空
+            anydayCountUser = -1L;
+            return anydayCountUser;
+        }
+        if (last_time > start_time) {
+            //后面的时间大于前面的时间
+            anydayCountUser = userMapper.getAnydayLastUserCountUser(new Date(start_time), new Date(last_time));
+
+            if (anydayCountUser == null || anydayCountUser < 0L) {
+                anydayCountUser = 0L;
+            }
+            return anydayCountUser;
+        } else {
+            //前者大于后者  显然是不对的  交换
+            anydayCountUser = userMapper.getAnydayLastUserCountUser(new Date(last_time), new Date(start_time));
+
+            return anydayCountUser;
+        }
+    }
+
+    @Override
+    public List<User> getUserInfoLimit(Integer start_num, Integer page_num, FindUserByInformation userByInformation) {
+        List<User> list = new ArrayList<>();
+        if (start_num == null || page_num == null) {
+            return list;
+        }
+        if (userByInformation == null) {
+            userByInformation = new FindUserByInformation();
+        }
+        list = userMapper.getUserInfoLimit(start_num, page_num, userByInformation);
+        if (list.size() > 0) {
+            System.out.println(list.get(0).getBalance());
+        }
+
+        return list;
+    }
+
+    @Override
+    public Long getUserByInformationNum(FindUserByInformation userByInformation) {
+        Long allCountUser = 0L;
+        if (userByInformation == null) {
+            //查找所有的
+            allCountUser = userMapper.getAllCountUser();
+        } else {
+            //条件查找
+            allCountUser = userMapper.getAllCountUserByUserInfo(userByInformation);
+        }
+        return allCountUser;
+    }
+
+    @Override
+    public User getUserInfoByUserId(Integer userId) {
+
+        User user = userMapper.getUserAllInfoById(userId);
+        System.out.println(user);
+        return user;
+    }
+
+    @Override
+    public User getUserSimpleById(Integer userId) {
+        return userMapper.getUserById(userId);
+    }
+
+    @Override
+    public boolean updateUserAllInformation(User user) throws Exception {
+        User userByUsername = userMapper.getUserByUsername(user.getUsername());
+        if (userByUsername != null&&userByUsername.getId()!=user.getId()) {
+            return false;//名字已经有人注册了
+        }
+        Integer line = userMapper.updateUserAllInformationByUser(user);
+        System.out.println("line: " + line);
+        if (line == 1) {
+            return true;
+        } else {
+            throw new Exception("修改用户错误");
+
+        }
+    }
+
+    @Override
+    public Boolean deleteuser(Integer userId) throws Exception {
+
+
+        User userById = userMapper.getUserById(userId);
+        if (userById != null) {
+            //执行删除
+            int line = userMapper.deleteUserById(userId);
+            if (line == 1) {
+                //只删除了一条
+                return true;
+            } else {
+                //其余数量
+                throw new Exception("删除用户错误");
+            }
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean updateUserImg(String s,Integer id) {
+        if(s==null||s.equals("")){
+            return  false;
+        }else{
+            userMapper.updateUserImg(s,id);
+            return true;
         }
 
     }

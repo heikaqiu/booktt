@@ -8,14 +8,22 @@ public class Author {
 	private String name;
 	//作者简介
 	private String synopsis;
+
+
+	private String nationality;
 	
 	//作者创作的书
 	private List<Book> books=new ArrayList<Book>();
-	
-	
-	
-	
-	
+
+
+	public String getNationality() {
+		return nationality;
+	}
+
+	public void setNationality(String nationality) {
+		this.nationality = nationality;
+	}
+
 	public List<Book> getBooks() {
 		return books;
 	}
@@ -40,9 +48,16 @@ public class Author {
 	public void setSynopsis(String synopsis) {
 		this.synopsis = synopsis;
 	}
-	
-	
-	
-	
 
+
+	@Override
+	public String toString() {
+		return "Author{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				", synopsis='" + synopsis + '\'' +
+				", nationality='" + nationality + '\'' +
+				", books=" + books +
+				'}';
+	}
 }

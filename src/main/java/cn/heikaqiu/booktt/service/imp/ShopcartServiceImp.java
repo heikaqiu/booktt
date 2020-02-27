@@ -134,6 +134,7 @@ public class ShopcartServiceImp implements ShopcartService {
         //封装orderContentList
         order.setNumber(number);
         order.setTotalPrice(totalPrice);
+        order.setIsread(false);
        orderMapper.addOrder(order);
 
         List<OrderContent> orderContentList=new ArrayList<>();
@@ -156,7 +157,7 @@ public class ShopcartServiceImp implements ShopcartService {
         order.setOrderContents(orderContentList);
         System.out.println(order);
         orderMapper.addOrderContent(orderContentList);
-
+        userMapper.updateLastUseTime(userid,new Date());//更改账户最后使用的时间
 
 
         return 1;

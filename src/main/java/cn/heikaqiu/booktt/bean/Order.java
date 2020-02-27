@@ -40,6 +40,17 @@ public class Order {
     //订单的总价
     private Float totalPrice;
 
+    //是否是新订单 意思是 是否查看过订单
+    private Boolean isread;
+
+
+    public Boolean getIsread() {
+        return isread;
+    }
+
+    public void setIsread(Boolean isread) {
+        this.isread = isread;
+    }
 
     @Override
     public String toString() {
@@ -51,9 +62,10 @@ public class Order {
                 ", state=" + state +
                 ", user=" + user +
                 ", orderContents=" + orderContents +
-                ", expressnumber='" + expressNumber + '\'' +
+                ", expressNumber='" + expressNumber + '\'' +
                 ", number=" + number +
                 ", totalPrice=" + totalPrice +
+                ", isread=" + isread +
                 '}';
     }
 

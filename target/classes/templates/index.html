@@ -47,16 +47,18 @@
                 </li>
                 <li th:classappend="${session.page.equals('friendLink')} ? 'active' : '' "><a href="/friendLink.html">友情链接</a>
                 </li>
+                <li th:classappend="${session.page.equals('advice')} ? 'active' : '' "><a href="/advice.html">建议</a>
+                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right hidden-sm">
 
                 <li th:if="${session.login_user} == null"
                     th:classappend="${session.page.equals('login')} ? 'active' : '' "><a href="/login.html">登录</a></li>
-                <li th:if="${session.login_user} != null"
+                <li  th:if="${session.login_user} != null"
                     th:classappend="${session.page.equals('userInfo')} ? 'active' : '' ">
-
-                    <a  onclick="toUserInfo()">欢迎光临
-                        <span style="color: #00a1cb" th:text="${session.login_user.username}"></span>,进入个人中心
+                    <a onclick="toUserInfo()" style="margin-top: -5px"> <img style="height: 35px;width:35px" th:src="'/image/'+${session.login_user.img}" alt="userheadimg">
+                        <span style="color: #00a1cb">[[${session.login_user.username}]]</span>
+                        个人中心
                     </a>
                     <form action="/userInfo.html" id="formid" method='post'>
                         <input type="hidden" th:value="${session.login_user.id}" name="userid">

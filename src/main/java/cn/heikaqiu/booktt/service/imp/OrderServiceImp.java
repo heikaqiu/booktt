@@ -8,6 +8,7 @@ import cn.heikaqiu.booktt.mapper.BookMapper;
 import cn.heikaqiu.booktt.mapper.OrderMapper;
 import cn.heikaqiu.booktt.mapper.UserMapper;
 import cn.heikaqiu.booktt.service.OrderService;
+import com.alibaba.druid.sql.dialect.oracle.ast.stmt.OracleDropDbLinkStatement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -96,7 +97,7 @@ public class OrderServiceImp implements OrderService {
             //支付密码错误
             return 3;
         }
-        if(order.getTotalPrice()>user.getBalance()){
+        if(order.getTotalPrice()>Float.valueOf(user.getBalance()) ){
             //余额不足
             return 2;
         }
@@ -109,6 +110,7 @@ public class OrderServiceImp implements OrderService {
         userMapper.updateUserBalance(user.getId(),order.getTotalPrice());
         //将订单的状态更改  并将最后付款时间更改为现在
         orderMapper.updateOrderState(order.getId(), Order.State.WAIT_DELIVER_GOODS.getValue(),new Date());
+        userMapper.updateLastUseTime(order_user_id,new Date());//更改账户最后使用的时间
         return 1;
     }
 
@@ -150,8 +152,8 @@ public class OrderServiceImp implements OrderService {
             }
             return AnydayCountOrder;
         }else {
-            //前者大于后者  显然是不对的  -1 表示错误
-            AnydayCountOrder=-1L;
+            //前者大于后者  显然是不对的  交换
+            AnydayCountOrder=orderMapper.getAnydayCountOrder(new Date(last_time),new Date(start_time));
             return AnydayCountOrder;
         }
 
@@ -206,6 +208,30 @@ public class OrderServiceImp implements OrderService {
 
         }
 
+    }
+
+    @Override
+    public Integer selectNewOrderNum() {
+
+
+        return orderMapper.selectNewOrderNum();
+    }
+
+    @Override
+    public boolean updateOrderIsread(Long orderId, boolean b) {
+        Integer line=orderMapper.updateOrderIsread(orderId,b);
+        if(line==1){
+            return true;
+        }
+        return false;
+
+
+    }
+
+    @Override
+    public List<Order> getOrderInfoByNewOrder(Integer state_num,Integer page_num) {
+
+        return orderMapper.getOrderInfoByNewOrder(state_num,page_num);
     }
 
 }

@@ -3,6 +3,7 @@ package cn.heikaqiu.booktt.controller;
 import cn.heikaqiu.booktt.bean.FindOrderByInformation;
 import cn.heikaqiu.booktt.bean.Order;
 import cn.heikaqiu.booktt.bean.User;
+import cn.heikaqiu.booktt.config.OtherConfig;
 import cn.heikaqiu.booktt.service.OrderService;
 import cn.heikaqiu.booktt.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,9 @@ public class AdminOrderController {
     @Autowired
     private HttpSession session;
 
+    @Autowired
+    private OtherConfig otherConfig;
+
 
     /**
      * 按提交订单条件的时候 将条件封装到FindOrderByInformation 并加到session 中
@@ -59,29 +63,10 @@ public class AdminOrderController {
         if (order_time != null && !order_time.equals("")) {
 
             System.out.println(order_time);
-
-            String s1 = order_time.replace("/", "-");
-            //order_time.replace(" ",""); //去除所有空格，包括首尾、中间
-            String[] s = s1.split(" - ");//从-分隔开字符串
-
-            s[0] += " 00:00:00";
-            s[1] += " 24:00:00";
-            System.out.println("s[0]" + s[0]);
-            System.out.println("s[1]" + s[1]);
-
-            //String str = "2019-03-13 13:54:00";
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            Date date = null;
-            Date date1 = null;
-            try {
-                date = simpleDateFormat.parse(s[0]);
-                date1 = simpleDateFormat.parse(s[1]);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
+            Date[] dates = otherConfig.StringtoDate(order_time);
             //TODO 错误
-            findOrderByInformation.setFirst_time(date);
-            findOrderByInformation.setLast_time(date1);
+            findOrderByInformation.setFirst_time(dates[0]);
+            findOrderByInformation.setLast_time(dates[1]);
         }
         findOrderByInformation.setState(2);//当刚提交的时候 搜索的是状态为2的
         session.setAttribute("findOrderByInformation", findOrderByInformation);
@@ -138,6 +123,9 @@ public class AdminOrderController {
     @GetMapping("/orderInfo.html/{order_id}")
     public String orderInfo(@PathVariable("order_id") Long orderId, Model model) {
 
+        boolean isSuccessRead=orderService.updateOrderIsread(orderId,true);
+
+
         Order order = orderService.getOrderInfoByOrderId(orderId);
         if (order != null) {
             model.addAttribute("order", order);
@@ -154,6 +142,8 @@ public class AdminOrderController {
     public Map<String, Object> toDeliverGoods(String expressNumber,
                                               String orderid) {
         Map<String, Object> map = new HashMap<>();
+
+        boolean isSuccessRead=orderService.updateOrderIsread(Long.valueOf(orderid),true);
         Integer toDeliverGoods = orderService.toDeliverGoods(orderid, expressNumber);
 
         if(toDeliverGoods==1){
@@ -177,6 +167,19 @@ public class AdminOrderController {
 
 
     }
+    /**
+     * 新订单 分页获取
+     * @param pageNum
+     * @return
+     */
+    @PostMapping("/toPageNewOrder/{pageNum}")
+    @ResponseBody
+    public Map<String, Object> toPageNewOrder(@PathVariable("pageNum") Integer pageNum) {
 
+        Map<String, Object> maps=new HashMap<>();
+        List<Order> orderList=orderService.getOrderInfoByNewOrder(pageNum,5);
+        maps.put("orderList", orderList);
+        return maps;
+    }
 
 }

@@ -2,9 +2,12 @@ package cn.heikaqiu.booktt.service.imp;
 
 import cn.heikaqiu.booktt.bean.Collection;
 import cn.heikaqiu.booktt.mapper.CollectionMapper;
+import cn.heikaqiu.booktt.mapper.UserMapper;
 import cn.heikaqiu.booktt.service.CollectionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Date;
 
 /**
  * @author HeiKaQiu
@@ -15,6 +18,8 @@ public class CollectionServiceImp implements CollectionService {
 
     @Autowired
     private CollectionMapper collectionMapper;
+    @Autowired
+    private UserMapper userMapper;
 
 
     @Override
@@ -23,6 +28,7 @@ public class CollectionServiceImp implements CollectionService {
         Integer line = collectionMapper.andToCollection(user_id, book_id);
         if (line == 1) {
             //添加一条收藏
+            userMapper.updateLastUseTime(user_id,new Date());//更改账户最后使用的时间
             return true;
         } else if (line == 0) {
             return false;

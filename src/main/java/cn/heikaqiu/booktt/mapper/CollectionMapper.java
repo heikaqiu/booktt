@@ -2,6 +2,7 @@ package cn.heikaqiu.booktt.mapper;
 
 import cn.heikaqiu.booktt.bean.Book;
 import cn.heikaqiu.booktt.bean.Collection;
+import cn.heikaqiu.booktt.bean.User;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
 
@@ -39,10 +40,16 @@ public interface CollectionMapper {
     @Results(@Result(column = "book_id", property = "book", one = @One(select = "cn.heikaqiu.booktt.mapper.BookMapper.getBookInfoById")))
     List<Collection> getAllCollectionById(Integer user_id);
 
+
     @Select("select book.* from collection  join book on collection.book_id=book.id where  user_id=#{user_id}")
     @Results(@Result(column = "author_id", property = "author", one = @One(select = "cn.heikaqiu.booktt.mapper.AuthorMapper.getAuthorById")))
     List<Book> getAllCollectionBookById(Integer user_id);
 
+
     @Delete("delete from collection where user_id=#{userid} AND book_id =#{bookid}")
     Integer deleteCollection(Integer userid, Integer bookid);
+
+    @Select("select * from ur  join collection on collection.user_id=ur.id where  book_id=#{bookid}")
+    List<User> getUserToCollectionByBookId(Integer bookid);
+
 }

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>用户</title>
+    <title>作者管理</title>
 
     <!-- Bootstrap -->
     <link href="/css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet">
@@ -12,6 +12,11 @@
     <link rel="stylesheet" href="/assets/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/common.css">
     <link rel="stylesheet" href="/css/main.css">
+    <script src="/js/jquery/2.0.0/jquery.min.js"></script>
+
+
+
+
 </head>
 <body>
 
@@ -33,22 +38,316 @@
                 <li>作者管理</li>
                 <li class="active">作者管理</li>
             </ol>
-        </div>
-        <div class="box">
-            <div class="box-inner">
+            <div class="box">
+                <div class="box-inner">
+                    <div class="row">
+                        <div class="col-lg-1 col-md-2    col-sm-2 col-xs-12 ">
+                            <button class="btn btn-success" onclick="toadd()">新增作者</button>
+                        </div>
+                        <div class="col-lg-1 col-md-2  col-sm-2 col-xs-12">
+
+                            <button class="btn btn-warning" onclick="toupdate()">修改作者</button>
+                        </div>
+                        <div class=" col-lg-2 col-md-3  col-sm-3 col-xs-12">
+                            <button class="btn btn-danger" onclick="todelete()">下架作者所有书</button>
+                        </div>
+                        <div class=" col-lg-2 col-md-3  col-sm-3 col-xs-12">
+                            <button class="btn btn-danger" onclick="toisshop()">上架作者所有书</button>
+                        </div>
+                    </div>
+                </div>
             </div>
+
+
+            <div class="box" id="info">
+
+            </div>
+
+
         </div>
     </div>
 </div>
+<script th:inline="javascript">
+    var nationality =/*[[${nationality}]]*/;
+    var info = document.getElementById("info");
+
+    function toadd() {
+
+
+        info.innerHTML = "<div class='heading'>" +
+            "                    <h3 class='title'>新增作者<span class='box-toggle'></span></h3>" +
+            "                </div>" +
+            "                <div class='box-inner'>" +
+
+            "                    <div class='form-inline form-label-search' role='form' >" +
+            "                        <table>" +
+            "                            <tr>" +
+            "                                <td><label class='control-label'>作者名</label></td>" +
+            "                                <td><input type='text' class='form-control' name='name'><font style='color: red' id='hasname'></font></td>" +
+            "                            </tr>" +
+            "                            <tr>" +
+            "                                <td><label class='control-label'>作者简介</label></td>" +
+            "                                <td><textarea cols='100' rows='10'   class='text-area' name='synopsis'></textarea></td>" +
+            "                            </tr>" +
+            "                            <tr>" +
+            "                                <td><label class='control-label'>国籍</label></td>" +
+            "                                <td><select style='width:200px' class='form-control' " +
+            "                                            value=''" +
+            "                                            name='nationality'>" +
+            "                                    <option value='-1'>-请选择-</option>" +
+            "                                </select></td>" +
+            "                            </tr>" +
+            "                            <tr>" +
+            "                                <td></td>" +
+            "                                <td>" +
+            "                                    <button  class='btn btn-success' onclick='addAuthor()'>添加</button>" +
+            "                                </td>" +
+            "                            </tr>" +
+            "                        </table>" +
+            "                    </div>" +
+            "                </div>";
+
+        changenationalily();
+    }
+
+    function changenationalily() {
+
+        var nationalityHTML = document.getElementsByName("nationality")[0];
+        var s = "<option value='-1'>-请选择-</option>";
+        for (var i = 0; i < nationality.length; i++) {
+            s += "<option value='" + nationality[i] + "'>" + nationality[i] + "</option>";
+
+        }
+        nationalityHTML.innerHTML = s;
+    }
+
+
+    function addAuthor() {
+        var name = document.getElementsByName("name")[0].value;
+        var synopsis = document.getElementsByName("synopsis")[0].value;
+        var nationality = document.getElementsByName("nationality")[0].value;
+
+        $.ajax({
+            url: "/admin/addAuthor",
+            type: "POST",
+            data: {
+                'name': name,
+                'synopsis': synopsis,
+                'nationality': nationality
+            },
+            dataType: "json",
+            success: function (data) {//这个data就是返回来的json数据
+                if (data.message == "作者名重复") {
+                    document.getElementById("hasname").style.color = "red";
+                    document.getElementById("hasname").innerHTML = "作者名重复";
+                } else {
+                    document.getElementById("hasname").style.color = "green";
+                    document.getElementById("hasname").innerHTML = "添加成功";
+                }
+            },
+            error: function () {
+                document.getElementById("hasname").style.color = "red";
+                document.getElementById("hasname").innerHTML = "服务器错误";
+            }
+        });
+
+
+    }
+
+    var authorid = 0;
+
+    function updateAuthor() {
+        var name = document.getElementsByName("name")[0].value;
+        var synopsis = document.getElementsByName("synopsis")[0].value;
+        var nationality = document.getElementsByName("nationality")[0].value;
+
+        $.ajax({
+            url: "/admin/updateAuthorInformation",
+            type: "POST",
+            data: {
+                'id': authorid,
+                'name': name,
+                'synopsis': synopsis,
+                'nationality': nationality
+            },
+            dataType: "json",
+            success: function (data) {//这个data就是返回来的json数据
+                if (data.message == "修改成功") {
+                    document.getElementById("hasname").style.color = "green";
+                    document.getElementById("hasname").innerHTML = "修改成功";
+                } else {
+                    document.getElementById("hasname").style.color = "red";
+                    document.getElementById("hasname").innerHTML = "修改失败，可能因为作者名重复或者其他";
+                }
+            },
+            error: function () {
+                document.getElementById("hasname").style.color = "red";
+                document.getElementById("hasname").innerHTML = "服务器错误";
+            }
+        });
+
+    }
+
+    function toupdate() {
+        authorid = prompt("请输入要修改的作者id", "");
+
+
+        $.ajax({
+            url: "/admin/authorInfo/" + authorid,
+            type: "GET",
+            dataType: "json",
+            success: function (data) {//这个data就是返回来的json数据
+                var s = "";
+                if (data.author != null) {
+
+
+                    var s = "<option value='-1'>-请选择-</option>";
+                    for (var i = 0; i < nationality.length; i++) {
+                        if (data.author.nationality == nationality[i]) {
+                            s += "<option selected='selected' value='" + nationality[i] + "'>" + nationality[i] + "</option>";
+                        } else {
+                            s += "<option value='" + nationality[i] + "'>" + nationality[i] + "</option>";
+                        }
+                    }
+
+
+                    info.innerHTML = "<div class='heading'>" +
+                        "                    <h3 class='title'>修改作者<span class='box-toggle'></span></h3>" +
+                        "                </div>" +
+                        "                <div class='box-inner'>" +
+
+                        "                    <div class='form-inline form-label-search' role='form' >" +
+                        "                        <table>" +
+                        "                            <tr>" +
+                        "                                <td><label class='control-label'>作者名</label></td>" +
+                        "                                <td><input type='text' class='form-control' name='name' value='" + data.author.name + "'><font style='color: red' id='hasname'></font></td>" +
+                        "                            </tr>" +
+                        "                            <tr>" +
+                        "                                <td><label class='control-label'>作者简介</label></td>" +
+                        "                                <td><textarea cols='100' rows='10'   class='text-area' name='synopsis' >" + data.author.synopsis + "</textarea></td>" +
+                        "                            </tr>" +
+                        "                            <tr>" +
+                        "                                <td><label class='control-label'>国籍</label></td>" +
+                        "                                <td><select style='width:200px' class='form-control' " +
+                        "                                            value=''" +
+                        "                                            name='nationality'>" + s +
+                        "                                </select></td>" +
+                        "                            </tr>" +
+                        "                            <tr>" +
+                        "                                <td></td>" +
+                        "                                <td>" +
+                        "                                    <button  class='btn btn-success' onclick='updateAuthor()'>修改</button>" +
+                        "                                </td>" +
+                        "                            </tr>" +
+                        "                        </table>" +
+                        "                    </div>" +
+                        "                </div>";
+
+
+                } else {
+                    info.innerHTML = data.message;
+                }
+
+            }
+            ,
+            error: function () {
+                info.innerHTML = "查找用户失败，服务器出错";
+            }
+        });
+
+    }
+
+
+    function todelete() {
+        var authorid = prompt("要下架作者所有书的作者id", "");
+        $.ajax({
+            url: "/admin/authorInfo/" + authorid,
+            type: "GET",
+            dataType: "json",
+            success: function (data) {//这个data就是返回来的json数据
+                if (data.author == null) {
+                    //表示没找到
+                    alert(data.message);
+                    return;
+                }
+
+                //是否要删除这个用户
+                var s = "确认要下架作者所有书" + data.author.name + "如果确定请输入：确定下架";
+                var info = prompt(s, "");
+                if (info == "确定下架") {
+                    $.ajax({
+                        url: "/admin/deleteauthor",
+                        type: "POST",
+                        data: {
+                            'authorid': authorid
+                        },
+                        dataType: "json",
+                        success: function (data) {//这个data就是返回来的json数据
+                            alert(data.message);
+                        },
+                        error: function () {
+                            alert("下架作者所有书失败，服务器出错");
+                        }
+                    });
+                } else {
+                    alert("输入错误下架作者所有书取消操作");
+                }
+            }, error: function () {
+                info.innerHTML = "下架作者所有书失败，服务器出错";
+            }
+        });
+    }
+
+
+
+    function toisshop() {
+        var authorid = prompt("要上架作者所有书的作者id", "");
+        $.ajax({
+            url: "/admin/authorInfo/" + authorid,
+            type: "GET",
+            dataType: "json",
+            success: function (data) {//这个data就是返回来的json数据
+                if (data.author == null) {
+                    //表示没找到
+                    alert(data.message);
+                    return;
+                }
+
+                //是否要删除这个用户
+                var s = "确认要上架作者所有书" + data.author.name + "如果确定请输入：确定上架";
+                var info = prompt(s, "");
+                if (info == "确定上架") {
+                    $.ajax({
+                        url: "/admin/isshopauthor",
+                        type: "POST",
+                        data: {
+                            'authorid': authorid
+                        },
+                        dataType: "json",
+                        success: function (data) {//这个data就是返回来的json数据
+                            alert(data.message);
+                        },
+                        error: function () {
+                            alert("上架作者所有书失败，服务器出错");
+                        }
+                    });
+                } else {
+                    alert("输入错误上架作者所有书取消操作");
+                }
+            }, error: function () {
+                info.innerHTML = "上架作者所有书失败，服务器出错";
+            }
+        });
+    }
+</script>
+
 <div class="scroll-to-top"><i class="fa fa-chevron-up fa-lg"></i></div>
 
 
-
-<script src="/js/jquery/2.0.0/jquery.min.js"></script>
 <script src="/js/bootstrap/3.3.6/bootstrap.min.js"></script>
 <script src="/assets/bootstrap-daterangepicker/moment.min.js"></script>
 <script src="/assets/bootstrap-daterangepicker/daterangepicker.js"></script>
 <script src="/js/main.js"></script>
-
 </body>
+
 </html>

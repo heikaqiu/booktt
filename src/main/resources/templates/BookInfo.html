@@ -42,6 +42,8 @@
             <p>作者:<span th:text="${book.author.name}"></span></p>
             <p>单价:<span th:text="${book.price}"></span></p>
             <p>库存:<span th:text="${book.remainder}"></span></p>
+            <p>平均星数:<span th:text="${AverageStar}"></span></p>
+
             <p>选择购买数量:<input id="buynum" type="number" min="0" th:max="${book.remainder}" value="1"></p>
             <p style="width: 50%;">
             <div th:if="${session.login_user} ne null">
@@ -66,18 +68,194 @@
                 <a class="btn btn btn-info btn-block" role="button"
                    th:onclick="toLogin()">收藏本书</a>
             </div>
+
             </p>
         </div>
     </div>
 </div>
+
+<div style="width: 80%;margin-left: 10%;" class="row thumbnail">
+    <div class="caption center">
+        <h3>用户评论</h3>
+    </div>
+    <div th:each="comment,c:${book.comments}">
+        <span style="margin-right: 20px" th:text="'第'+${c.count}+'楼'"></span>
+        <img style="height: 35px;width:35px" th:src="'/image/'+${comment.user.img}" alt="userheadimg">
+        <span style="margin-right: 20px" th:text="'用户:'+${comment.user.username}"></span>
+        <span style="margin-right: 20px" th:text="${#dates.format(comment.time, 'yyyy-MM-dd HH:mm:ss')}"></span>
+        <span style="margin-right: 20px" th:text="${comment.star}+'星'"></span>
+        <button class="btn btn-embossed btn-success" th:onclick="'toAddReply('+${comment.id}+')'"
+                th:id="'closeReply_'+${comment.id}">添加回复
+        </button>
+        <button class="btn btn-embossed btn-warning" th:if="${comment.user.id eq session.login_user.id}" th:onclick="'deleteComment('+${comment.id}+')'">删除此评论</button>
+        <p th:text="${comment.content}"></p>
+
+        <div th:each="reply,r:${comment.replys}">
+            <span style="margin-right: 20px" th:text="'------------第'+${c.count}+'.'+${r.count}+'楼'"></span>
+            <img style="height: 35px;width:35px" th:src="'/image/'+${reply.user.img}" alt="userheadimg">
+            <span style="margin-right: 20px" th:text="'用户:'+${reply.user.username}"></span>
+            <span style="margin-right: 20px" th:text="${#dates.format(reply.time, 'yyyy-MM-dd HH:mm:ss')}"></span>
+            <button class="btn btn-embossed btn-group " th:if="${reply.user.id eq session.login_user.id}" th:onclick="'deleteReply('+${reply.id}+')'">删除此回复</button>
+            <p th:text="'------------'+${reply.content}"></p>
+        </div>
+        <div class="form-group" th:id="'reply_'+${comment.id}" style="display: none">
+            <label th:for="'reply_content_'+${comment.id}" class="col-sm-1 control-label">回复内容</label>
+            <textarea rows="5" cols="30" th:id="'reply_content_'+${comment.id}"></textarea>
+            <button class="btn btn-block" th:onclick="'addReply('+${comment.id}+')'">回复</button>
+        </div>
+        <hr>
+    </div>
+
+    <div class="form-group">
+        <label for="star" class="col-sm-1 control-label">星数</label>
+        <input type="number" min="0" max="5" id="star">
+    </div>
+    <div class="form-group">
+        <label for="content" class="col-sm-1 control-label">内容</label>
+        <div>
+            <textarea rows="5" cols="50" id="content"></textarea>
+        </div>
+        <button class="btn btn-block" onclick="addComment()">评论</button>
+    </div>
 </div>
 
 
-
-
-
 <script th:inline="javascript">
+    var reply_ = null;
+    var closeReply_ = null;
 
+    function deleteReply(replyid){
+        var msg = confirm("您真的确定要删除此条回复吗请确认！");
+        if(msg==true){
+            //确认
+            $.ajax({
+                url: "/deleteReply",
+                type: "POST",
+                data: {
+                    '_method': "DELETE",
+                    'userid': /*[[${session.login_user.id}]]*/,
+                    'replyid': replyid
+                },
+                dataType: "json",
+                success: function (data) {//这个data就是返回来的json数据
+                    if (data.message == "删除成功") {
+                        alert("删除成功");
+                        history.go(0);
+                    } else {
+                        alert(data.message);
+                    }
+                },
+                error: function () {
+                    alert("服务器错误");
+                }
+            });
+        }
+    }
+
+
+    function deleteComment(commentid){
+        var msg = confirm("您真的确定要删除此条评论吗请确认！");
+        if(msg==true){
+            //确认
+            $.ajax({
+                url: "/deleteComment",
+                type: "POST",
+                data: {
+                    '_method': "DELETE",
+                    'userid': /*[[${session.login_user.id}]]*/,
+                    'commentid': commentid
+                },
+                dataType: "json",
+                success: function (data) {//这个data就是返回来的json数据
+                    if (data.message == "删除成功") {
+                        alert("删除成功");
+                        history.go(0);
+                    } else {
+                        alert(data.message);
+                    }
+                },
+                error: function () {
+                    alert("服务器错误");
+                }
+            });
+        }
+    }
+
+    function toAddReply(id) {
+
+        reply_ = document.getElementById("reply_" + id);
+        closeReply_ = document.getElementById("closeReply_" + id);
+        //展示框 改变
+        if (reply_.style.display == "inline") {
+            reply_.style.display = "none";
+            closeReply_.innerHTML = "添加回复";
+        } else {
+            reply_.style.display = "inline";
+            closeReply_.innerHTML = "收起回复框";
+        }
+
+
+    }
+
+    function addReply(commentid) {
+        alert(commentid);
+        // 获取不到
+        alert(document.getElementById("reply_content_" + commentid));
+        var content = document.getElementById("reply_content_" + commentid).value;
+        alert(content);
+        $.ajax({
+            url: "/addReply",
+            type: "POST",
+            data: {
+                'content': content,
+                'userid': /*[[${session.login_user.id}]]*/,
+                'commentid': commentid
+            },
+            dataType: "json",
+            success: function (data) {//这个data就是返回来的json数据
+                if (data.message == "回复成功") {
+                    alert("回复成功");
+                    history.go(0);
+                } else {
+                    alert(data.message);
+                }
+
+            },
+            error: function () {
+                alert("服务器错误");
+            }
+        });
+    }
+
+    function addComment() {
+        var star = document.getElementById("star").value;
+        var content = document.getElementById("content").value;
+        alert(content);
+        $.ajax({
+            url: "/addComment",
+            type: "POST",
+            data: {
+                'star': star,
+                'content': content,
+                'userid': /*[[${session.login_user.id}]]*/,
+                'bookid': /*[[${book.id}]]*/
+            },
+            dataType: "json",
+            success: function (data) {//这个data就是返回来的json数据
+                if (data.message == "评论成功") {
+                    alert("评论成功");
+                    history.go(0);
+                } else {
+                    alert(data.message);
+                }
+
+            },
+            error: function () {
+                alert("服务器错误");
+            }
+        });
+
+    }
 
     function toLogin() {
         alert("请登录");
@@ -130,7 +308,7 @@
     }
 
 
-    function buyBook(bookid, userid,paypassword_pass) {
+    function buyBook(bookid, userid, paypassword_pass) {
         var buynum = document.getElementById("buynum");
         var buy_num = buynum.value;
         var totalPrice =/*[[${book.price}]]*/;
@@ -188,15 +366,9 @@
 </script>
 
 
-
-
-
 <!--footer-->
 <div th:replace="Index :: end">
 </div>
-
-
-
 
 
 </body>

@@ -15,11 +15,19 @@ public class Reply {
 	
 	//被回复的留言
 	private Comment comment;
-	
-	
-	
-	
-	
+
+
+	@Override
+	public String toString() {
+		return "Reply{" +
+				"id=" + id +
+				", content='" + content + '\'' +
+				", time=" + time +
+				", user=" + user +
+				", comment=" + comment +
+				'}';
+	}
+
 	public User getUser() {
 		return user;
 	}
@@ -44,11 +52,11 @@ public class Reply {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public String getTime() {
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-		String createtime = format.format( this.time  ); 
-		return createtime;
+
+	public Date getTime() {
+		return time;
 	}
+
 	public void setTime(Date time) {
 		this.time = time;
 	}

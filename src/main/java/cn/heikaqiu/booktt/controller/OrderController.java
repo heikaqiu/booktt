@@ -110,4 +110,23 @@ public class OrderController {
     }
 
 
+    /**
+     * 获取新的订单  新的订单意思是 订单的状态是等待卖家发货，并且卖家买有看过的
+     * @return
+     */
+    @GetMapping("/selectNewOrderNum")
+    @ResponseBody
+    public Map<String, Object> selectNewOrderNum() {
+
+        Map<String, Object> map = new HashMap<>();
+
+        Integer num=orderService.selectNewOrderNum();
+        if(num==null||num<0){
+            num=0;
+        }
+        map.put("num",num);
+        return map;
+
+    }
+
 }

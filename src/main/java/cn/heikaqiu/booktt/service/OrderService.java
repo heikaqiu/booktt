@@ -102,4 +102,24 @@ public interface OrderService {
      * @return
      */
     Integer toDeliverGoods(String orderid, String expressNumber);
+
+    /**
+     * 查找新订单 新的订单意思是 订单的状态是等待卖家发货，并且卖家买有看过的
+     * @return
+     */
+    Integer selectNewOrderNum();
+
+    /**
+     * 将订单标为已读
+     * @param orderId
+     * @param b
+     * @return
+     */
+    boolean updateOrderIsread(Long orderId, boolean b);
+
+    /**
+     * 查找新订单
+     * @return
+     */
+    List<Order> getOrderInfoByNewOrder(Integer state_num,Integer page_num);
 }

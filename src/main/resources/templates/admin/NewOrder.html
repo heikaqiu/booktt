@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>新增订单</title>
+
+    <!-- Bootstrap -->
+    <link href="/css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/bootstrap-daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" href="/assets/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <script src="/js/jquery/2.0.0/jquery.min.js"></script>
+</head>
+<body>
+
+<!-- 导航栏 -->
+<div th:replace="/admin/index :: admin_index_navigationbar">
+</div>
+
+
+<div class="wrapper">
+
+
+    <!-- 侧边栏 -->
+    <div th:replace="/admin/index :: admin_index_sidebar">
+    </div>
+
+    <div class="main-container">
+        <div class="padding">
+            <ol class="breadcrumb">
+                <li><a href="/admin/">首页</a></li>
+                <li>新增订单</li>
+                <li class="active">新增订单</li>
+            </ol>
+            <div class="box">
+                <div class="heading">
+                    <h3 class="title">新增订单<span class="box-toggle"><i class="fa fa-chevron-up"></i></span></h3>
+                </div>
+                <div class="box-inner">
+
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane fade in active" >
+                            <div class="box">
+                                <div class="box-inner">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped">
+                                            <thead>
+                                            <tr>
+                                                <th>订单id</th>
+                                                <th>用户id</th>
+                                                <th>用户名称</th>
+                                                <th>提交时间</th>
+                                                <th>最后付款时间</th>
+                                                <th>订单数量</th>
+                                                <th>订单总价</th>
+                                                <th>状态</th>
+                                                <th>查看订单</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody id="orderList">
+
+                                            <tr th:each="order:${orderList}">
+                                                <td>[[${order.id}]]</td>
+                                                <td>[[${order.user.id}]]</td>
+                                                <td>[[${order.user.username}]]</td>
+                                                <td th:text="${#dates.format(order.submitTime, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                                                <td th:text="${#dates.format(order.paymentaTime, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                                                <td>[[${order.number}]]</td>
+                                                <td>[[${order.totalPrice}]]</td>
+                                                <td>[[${order.state.name}]]</td>
+                                                <td><a  target="_blank" th:href="'/admin/orderInfo.html/'+${order.id}"  class="link-show-confirm">查看订单</a>
+                                                </td>
+                                            </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <nav class="text-center">
+                                        <ul class="pagination" id="order_pagenum">
+                                            <li><a href="#">&laquo;</a></li>
+                                            <li class="active"><a href="#">1</a></li>
+                                            <li><a href="#">&raquo;</a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="scroll-to-top"><i class="fa fa-chevron-up fa-lg"></i></div>
+<script th:inline="javascript">
+
+
+    var pageNumCount = 0;//总共有多少订单的数量
+    var order_pagenum = 0;//获取到页码的DOM
+    var pageNumber = 0;//总共有几页
+    var pageList = [];//第一条active
+    var first_page = "<li><a onclick='toPage(" + 0 + ")'>&laquo;</a></li>"; //首页
+    var one_page = "<li class='active'><a onclick='toPage(" + 0 + ")'>1</a></li>";//第一页
+    var point_page = 1;
+    var last_page = "";//末页
+    var orderListHTML = document.getElementById("orderList");
+
+    function getPageNum(page_num) {
+        order_pagenum = document.getElementById("order_pagenum");
+        pageNumCount =/*[[${orderListNum}]]*/;
+        if (page_num != null) {
+            //不等于null 就给他赋值
+            pageNumCount = page_num;
+        }
+
+        if (pageNumCount <= 0) {
+            order_pagenum.innerHTML = "没有找到订单";
+            return;
+        }
+        pageNumber = Math.ceil(pageNumCount / 5); //向上取整   成页码数
+        last_page = "<li><a onclick='toPage(" + (pageNumber - 1) * 5 + ")'>&raquo;</a></li>";
+        pageList = [];
+        pageList.push(first_page);
+        pageList.push(one_page);
+        var s = "";//HTML语句
+        for (var i = 2; i <= pageNumber; i++) {
+            var pageListString = "<li><a onclick='toPage(" + (i - 1) * 5 + ")'>" + i + "</a></li>";
+            pageList.push(pageListString);
+        }
+        pageList.push(last_page);
+        if (pageList.length <= 7) {
+            //如果页面只有5或者比5少则
+            for (var i = 0; i < pageList.length - 1; i++) {
+                s += pageList[i];
+            }
+        } else {
+            //如果页面比5大则只显示前五条
+            for (var i = 0; i < 6; i++) {
+                s += pageList[i];
+            }
+        }
+        s += pageList[pageList.length - 1];
+        //alert(s);
+        order_pagenum.innerHTML = s;
+
+    }
+
+    getPageNum();
+
+
+
+    //只需要向后端发送获取第几条  其他都会在session中找
+    function toPage(num) {
+        //将所有li都没class的赋值给pageList
+
+        //这种写法是错误的 因为都是引用类型
+        // pageList = pageList2;
+        pageList[point_page] = "<li><a onclick='toPage(" + (point_page - 1) * 5 + ")'>" + point_page + "</a></li>";
+        point_page = num / 5 + 1;
+        pageList[point_page] = "<li class='active'><a onclick='toPage(" + num + ")'>" + (num / 5 + 1) + "</a></li>";
+        var s = pageList[0];
+        //alert(s);
+        if (pageList.length <= 7) {
+            //如果页面只有5或者比5少则
+            for (var i = 1; i < pageList.length - 1; i++) {
+                s += pageList[i];
+            }
+            //alert("1--"+s);
+        } else {
+            //如果页面比5大则显示num/5+1的左右两条  为什么是-4 因为右边有两页还有最后的标志还有因为从0开始
+
+            if (point_page < 4) {// 小于4就是按了123
+                for (var i = 1; i < 6; i++) {
+                    s += pageList[i];
+                }
+                //alert("2--"+s);
+            } else {//按了大于3 的 456789之类的 << 1 2 3 4 5 6 7 8 9 10 11 12 >>  14个  按了大于10的 例如11
+                if (point_page > (pageList.length - 4)) {
+                    for (var i = pageList.length - 6; i <= pageList.length - 2; i++) {
+                        s += pageList[i];
+                    }
+                    //alert("3--"+s);
+                } else {
+                    for (var i = point_page - 2; i <= point_page + 2; i++) {
+                        s += pageList[i];
+                        //alert(i+"--4--"+s);
+                    }
+                    //alert("4--"+s);
+                }
+            }
+        }
+        s += pageList[pageList.length - 1];
+        //alert("5--"+s);
+        order_pagenum.innerHTML = s;
+
+        $.ajax({
+            url: "/admin/toPageNewOrder/" + num,
+            type: "POST",
+            dataType: "json",
+            success: function (data) {//这个data就是返回来的json数据
+                //包含了得到的order信息 TODO 获取到了信息 之后如何显示
+                // maps.put("orderList", orderList);
+                // maps.put("orderByInformationNum", orderByInformationNum);
+                var orderList = data.orderList;
+                changeOrderList(orderList);
+            },
+            error: function () {
+                document.getElementById("order_pagenum").innerHTML = '获取信息错误';
+            }
+        });
+    }
+
+    function changeOrderList(orderList) {
+        var s = "";
+        for (var i = 0; i < orderList.length; i++) {
+            var date = formatDate(new Date(orderList[i].submitTime));
+            var date1 = formatDate(new Date(orderList[i].paymentaTime));
+            //TODO 这个订单状态枚举类如何获得呢  无法获得其中的name和value
+            s += "<tr><td>" + orderList[i].id + "</td>" +
+                "<td>" + orderList[i].user.id + "</td>" +
+                "<td>" + orderList[i].user.username + "</td>" +
+                "<td>" + date + "</td>" +
+                "<td>" + date1 + "</td>" +
+                "<td>" + orderList[i].number + "</td>" +
+                "<td>" + orderList[i].totalPrice + "</td>" +
+                "<td>" + "等待卖家发货" + "</td>" +
+                "<td><a  target='_blank' href='/admin/orderInfo.html/"+orderList[i].id+"'  class='link-show-confirm'>查看订单</a></td></tr>";
+        }
+        orderListHTML.innerHTML = s;
+    }
+
+    function formatDate(now) {
+        var year = now.getFullYear();
+        var month = now.getMonth() + 1;
+        var date = now.getDate();
+        var hour = now.getHours();
+        var minute = now.getMinutes();
+        var second = now.getSeconds();
+        return year + "-" + month + "-" + date + " " + hour + ":" + minute + ":" + second;
+    }
+
+
+
+</script>
+
+
+<script src="/js/bootstrap/3.3.6/bootstrap.min.js"></script>
+<script src="/assets/bootstrap-daterangepicker/moment.min.js"></script>
+<script src="/assets/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script src="/js/main.js"></script>
+
+</body>
+</html>

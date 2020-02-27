@@ -29,8 +29,13 @@ public class Collection {
 	public void setBook(Book book) {
 		this.book = book;
 	}
-	
-	
-	
 
+	@Override
+	public String toString() {
+		return "Collection{" +
+				"id=" + id +
+				", user=" + user +
+				", book=" + book +
+				'}';
+	}
 }

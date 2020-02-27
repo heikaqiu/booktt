@@ -75,4 +75,13 @@ public interface ShopcartMapper {
      */
     @Delete("Delete from shopcart where user_id=#{userId} AND book_id=#{bookId}")
     Integer delectShopcartByUseridAndBookid(Integer userId, Integer bookId);
+
+
+    @Select("select book.* from shopcart  join book on shopcart.book_id=book.id where  user_id=#{user_id}")
+    @Results(@Result(column = "author_id", property = "author", one = @One(select = "cn.heikaqiu.booktt.mapper.AuthorMapper.getAuthorById")))
+    List<Book> getAllCartBookById(Integer user_id);
+
+
+    @Select("select * from ur  join shopcart on shopcart.user_id=ur.id where  book_id=#{bookid}")
+    List<User> getUserToShopcartByBookId(Integer bookid);
 }

@@ -20,9 +20,20 @@ public class Comment {
 	
 	//回复此留言的留言
 	private List<Reply> replys=new ArrayList<Reply>();
-	
-	
-	
+
+	@Override
+	public String toString() {
+		return "Comment{" +
+				"id=" + id +
+				", content='" + content + '\'' +
+				", time=" + time +
+				", star=" + star +
+				", user=" + user +
+				", book=" + book +
+				", replys=" + replys +
+				'}';
+	}
+
 	public User getUser() {
 		return user;
 	}
@@ -54,11 +65,7 @@ public class Comment {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public String getTime() {
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-		String createtime = format.format( this.time  ); 
-		return createtime;
-	}
+
 	public void setTime(Date time) {
 		this.time = time;
 	}
@@ -68,6 +75,8 @@ public class Comment {
 	public void setStar(Integer star) {
 		this.star = star;
 	}
-	
 
+	public Date getTime() {
+		return time;
+	}
 }

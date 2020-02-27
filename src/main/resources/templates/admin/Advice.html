@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>建议</title>
+
+    <!-- Bootstrap -->
+    <link href="/css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/bootstrap-daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" href="/assets/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <script src="/js/jquery/2.0.0/jquery.min.js"></script>
+</head>
+<body>
+
+<!-- 导航栏 -->
+<div th:replace="/admin/index :: admin_index_navigationbar">
+</div>
+
+
+<div class="wrapper">
+
+
+    <!-- 侧边栏 -->
+    <div th:replace="/admin/index :: admin_index_sidebar">
+    </div>
+
+    <div class="main-container">
+        <div class="padding">
+            <ol class="breadcrumb">
+                <li><a href="/admin/">首页</a></li>
+                <li>其他</li>
+                <li class="active">建议</li>
+            </ol>
+            <div class="box">
+                <div class="box-inner">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <section class="box-label-block theme">
+                                <div class="symbol">
+                                    <i class="fa fa-paper-plane" aria-hidden="true"></i>
+                                </div>
+                                <div class="content">
+                                    <h4 class="title">总建议数</h4>
+                                    <p>[[${allAdviceNum}]]</p>
+                                </div>
+                            </section>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <section class="box-label-block cyellow">
+                                <div class="symbol">
+                                    <i class="fa fa-database" aria-hidden="true"></i>
+                                </div>
+                                <div class="content">
+                                    <h4 class="title">未查看建议</h4>
+                                    <p>[[${noReadAdviceNum}]]</p>
+                                </div>
+                            </section>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <section class="box-label-block terques">
+                                <div class="symbol">
+                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                </div>
+                                <div class="content">
+                                    <h4 class="title">未处理建议</h4>
+                                    <p>[[${NoHandleAdviceNum}]]</p>
+                                </div>
+                            </section>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <section class="box-label-block cred">
+                                <div class="symbol">
+                                    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+                                </div>
+                                <div class="content">
+                                    <h4 class="title">处理完成建议</h4>
+                                    <p>[[${HandleAdviceNum}]]</p>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box">
+                <div class="heading">
+                    <h3 class="title">查看建议<span class="box-toggle"><i class="fa fa-chevron-up"></i></span></h3>
+                </div>
+                <div class="box-inner">
+
+
+
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active"><a role="tab"
+                                                                  data-toggle="tab"
+                                                                  aria-controls="WAIT_ADVICE"
+                                                                  aria-expanded="true"
+                                                                  onclick="toPage(0,false)">待处理</a>
+                        </li>
+                        <li role="presentation"><a role="tab" data-toggle="tab"
+                                                   aria-controls="ADVICE_END" onclick="toPage(0,true)">处理结束</a>
+                        </li>
+
+                    </ul>
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane fade in active" id="WAIT_ADVICE"
+                             aria-labelledby="WAIT_ADVICE-tab">
+                            <div class="box">
+                                <div class="box-inner">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped">
+                                            <thead>
+                                            <tr>
+                                                <th>建议id</th>
+                                                <th>用户id</th>
+                                                <th>用户名称</th>
+                                                <th>提交时间</th>
+                                                <th>建议标题</th>
+                                                <th>是否查看</th>
+                                                <th>是否处理</th>
+                                                <th>查看建议</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody id="adviceList">
+
+                                            <tr th:each="advice:${adviceList}">
+                                                <td>[[${advice.id}]]</td>
+                                                <td>[[${advice.user.id}]]</td>
+                                                <td>[[${advice.user.username}]]</td>
+                                                <td th:text="${#dates.format(advice.time, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                                                <td>[[${advice.title}]]</td>
+                                                <div th:if="${advice.isread}==true"> <td style="color: green">已读</td></div>
+                                                <div th:if="${advice.isread}==false"> <td style="color: red">未读</td></div>
+
+                                                <div th:if="${advice.ishandle}==true"> <td style="color: green">已处理</td></div>
+                                                <div th:if="${advice.ishandle}==false"> <td style="color: red">未处理</td></div>
+                                                <td><a  target="_blank" th:href="'/admin/adviceInfo.html/'+${advice.id}"  class="link-show-confirm">查看建议</a>
+                                                </td>
+                                            </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <nav class="text-center">
+                                        <ul class="pagination" id="advice_pagenum">
+                                            <li><a href="#">&laquo;</a></li>
+                                            <li class="active"><a href="#">1</a></li>
+                                            <li><a href="#">&raquo;</a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="scroll-to-top"><i class="fa fa-chevron-up fa-lg"></i></div>
+
+<script th:inline="javascript">
+    var pageNumCount = 0;//总共有多少订单的数量
+    var advice_pagenum = 0;//获取到页码的DOM
+    var pageNumber = 0;//总共有几页
+    var pageList = [];//第一条active
+    var first_page = "<li><a onclick='toPage(" + 0 + ")'>&laquo;</a></li>"; //首页
+    var one_page = "<li class='active'><a onclick='toPage(" + 0 + ")'>1</a></li>";//第一页
+    var point_page = 1;
+    var last_page = "";//末页
+    var adviceListHTML = document.getElementById("adviceList");
+    var Handle=false;
+    function toPage(num,isHandle){
+        if(isHandle!=null){
+            alert(isHandle);
+            Handle=isHandle;
+        }
+
+        //将所有li都没class的赋值给pageList
+
+        //这种写法是错误的 因为都是引用类型
+        // pageList = pageList2;
+        pageList[point_page] = "<li><a onclick='toPage(" + (point_page - 1) * 5 + ")'>" + point_page + "</a></li>";
+        point_page = num / 5 + 1;
+        pageList[point_page] = "<li class='active'><a onclick='toPage(" + num + ")'>" + (num / 5 + 1) + "</a></li>";
+        var s = pageList[0];
+        //alert(s);
+        if (pageList.length <= 7) {
+            //如果页面只有5或者比5少则
+            for (var i = 1; i < pageList.length - 1; i++) {
+                s += pageList[i];
+            }
+            //alert("1--"+s);
+        } else {
+            //如果页面比5大则显示num/5+1的左右两条  为什么是-4 因为右边有两页还有最后的标志还有因为从0开始
+
+            if (point_page < 4) {// 小于4就是按了123
+                for (var i = 1; i < 6; i++) {
+                    s += pageList[i];
+                }
+                //alert("2--"+s);
+            } else {//按了大于3 的 456789之类的 << 1 2 3 4 5 6 7 8 9 10 11 12 >>  14个  按了大于10的 例如11
+                if (point_page > (pageList.length - 4)) {
+                    for (var i = pageList.length - 6; i <= pageList.length - 2; i++) {
+                        s += pageList[i];
+                    }
+                    //alert("3--"+s);
+                } else {
+                    for (var i = point_page - 2; i <= point_page + 2; i++) {
+                        s += pageList[i];
+                        //alert(i+"--4--"+s);
+                    }
+                    //alert("4--"+s);
+                }
+            }
+        }
+        s += pageList[pageList.length - 1];
+        //alert("5--"+s);
+        advice_pagenum.innerHTML = s;
+
+        $.ajax({
+            url: "/admin/changeAdvice/"+num,
+            type: "POST",
+            data: {
+                'isHandle': Handle
+            },
+            dataType: "json",
+            success: function (data) {//这个data就是返回来的json数据
+                //是否将信息 放到了session中
+                if (data.message == "搜索成功") {
+                    //将查到的建议 展示
+                    var adviceList = data.adviceList;
+                    if(adviceList.length>0){
+                        //alert(adviceList.length);
+                        //后台传来的 大于0对象的
+                        changeAdviceList(adviceList);
+                        if(isHandle!=null){
+                            getPageNum(data.adviceListNum);
+                        }
+
+                    }else{
+                        //只有0对象
+                        document.getElementById("adviceList").innerHTML="未找到该条件下的建议";
+                        advice_pagenum.innerHTML="";
+                    }
+
+                }
+            },
+            error: function () {
+                document.getElementById("adviceList").innerHTML = '展示建议信息错误服务器出错';
+            }
+        });
+
+    }
+
+
+
+
+
+
+    function getPageNum(page_num) {
+        advice_pagenum = document.getElementById("advice_pagenum");
+        pageNumCount =/*[[${adviceListNum}]]*/;
+
+        if (page_num != null) {
+            //不等于null 就给他赋值
+            pageNumCount = page_num;
+        }
+
+        if (pageNumCount <= 0) {
+            document.getElementById("adviceList").innerHTML="此条件下未找到建议";
+            advice_pagenum.innerHTML="";
+        }
+        pageNumber = Math.ceil(pageNumCount / 5); //向上取整   成页码数
+        last_page = "<li><a onclick='toPage(" + (pageNumber - 1) * 5 + ")'>&raquo;</a></li>";
+        pageList = [];
+        pageList.push(first_page);
+        pageList.push(one_page);
+        var s = "";//HTML语句
+        for (var i = 2; i <= pageNumber; i++) {
+            var pageListString = "<li><a onclick='toPage(" + (i - 1) * 5 + ")'>" + i + "</a></li>";
+            pageList.push(pageListString);
+        }
+        pageList.push(last_page);
+        if (pageList.length <= 7) {
+            //如果页面只有5或者比5少则
+            for (var i = 0; i < pageList.length - 1; i++) {
+                s += pageList[i];
+            }
+        } else {
+            //如果页面比5大则只显示前五条
+            for (var i = 0; i < 6; i++) {
+                s += pageList[i];
+            }
+        }
+        s += pageList[pageList.length - 1];
+        //alert(s);
+        advice_pagenum.innerHTML = s;
+
+    }
+
+    getPageNum();
+
+
+
+
+    function changeAdviceList(adviceList) {
+        var s = "";
+        for (var i = 0; i < adviceList.length; i++) {
+            var time=formatDate(new Date(adviceList[i].time));
+            var isreadHTML="";
+            var ishandleHTML="";
+            if(adviceList[i].isread){
+                isreadHTML+="<td style='color: green'>已读</td>";
+            }else{
+                isreadHTML+="<td style='color: red'>未读</td>";
+            }
+            if(adviceList[i].ishandle){
+                ishandleHTML+="<td style='color: green'>已处理</td>";
+            }else{
+                ishandleHTML+="<td style='color: red'>未处理</td>";
+            }
+            s += "<tr><td>"+adviceList[i].id+"</td>" +
+                "<td>"+adviceList[i].user.id+"</td>" +
+                "<td>"+adviceList[i].user.username+"</td>" +
+                "<td>"+time+"</td>" +
+                "<td>"+adviceList[i].title+"</td>" +isreadHTML+ishandleHTML+
+                "<td><a target='_blank' href='/admin/adviceInfo.html/"+adviceList[i].id+"'  class='link-show-confirm'>查看建议</a>" +
+                "</td></tr>";
+        }
+        //alert(s);
+        adviceListHTML.innerHTML = s;
+    }
+
+    function formatDate(now) {
+        var year = now.getFullYear();
+        var month = now.getMonth() + 1;
+        var date = now.getDate();
+        var hour = now.getHours();
+        var minute = now.getMinutes();
+        var second = now.getSeconds();
+        return year + "-" + month + "-" + date + " " + hour + ":" + minute + ":" + second;
+    }
+
+
+
+
+</script>
+
+
+<script src="/js/bootstrap/3.3.6/bootstrap.min.js"></script>
+<script src="/assets/bootstrap-daterangepicker/moment.min.js"></script>
+<script src="/assets/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script src="/js/main.js"></script>
+
+</body>
+</html>

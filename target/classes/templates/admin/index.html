@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="/assets/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/common.css">
     <link rel="stylesheet" href="/css/main.css">
+    <script src="/js/jquery/2.0.0/jquery.min.js"></script>
 
 
 </head>
@@ -32,29 +33,73 @@
                 <div class="btn-group">
                     <button type="button" class="btn btn-noti" data-toggle="dropdown">
                         <i class="fa fa-envelope fa-lg"></i>
-                        <span class="badge badge-terques">5</span>
+                        <span class="badge badge-terques" id="NewAdviceNum"></span>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
+                        <li><a href="/admin/advice.html">查看建议</a></li>
                         <li class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
+                        <li><a onclick="toAllReadAdvice()">全标已读</a></li>
                     </ul>
                 </div>
+
+
                 <div class="btn-group">
                     <button type="button" class="btn btn-noti" data-toggle="dropdown">
                         <i class="fa fa-bell fa-lg"></i>
                         <span class="badge badge-yellow">3</span>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
+                        <li><a href="/admin/notice.html#read">查看通知</a></li>
+                        <li><a href="/admin/notice.html#addNotice">发送通知</a></li>
+                        <li><a href="/admin/notice.html#manage">管理通知</a></li>
                         <li class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
+                        <li><a href="/admin/notice.html#history">查看历史通知</a></li>
                     </ul>
                 </div>
+                <script>
+
+
+                    /**
+                     * 将所有的都改为已读
+                     */
+                    function toAllReadAdvice() {
+                        $.ajax({
+                            url: "/toAllReadAdvice",
+                            type: "GET",
+                            dataType: "json",
+                            success: function (data) {//这个data就是返回来的json数据
+                                document.getElementById("NewAdviceNum").innerHTML = "";
+                            },
+                            error: function () {
+                                document.getElementById("NewAdviceNum").innerHTML = '服务器错误';
+                            }
+                        });
+                    }
+
+                    /**
+                     * 查找多少新的建议
+                     */
+                    function selectNewAdviceNum() {
+                        $.ajax({
+                            url: "/selectNewAdviceNum",
+                            type: "GET",
+                            dataType: "json",
+                            success: function (data) {//这个data就是返回来的json数据
+                                if (data.Num > 0) {
+                                    document.getElementById("NewAdviceNum").innerHTML = data.Num;
+                                } else if (data.Num == 0) {
+                                    document.getElementById("NewAdviceNum").innerHTML = "";
+                                }
+
+                            },
+                            error: function () {
+                                document.getElementById("NewAdviceNum").innerHTML = '服务器错误';
+                            }
+                        });
+                    }
+
+                    selectNewAdviceNum();
+                </script>
                 <div class="btn-group">
                     <button type="button" class="btn btn-noti" data-toggle="dropdown">
                         <i class="fa fa-comments fa-lg"></i>
@@ -70,10 +115,11 @@
                 </div>
             </div>
 
+
             <div class="dropdown">
                 <button class="btn btn-default dropdown-toggle" type="button" id="navbar-dropdownmenu"
                         data-toggle="dropdown">
-                    <img src="/image/avatar-mini.jpg" alt="Admin">
+                    <img style="height: 30px;width: 30px" th:src="'/image/'+${session.login_user.img}" alt="Admin">
                     [[${session.login_user.username}]]
                     <span class="caret"></span>
                 </button>
@@ -127,16 +173,16 @@
             </li>
             <li class="menu-item" name="listList" id="新增">
                 <a href="javascript:void(0)"><i class="fa fa-newspaper-o" aria-hidden="true"></i>新增订单<span
-                        class="badge">4</span></a>
+                        class="badge" id="newOrderNum"></span></a>
                 <ul class="sub-menu-list">
-                    <li class="sub-menu-item"><a href="#">空白页面</a></li>
+                    <li class="sub-menu-item"><a href="/admin/newOrder.html">新增订单</a></li>
                 </ul>
             </li>
             <li class="menu-item" name="listList" id="其他">
                 <a href="javascript:void(0)"><i class="fa fa-list" aria-hidden="true"></i>其他</a>
                 <ul class="sub-menu-list">
-                    <li class="sub-menu-item"><a href="/admin/mail.html">邮件</a></li>
-                    <li class="sub-menu-item"><a href="/admin/advise.html">建议</a></li>
+                    <li class="sub-menu-item"><a href="/admin/notice.html">通知</a></li>
+                    <li class="sub-menu-item"><a href="/admin/advice.html">建议</a></li>
                 </ul>
             </li>
 
@@ -149,6 +195,31 @@
         </ul>
 
         <script th:inline="javascript">
+
+            /**
+             * 查找新的订单
+             */
+            function selectNewOrderNum() {
+                $.ajax({
+                    url: "/selectNewOrderNum",
+                    type: "GET",
+                    dataType: "json",
+                    success: function (data) {//这个data就是返回来的json数据
+                        if (data.num > 0) {
+                            document.getElementById("newOrderNum").innerHTML = data.num;
+                        } else if (data.num == 0) {
+                            document.getElementById("newOrderNum").innerHTML = "";
+                        }
+
+                    },
+                    error: function () {
+                        document.getElementById("newOrderNum").innerHTML = '服务器错误';
+                    }
+                });
+            }
+
+            selectNewOrderNum();
+
             /**
              * 更改actived样式
              */
@@ -172,13 +243,13 @@
                         break;
                     case "作者统计":
                     case "作者管理":
-                        document.getElementById("订单").classList.add("actived");
+                        document.getElementById("作者").classList.add("actived");
                         break;
                     case "图书统计":
                     case "图书管理":
                         document.getElementById("图书").classList.add("actived");
                         break;
-                    case "空白页面":
+                    case "新增订单":
                         document.getElementById("新增").classList.add("actived");
                         break;
                     default:
@@ -200,7 +271,7 @@
             </ol>
             <div class="box">
                 <div class="heading">
-                    <h3 class="title">提醒<a href="inbox.html" class="link-right">更多>></a></h3>
+                    <h3 class="title">提醒<a href="/admin/notice.html#read" class="link-right">更多通知>></a></h3>
                 </div>
 
                 <div class="box-inner">
@@ -209,25 +280,20 @@
                                 class="sr-only">Close</span></button>
                         恭喜[[${session.login_user.username}]]，成功登录图书管理后台系统
                     </div>
-                    <div class="alert alert-warning alert-dismissible" role="alert">
+                    <div class="alert alert-warning alert-dismissible" role="alert" id="hasNewOrder" style="display: none">
                         <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span
                                 class="sr-only">Close</span></button>
-                        <strong>Warning!</strong> Better check yourself, you're not looking too good.
+                        <strong>提醒！</strong>您有 <span id="hasNewOrderNum" style="color: black"></span> 个新订单，请尽快发货
                     </div>
-                    <div class="alert alert-info alert-dismissible" role="alert">
+                    <div class="alert alert-info alert-dismissible" role="alert" id="hasNewAdvice" style="display: none">
                         <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span
                                 class="sr-only">Close</span></button>
-                        <strong>Warning!</strong> Better check yourself, you're not looking too good.
+                        <strong>提醒！</strong>您有 <span id="hasNewAdviceNum" style="color: black"></span> 条新建议，请尽快查看
                     </div>
-                    <div class="alert alert-success alert-dismissible" role="alert">
+                    <div class="alert alert-success alert-dismissible" role="alert" id="hasNewNotice">
                         <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span
                                 class="sr-only">Close</span></button>
-                        <strong>Warning!</strong> Better check yourself, you're not looking too good.
-                    </div>
-                    <div class="alert alert-danger alert-dismissible" role="alert">
-                        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span
-                                class="sr-only">Close</span></button>
-                        <strong>Warning!</strong> Better check yourself, you're not looking too good.
+                        <strong>提醒！</strong>您有 <span id="hasNewNoticeNum" style="color: black"></span> 条通知，请查看
                     </div>
                 </div>
             </div>
@@ -240,9 +306,65 @@
     </footer>
 </div>
 
-<div class="scroll-to-top"><i class="fa fa-chevron-up fa-lg"></i></div>
 
-<script src="/js/jquery/2.0.0/jquery.min.js"></script>
+<div class="scroll-to-top"><i class="fa fa-chevron-up fa-lg"></i></div>
+<script th:inline="javascript">
+    var hasNewOrder=document.getElementById("hasNewOrder");
+    var hasNewAdvice=document.getElementById("hasNewAdvice");
+
+    /**
+     * 查找新的订单
+     */
+    function selectNewOrderNum1() {
+        $.ajax({
+            url: "/selectNewOrderNum",
+            type: "GET",
+            dataType: "json",
+            success: function (data) {//这个data就是返回来的json数据
+                if (data.num > 0) {
+                    hasNewOrder.style.display="";
+                    document.getElementById("hasNewOrderNum").innerHTML=data.num;
+                } else if (data.num == 0) {
+                    hasNewOrder.style.display="none";
+                    document.getElementById("newOrderNum").innerHTML = "";
+                }
+
+            },
+            error: function () {
+                document.getElementById("newOrderNum").innerHTML = '服务器错误';
+            }
+        });
+    }
+
+    selectNewOrderNum1();
+
+    /**
+     * 查找多少新的建议
+     */
+    function selectNewAdviceNum1() {
+        $.ajax({
+            url: "/selectNewAdviceNum",
+            type: "GET",
+            dataType: "json",
+            success: function (data) {//这个data就是返回来的json数据
+                if (data.Num > 0) {
+                    hasNewAdvice.style.display="";
+                    document.getElementById("hasNewAdviceNum").innerHTML=data.Num;
+                } else if (data.Num == 0) {
+                    hasNewAdvice.style.display="none";
+                    document.getElementById("NewAdviceNum").innerHTML = "";
+                }
+
+            },
+            error: function () {
+                document.getElementById("NewAdviceNum").innerHTML = '服务器错误';
+            }
+        });
+    }
+
+    selectNewAdviceNum1();
+</script>
+
 <script src="/js/bootstrap/3.3.6/bootstrap.min.js"></script>
 <script src="/assets/bootstrap-daterangepicker/moment.min.js"></script>
 <script src="/assets/bootstrap-daterangepicker/daterangepicker.js"></script>

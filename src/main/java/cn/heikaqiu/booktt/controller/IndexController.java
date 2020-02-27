@@ -147,6 +147,16 @@ public class IndexController {
         session.setAttribute("page", "friendLink");
         return "FriendLink";
     }
+    /**
+     * 建议
+     *
+     * @return
+     */
+    @RequestMapping("/advice.html")
+    public String advice() {
+        session.setAttribute("page", "advice");
+        return "Advice";
+    }
 
     /**
      * 购物车页面

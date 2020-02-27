@@ -29,6 +29,15 @@ class BookttApplicationTests {
 
     @Autowired
     private OtherConfig otherConfig;
+
+    @Test
+    void testnationality() {
+        List<String> getnationality = otherConfig.getnationality();
+        System.out.println(getnationality.size());
+        System.out.println(getnationality);
+    }
+
+
     @Test
     void contextLoads() {
         List<BookType> allType = bookTypeService.getAllType();

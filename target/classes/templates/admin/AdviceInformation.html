@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+    <link href="/css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/Flat-UI-master/dist/css/flat-ui.min.css"/>
+    <script src="/Flat-UI-master/dist/js/vendor/jquery.min.js"></script>
+    <script src="/js/bootstrap/3.3.6/bootstrap.min.js"></script>
+    <script src="/Flat-UI-master/dist/js/flat-ui.min.js"></script>
+
+    <title>/admin/AdviceInfo</title>
+    <style>
+        .row {
+            margin-left: 20px;
+            margin-right: 20px;;
+        }
+
+        .line-center {
+            line-height: 50px;
+            text-align: center;
+        }
+
+        .row input {
+            width: 50px;
+        }
+
+        .list-group-item:hover {
+            background: #27ae60;
+
+        }
+
+        .list-group-item div:first-child:hover {
+
+            cursor: pointer;
+        }
+
+        th {
+            text-align: right;
+            width: 200px;;
+        }
+
+        td {
+            text-align: left;
+            padding: 10px;
+        }
+
+        .table th {
+            text-align: center;
+        }
+
+        .table td {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<!--content-->
+<div class="container">
+    <div class="row thumbnail center col-sm-12">
+        <div class="col-sm-12">
+            <h1 class="text-center" style="margin-bottom: 30px">建议详情</h1>
+        </div>
+
+        <div th:if="${error} ne null">[[${error}]]</div>
+        <div style="color: red" id="error"></div>
+        <div th:if="${advice} ne null">   <!--如果建议不为空 -->
+            <div class="col-sm-12 ">
+                <table>
+                    <tr>
+                        <th>建议id：</th>
+                        <td>[[${advice.id}]]</td>
+                    </tr>
+                    <tr>
+                        <th>建议提交用户：</th>
+                        <td>[[${advice.user.id}]]: [[${advice.user.username}]]</td>
+                    </tr>
+                    <tr>
+                        <th>用户提交时间：</th>
+                        <td th:text="${#dates.format(advice.time, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                    </tr>
+                    <tr>
+                        <th>是否已读：</th>
+                        <div th:if="${advice.isread}==true">
+                            <td style="color: green">已读</td>
+                        </div>
+                        <div th:if="${advice.isread}==false">
+                            <td style="color: red">未读</td>
+                        </div>
+
+                    </tr>
+                    <tr>
+                        <th>是否处理：</th>
+                        <div th:if="${advice.ishandle}==true">
+                            <td style="color: green">已处理 处理时间为
+                                <span style="color: #1abc9c" th:text="${#dates.format(advice.adviceTime, 'yyyy-MM-dd HH:mm:ss')}"></span>
+                            </td>
+                        </div>
+                        <div th:if="${advice.ishandle}==false">
+                            <td style="color: red">未处理</td>
+                        </div>
+                    </tr>
+                    <tr>
+                        <th>建议标题：</th>
+                        <td>[[${advice.title}]]</td>
+                    </tr>
+                    <tr>
+                        <th>建议内容：</th>
+                        <td>[[${advice.content}]]</td>
+                    </tr>
+                    <div th:if="${advice.ishandle}==false">
+                        <tr>
+                            <th>处理：</th>
+                            <td>
+                                <button class="btn btn-success" onclick="toHandleAdvice(true)">处理完成</button>
+                            </td>
+                        </tr>
+                    </div>
+
+                    <div th:if="${advice.ishandle}==true">
+                        <tr>
+                            <th>处理：</th>
+                            <td>
+                                <button class="btn btn-success" onclick="toHandleAdvice(false)">取消处理</button>
+                            </td>
+                        </tr>
+                    </div>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script th:inline="javascript">
+    function toHandleAdvice(isHandle){
+        var adviceid=/*[[${advice.id}]]*/;
+        $.ajax({
+            url: "/admin/toHandleAdvice",
+            type: "POST",
+            data: {
+                'adviceid': adviceid,
+                'isHandle': isHandle
+            },
+            dataType: "json",
+            success: function (data) {//这个data就是返回来的json数据
+                //是否将信息 放到了session中
+                if(data.message="成功"){
+                    alert("处理完成");
+                    location.href="/admin/adviceInfo.html/"+adviceid;
+                }else if(data.message="失败"){
+                    alert("处理失败");
+                }
+            },
+            error: function () {
+                document.getElementById("error").innerHTML = '建议处理完成失败，服务器错误';
+            }
+        });
+    }
+</script>
+
+</body>
+</html>

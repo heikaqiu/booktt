@@ -88,28 +88,90 @@
 
                     <div class="col-sm-3"></div>
                     <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"></label>
+                            <div><img style="height: 200px;width: 200px" th:src="'/image/'+${user.img}" alt="headimg">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"></label>
+                            <label for="file" class="btn btn-default" style="margin-left: 10px;">更换头像</label>
+                            <input id="file" type="file" style="display:none" onchange="changeheadimg()">
+                        </div>
+
+                        <script th:inline="javascript">
+                            function changeheadimg() {
+                                var file = document.getElementById("file").files[0];
+                                alert(file.name);
+                                var formData = new FormData();
+                                formData.append('file', file);
+                                //第一次ajax检查 是否会覆盖图片
+                                $.ajax({
+                                    url: "/updateUserHead",
+                                    type: "POST",
+                                    data: formData,
+                                    processData: false,//上传文件必须
+                                    contentType: false,//上传文件必须
+                                    dataType: "json",
+                                    success: function (data) {//这个data就是返回来的json数据
+                                        if (data.message == "上传成功") {
+                                            //发送ajax 上传路径
+                                            var userid =/*[[${user.id}]]*/
+                                                $.ajax({
+                                                    url: "/updateUserImgPath",
+                                                    type: "POST",
+                                                    data: {
+                                                        'userid': userid,
+                                                        'imgpath': data.imgpath
+                                                    },
+                                                    dataType: "json",
+                                                    success: function (data) {//这个data就是返回来的json数据
+                                                        if (data.message == "上传成功") {
+
+                                                            alert("更换头像成功");
+                                                            history.go(0);
+                                                        } else {
+                                                            alert(data.message);
+                                                        }
+                                                    },
+                                                    error: function () {
+                                                        alert("服务器错误");
+                                                    }
+                                                });
+
+
+                                        } else {
+                                            alert(data.message);
+                                        }
+
+                                    },
+                                    error: function () {
+                                    }
+                                });
+                            }
+                        </script>
 
                         <div class="form-group">
-                            <label for="username" class="col-sm-3 control-label">用户名</label>
+                            <label class="col-sm-3 control-label">用户名</label>
                             <div>
                                 [[${user.username}]]
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inlineRadio1" class="col-sm-3 control-label">性别</label>
+                            <label class="col-sm-3 control-label">性别</label>
                             <div>
                                 <div th:if="${user.gender eq true}">男</div>
                                 <div th:if="${user.gender eq false}">女</div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="telephone" class="col-sm-3 control-label">电话</label>
+                            <label class="col-sm-3 control-label">电话</label>
                             <div>
                                 [[${user.telephone}]]
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="address" class="col-sm-3 control-label">地址</label>
+                            <label class="col-sm-3 control-label">地址</label>
                             <div id="getAddress"></div>
                         </div>
                     </div>

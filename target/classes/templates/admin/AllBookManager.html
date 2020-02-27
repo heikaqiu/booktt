@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="/assets/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/common.css">
     <link rel="stylesheet" href="/css/main.css">
+    <script src="/js/jquery/2.0.0/jquery.min.js"></script>
 </head>
 <body>
 
@@ -33,18 +34,590 @@
                 <li>图书管理</li>
                 <li class="active">图书管理</li>
             </ol>
-        </div>
-        <div class="box">
-            <div class="box-inner">
+            <div class="box">
+                <div class="box-inner">
+                    <div class="row">
+                        <div class="col-lg-1 col-md-2    col-sm-2 col-xs-12 ">
+                            <button class="btn btn-success" onclick="toadd()">新增图书</button>
+                        </div>
+                        <div class="col-lg-1 col-md-2  col-sm-2 col-xs-12">
+                            <button class="btn btn-warning" onclick="toupdate()">修改图书</button>
+                        </div>
+                        <div class=" col-lg-1 col-md-3  col-sm-3 col-xs-12">
+                            <button class="btn btn-danger" onclick="todelete()">下架图书</button>
+                        </div>
+                        <div class=" col-lg-1 col-md-3  col-sm-3 col-xs-12">
+                            <button class="btn btn-danger" onclick="toisshop()">上架图书</button>
+                        </div>
+                    </div>
+                </div>
             </div>
+
+
+            <div class="box" id="info">
+
+            </div>
+
+
         </div>
     </div>
 </div>
 <div class="scroll-to-top"><i class="fa fa-chevron-up fa-lg"></i></div>
 
+<script th:inline="javascript">
+    var info = document.getElementById("info");
+    var authorList =/*[[${authorList}]]*/;
+    var bookTypeList =/*[[${bookTypeList}]]*/;
 
 
-<script src="/js/jquery/2.0.0/jquery.min.js"></script>
+    function toadd() {
+        info.innerHTML = "<div class='heading'>" +
+            "                    <h3 class='title'>新增图书<span class='box-toggle'></span></h3>" +
+            "                </div>" +
+            "                <div class='box-inner'>" +
+
+            "                    <div class='form-inline form-label-search' role='form' >" +
+            "                        <table>" +
+            "                            <tr>" +
+            "                                <td><label class='control-label'>图书名</label></td>" +
+            "                                <td><input type='text' class='form-control' name='name'><font style='color: red' id='hasname'></font></td>" +
+            "                            </tr>" +
+            "                            <tr>" +
+            "                                <td><label class='control-label'>图书简介</label></td>" +
+            "                                <td><textarea cols='100' rows='10'   class='text-area' name='synopsis'></textarea></td>" +
+            "                            </tr>" +
+            "                            <tr>" +
+            "                                <td><label class='control-label'>图书单价</label></td>" +
+            "                                <td><input type='text' class='form-control' name='price'></td>" +
+            "                            </tr>" +
+            "                            <tr>" +
+            "                                <td><label class='control-label'>是否销售</label></td>" +
+            "                                <td>上架:<input type='radio' class='form-control' name='isshop' value='true'>" +
+            "                            下架:<input type='radio' class='form-control' name='isshop' value='false'>" +
+            "                        </td>" +
+            "                            </tr>" +
+            "                            <tr>" +
+            "                                <td><label class='control-label'>图书库存</label></td>" +
+            "                                <td><input type='text' class='form-control' name='remainder'></td>" +
+            "                            </tr>" +
+            "                            <tr>" +
+            "                                <td><label class='control-label'>图书图片</label></td>" +
+            "                                <td><input type='file' class='form-control' name='img'></td>" +
+            "                            </tr>" +
+            "                            <tr>" +
+            "                                <td><label class='control-label'>作者</label></td>" +
+            "                                <td><select style='width:200px' class='form-control' " +
+            "                                            value=''" +
+            "                                            name='author_id'>" +
+            "                                    <option value='-1'>-请选择-</option>" +
+            "                                </select></td>" +
+            "                            </tr>" +
+            "                             <tr>" +
+            "                                <td><label class='control-label'>图书类型</label></td>" +
+            "                                <td><select style='width:200px' class='form-control' " +
+            "                                            value=''" +
+            "                                            name='booktype'>" +
+            "                                    <option value='-1'>-请选择-</option>" +
+            "                                </select></td>" +
+            "                            </tr>" +
+            "                            <tr>" +
+            "                                <td></td>" +
+            "                                <td>" +
+            "                                    <button  class='btn btn-success' onclick='addBook()'>添加</button>" +
+            "                                </td>" +
+            "                            </tr>" +
+            "                        </table>" +
+            "                    </div>" +
+            "                </div>";
+
+        changeAuthoridBooktype();
+    }
+
+
+    function changeAuthoridBooktype() {
+
+        var author_id = document.getElementsByName("author_id")[0];
+        var s = "<option value='-1'>-请选择-</option>";
+        //TODO
+        for (var i = 0; i < authorList.length; i++) {
+            s += "<option value='" + authorList[i].id + "'>" + authorList[i].name + "</option>";
+
+        }
+        author_id.innerHTML = s;
+
+        var booktype = document.getElementsByName("booktype")[0];
+        s = "<option value='-1'>-请选择-</option>";
+        for (var i = 0; i < bookTypeList.length; i++) {
+            s += "<option value='" + bookTypeList[i].typeid + "'>" + bookTypeList[i].typename + "</option>";
+
+        }
+        booktype.innerHTML = s;
+    }
+
+
+    function addBook() {
+        var file = document.getElementsByName('img')[0].files[0];
+        alert(file.name);
+        var formData = new FormData();
+        formData.append('file', file);
+        //第一次ajax检查 是否会覆盖图片
+        $.ajax({
+            url: "/admin/addBookImg",
+            type: "POST",
+            data: formData,
+            processData: false,//上传文件必须
+            contentType: false,//上传文件必须
+            dataType: "json",
+            success: function (data) {//这个data就是返回来的json数据
+                if (data.message == "上传失败") {
+                    document.getElementById("hasname").style.color = "red";
+                    document.getElementById("hasname").innerHTML = "图片上传失败";
+                    return ;
+                } else if (data.message == "有同名文件") {
+                    var istrue = prompt("是否要覆盖图片，如是输入确定", "确定");
+                    if (istrue == "确定") {
+                        //如果覆盖了  输入确定就发送第二次上传图片
+                        $.ajax({
+                            url: "/admin/addBookImg1",
+                            type: "POST",
+                            data: formData,
+                            processData: false,//上传文件必须
+                            contentType: false,//上传文件必须
+                            dataType: "json",
+                            success: function (data) {//这个data就是返回来的json数据
+
+                                if (data.message == "上传失败") {
+                                    document.getElementById("hasname").style.color = "red";
+                                    document.getElementById("hasname").innerHTML = "图片上传失败";
+                                } else {
+                                    //如果第二次上传成功
+                                    addBook1(data);
+                                }
+                            }, error: function () {
+                                document.getElementById("hasname").style.color = "red";
+                                document.getElementById("hasname").innerHTML = "服务器错误";
+                            }
+                        });
+                    } else {
+                        alert("输入错误，上传文件操作取消");
+                        return;
+                    }
+                } else if (data.message == "上传成功") {
+                    addBook1(data);
+                }
+            },
+            error: function () {
+                document.getElementById("hasname").style.color = "red";
+                document.getElementById("hasname").innerHTML = "上传文件失败，服务器错误";
+            }
+        });
+
+
+    }
+
+
+    function addBook1(data) {
+        var img = data.pathname;
+        var name = document.getElementsByName("name")[0].value;
+        var synopsis = document.getElementsByName("synopsis")[0].value;
+        var price = document.getElementsByName("price")[0].value;
+        var remainder = document.getElementsByName("remainder")[0].value;
+        var author_id = document.getElementsByName("author_id")[0].value;
+        var booktype = document.getElementsByName("booktype")[0].value;
+        var isshopList = document.getElementsByName("isshop");
+        var isshop = "";
+        for (var i = 0; i < isshopList.length; i++) {
+            if (isshopList[i].checked == true) {
+                isshop = isshopList[i].value;
+                break;
+            }
+        }
+        $.ajax({
+            url: "/admin/addBook",
+            type: "POST",
+            data: {
+                'name': name,
+                'synopsis': synopsis,
+                'price': price,
+                'remainder': remainder,
+                'author_id': author_id,
+                'booktype': booktype,
+                'isshop': isshop,
+                'img': img
+            },
+            dataType: "json",
+            success: function (data) {//这个data就是返回来的json数据
+                if (data.message == "书名重复") {
+                    document.getElementById("hasname").style.color = "red";
+                    document.getElementById("hasname").innerHTML = "书名重复";
+                } else {
+                    document.getElementById("hasname").style.color = "green";
+                    document.getElementById("hasname").innerHTML = "添加成功";
+                }
+            },
+            error: function () {
+                document.getElementById("hasname").style.color = "red";
+                document.getElementById("hasname").innerHTML = "服务器错误";
+            }
+        });
+    }
+
+    var bookid = 0;
+
+    //TODO
+    function updateBook() {
+        if(document.getElementsByName('img')[0].files.length>0){
+            //如果选择了图片
+            alert(1);
+
+            var file = document.getElementsByName('img')[0].files[0];
+
+            alert(file.name);
+            var formData = new FormData();
+            formData.append('file', file);
+            //第一次ajax检查 是否会覆盖图片
+            $.ajax({
+                url: "/admin/addBookImg",
+                type: "POST",
+                data: formData,
+                processData: false,//上传文件必须
+                contentType: false,//上传文件必须
+                dataType: "json",
+                success: function (data) {//这个data就是返回来的json数据
+                    if (data.message == "上传失败") {
+                        document.getElementById("hasname").style.color = "red";
+                        document.getElementById("hasname").innerHTML = "图片上传失败";
+                        return ;
+                    } else if (data.message == "有同名文件") {
+                        var istrue = prompt("是否要覆盖图片，如是输入确定", "确定");
+                        if (istrue == "确定") {
+                            //如果覆盖了  输入确定就发送第二次上传图片
+                            $.ajax({
+                                url: "/admin/addBookImg1",
+                                type: "POST",
+                                data: formData,
+                                processData: false,//上传文件必须
+                                contentType: false,//上传文件必须
+                                dataType: "json",
+                                success: function (data) {//这个data就是返回来的json数据
+
+                                    if (data.message == "上传失败") {
+                                        document.getElementById("hasname").style.color = "red";
+                                        document.getElementById("hasname").innerHTML = "图片上传失败";
+                                    } else {
+                                        //如果第二次上传成功
+                                        updateBook1(data);
+                                    }
+                                }, error: function () {
+                                    document.getElementById("hasname").style.color = "red";
+                                    document.getElementById("hasname").innerHTML = "服务器错误";
+                                }
+                            });
+                        } else {
+                            alert("输入错误，上传文件操作取消");
+                            return;
+                        }
+                    } else if (data.message == "上传成功") {
+                        updateBook1(data);
+                    }
+                },
+                error: function () {
+                    document.getElementById("hasname").style.color = "red";
+                    document.getElementById("hasname").innerHTML = "上传文件失败，服务器错误";
+                }
+            });
+
+        }else{
+            alert(2);
+            var name = document.getElementsByName("name")[0].value;
+            var synopsis = document.getElementsByName("synopsis")[0].value;
+            var price = document.getElementsByName("price")[0].value;
+            var remainder = document.getElementsByName("remainder")[0].value;
+            var author_id = document.getElementsByName("author_id")[0].value;
+            var booktype = document.getElementsByName("booktype")[0].value;
+            var isshopList = document.getElementsByName("isshop");
+            var isshop = "";
+            for (var i = 0; i < isshopList.length; i++) {
+                if (isshopList[i].checked == true) {
+                    isshop = isshopList[i].value;
+                    break;
+                }
+            }
+            $.ajax({
+                url: "/admin/updateBook",
+                type: "POST",
+                data: {
+                    'id':bookid,
+                    'name': name,
+                    'synopsis': synopsis,
+                    'price': price,
+                    'remainder': remainder,
+                    'author_id': author_id,
+                    'booktype': booktype,
+                    'isshop': isshop
+                },
+                dataType: "json",
+                success: function (data) {//这个data就是返回来的json数据
+                    if (data.message == "书名重复") {
+                        document.getElementById("hasname").style.color = "red";
+                        document.getElementById("hasname").innerHTML = "书名重复";
+                    } else {
+                        document.getElementById("hasname").style.color = "green";
+                        document.getElementById("hasname").innerHTML = "修改成功";
+                    }
+                },
+                error: function () {
+                    document.getElementById("hasname").style.color = "red";
+                    document.getElementById("hasname").innerHTML = "服务器错误";
+                }
+            });
+        }
+
+
+    }
+
+    function updateBook1(data){
+        var img = data.pathname;
+        var name = document.getElementsByName("name")[0].value;
+        var synopsis = document.getElementsByName("synopsis")[0].value;
+        var price = document.getElementsByName("price")[0].value;
+        var remainder = document.getElementsByName("remainder")[0].value;
+        var author_id = document.getElementsByName("author_id")[0].value;
+        var booktype = document.getElementsByName("booktype")[0].value;
+        var isshopList = document.getElementsByName("isshop");
+        var isshop = "";
+        for (var i = 0; i < isshopList.length; i++) {
+            if (isshopList[i].checked == true) {
+                isshop = isshopList[i].value;
+                break;
+            }
+        }
+        $.ajax({
+            url: "/admin/updateBook",
+            type: "POST",
+            data: {
+                'id':bookid,
+                'name': name,
+                'synopsis': synopsis,
+                'price': price,
+                'remainder': remainder,
+                'author_id': author_id,
+                'booktype': booktype,
+                'isshop': isshop,
+                'img': img
+            },
+            dataType: "json",
+            success: function (data) {//这个data就是返回来的json数据
+                if (data.message == "书名重复") {
+                    document.getElementById("hasname").style.color = "red";
+                    document.getElementById("hasname").innerHTML = "书名重复";
+                } else {
+                    document.getElementById("hasname").style.color = "green";
+                    document.getElementById("hasname").innerHTML = "修改成功";
+                }
+            },
+            error: function () {
+                document.getElementById("hasname").style.color = "red";
+                document.getElementById("hasname").innerHTML = "服务器错误";
+            }
+        });
+    }
+
+    function toupdate() {
+        bookid = prompt("请输入要修改的图书id", "");
+
+
+        $.ajax({
+            url: "/admin/bookInfo/" + bookid,
+            type: "GET",
+            dataType: "json",
+            success: function (data) {//这个data就是返回来的json数据
+                var s = "";
+                if (data.book != null) {
+
+                    var authorHTML = "<option value='-1'>-请选择-</option>";
+                    //TODO
+                    for (var i = 0; i < authorList.length; i++) {
+                        if(data.book.author.id==authorList[i].id){
+                            authorHTML += "<option selected='selected' value='" + authorList[i].id + "'>" + authorList[i].name + "</option>";
+                        }else{
+                            authorHTML += "<option value='" + authorList[i].id + "'>" + authorList[i].name + "</option>";
+                        }
+
+                    }
+
+                    var booktypeHTML = "<option value='-1'>-请选择-</option>";
+                    for (var i = 0; i < bookTypeList.length; i++) {
+                        if (data.book.bookType.typeid==bookTypeList[i].typeid){
+                            booktypeHTML += "<option selected='selected' value='" + bookTypeList[i].typeid + "'>" + bookTypeList[i].typename + "</option>";
+                        }else{
+                            booktypeHTML += "<option value='" + bookTypeList[i].typeid + "'>" + bookTypeList[i].typename + "</option>";
+                        }
+                    }
+
+                    var isshopHTML="";
+                    if(data.book.isshop){
+                        isshopHTML="上架:<input type='radio' class='form-control' name='isshop' value='true' checked='checked'>下架:<input type='radio' class='form-control' name='isshop' value='false'>";
+                    }else{
+                        isshopHTML="上架:<input type='radio' class='form-control' name='isshop' value='true' >下架:<input type='radio' class='form-control' name='isshop' value='false' checked='checked'>";
+                    }
+
+
+
+                    info.innerHTML = "<div class='heading'>" +
+                        "                    <h3 class='title'>修改图书<span class='box-toggle'></span></h3>" +
+                        "                </div>" +
+                        "                <div class='box-inner'>" +
+
+                        "                    <div class='form-inline form-label-search' role='form' >" +
+                        "                        <table>" +
+                        "                            <tr>" +
+                        "                                <td><label class='control-label'>图书名</label></td>" +
+                        "                                <td><input type='text' class='form-control' value='"+data.book.name+"' name='name'><font style='color: red' id='hasname'></font></td>" +
+                        "                            </tr>" +
+                        "                            <tr>" +
+                        "                                <td><label class='control-label'>图书简介</label></td>" +
+                        "                                <td><textarea cols='100' rows='10'   class='text-area' name='synopsis'>"+data.book.synopsis+"</textarea></td>" +
+                        "                            </tr>" +
+                        "                            <tr>" +
+                        "                                <td><label class='control-label'>图书单价</label></td>" +
+                        "                                <td><input type='text' class='form-control' value='"+data.book.price+"' name='price'></td>" +
+                        "                            </tr>" +
+                        "                            <tr>" +
+                        "                                <td><label class='control-label'>是否销售</label></td>" +
+                        "                                <td>"+isshopHTML+
+                        "                        </td>" +
+                        "                            </tr>" +
+                        "                            <tr>" +
+                        "                                <td><label class='control-label'>图书库存</label></td>" +
+                        "                                <td><input type='text' class='form-control' value='"+data.book.remainder+"' name='remainder'></td>" +
+                        "                            </tr>" +
+                        "                            <tr>" +
+                        "                                <td><label class='control-label'>图书图片</label></td>" +
+                        "                                <td><img style='width: 10%;' src='/image/"+data.book.img+"'><input type='file' class='form-control' name='img' value='更改图片'></td>" +
+                        "                            </tr>" +
+                        "                            <tr>" +
+                        "                                <td><label class='control-label'>作者</label></td>" +
+                        "                                <td><select style='width:200px' class='form-control' " +
+                        "                                            value=''" +
+                        "                                            name='author_id'>" +authorHTML+
+                        "                                </select></td>" +
+                        "                            </tr>" +
+                        "                             <tr>" +
+                        "                                <td><label class='control-label'>图书类型</label></td>" +
+                        "                                <td><select style='width:200px' class='form-control' " +
+                        "                                            value=''" +
+                        "                                            name='booktype'>" +booktypeHTML+
+                        "                                </select></td>" +
+                        "                            </tr>" +
+                        "                            <tr>" +
+                        "                                <td></td>" +
+                        "                                <td>" +
+                        "                                    <button  class='btn btn-success' onclick='updateBook()'>添加</button>" +
+                        "                                </td>" +
+                        "                            </tr>" +
+                        "                        </table>" +
+                        "                    </div>" +
+                        "                </div>";
+
+
+                } else {
+                    info.innerHTML = data.message;
+                }
+
+            }
+            ,
+            error: function () {
+                info.innerHTML = "查找图书失败，服务器出错";
+            }
+        });
+
+    }
+
+
+    function todelete() {
+        bookid = prompt("要下架图书的id", "");
+        $.ajax({
+            url: "/admin/bookInfo/" + bookid,
+            type: "GET",
+            dataType: "json",
+            success: function (data) {//这个data就是返回来的json数据
+                if (data.book == null) {
+                    //表示没找到
+                    alert(data.message);
+                    return;
+                }
+
+                //是否要删除这个用户
+                var s = "确认要下架图书" + data.book.name + "如果确定请输入：确定下架";
+                var info = prompt(s, "");
+                if (info == "确定下架") {
+                    $.ajax({
+                        url: "/admin/deletebook",
+                        type: "POST",
+                        data: {
+                            'bookid': bookid
+                        },
+                        dataType: "json",
+                        success: function (data) {//这个data就是返回来的json数据
+                            alert(data.message);
+                        },
+                        error: function () {
+                            alert("下架此书失败，服务器出错");
+                        }
+                    });
+                } else {
+                    alert("输入错误，下架此书操作取消");
+                }
+            }, error: function () {
+                info.innerHTML = "下架此书操作取消，服务器出错";
+            }
+        });
+    }
+
+
+    function toisshop() {
+        bookid = prompt("要上架图书的id", "");
+        $.ajax({
+            url: "/admin/bookInfo/" + bookid,
+            type: "GET",
+            dataType: "json",
+            success: function (data) {//这个data就是返回来的json数据
+                if (data.book == null) {
+                    //表示没找到
+                    alert(data.message);
+                    return;
+                }
+
+                //是否要删除这个用户
+                var s = "确认要上架此书" + data.book.name + "如果确定请输入：确定上架";
+                var info = prompt(s, "");
+                if (info == "确定上架") {
+                    $.ajax({
+                        url: "/admin/isshopbook",
+                        type: "POST",
+                        data: {
+                            'bookid': bookid
+                        },
+                        dataType: "json",
+                        success: function (data) {//这个data就是返回来的json数据
+                            alert(data.message);
+                        },
+                        error: function () {
+                            alert("上架此书失败，服务器出错");
+                        }
+                    });
+                } else {
+                    alert("输入错误上架此书操作取消");
+                }
+            }, error: function () {
+                info.innerHTML = "上架此书操作取消，服务器出错";
+            }
+        });
+    }
+</script>
+
+
 <script src="/js/bootstrap/3.3.6/bootstrap.min.js"></script>
 <script src="/assets/bootstrap-daterangepicker/moment.min.js"></script>
 <script src="/assets/bootstrap-daterangepicker/daterangepicker.js"></script>

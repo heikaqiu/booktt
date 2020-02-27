@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="/assets/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/common.css">
     <link rel="stylesheet" href="/css/main.css">
+    <script src="/js/jquery/2.0.0/jquery.min.js"></script>
     <style>
     </style>
 
@@ -258,35 +259,40 @@
                                     // pageList = pageList2;
                                     pageList[point_page] = "<li><a onclick='toPage(" + (point_page - 1) * 5 + ")'>" + point_page + "</a></li>";
                                     point_page = num / 5 + 1;
-                                    pageList[num / 5 + 1] = "<li class='active'><a onclick='toPage(" + num + ")'>" + (num / 5 + 1) + "</a></li>";
-                                    var s = "";
+                                    pageList[point_page] = "<li class='active'><a onclick='toPage(" + num + ")'>" + (num / 5 + 1) + "</a></li>";
+                                    var s = pageList[0];
+                                    //alert(s);
                                     if (pageList.length <= 7) {
                                         //如果页面只有5或者比5少则
-                                        for (var i = 0; i < pageList.length - 1; i++) {
+                                        for (var i = 1; i < pageList.length - 1; i++) {
                                             s += pageList[i];
                                         }
+                                        //alert("1--"+s);
                                     } else {
                                         //如果页面比5大则显示num/5+1的左右两条  为什么是-4 因为右边有两页还有最后的标志还有因为从0开始
-                                        s = pageList.length[0];
-                                        if ((num / 5 + 1) < 3) {
+
+                                        if (point_page < 4) {// 小于4就是按了123
                                             for (var i = 1; i < 6; i++) {
                                                 s += pageList[i];
                                             }
-                                        } else {
-                                            if ((num / 5 + 1) > (pageList.length - 4)) {
-
+                                            //alert("2--"+s);
+                                        } else {//按了大于3 的 456789之类的 << 1 2 3 4 5 6 7 8 9 10 11 12 >>  14个  按了大于10的 例如11
+                                            if (point_page > (pageList.length - 4)) {
                                                 for (var i = pageList.length - 6; i <= pageList.length - 2; i++) {
-                                                    s += pageList.length[i];
+                                                    s += pageList[i];
                                                 }
+                                                //alert("3--"+s);
                                             } else {
-                                                for (var i = (num / 5 + 1) - 2; i <= (num / 5 + 1) + 2; i++) {
-                                                    s += pageList.length[i];
+                                                for (var i = point_page - 2; i <= point_page + 2; i++) {
+                                                    s += pageList[i];
+                                                    //alert(i+"--4--"+s);
                                                 }
+                                                //alert("4--"+s);
                                             }
                                         }
                                     }
                                     s += pageList[pageList.length - 1];
-                                    //alert(s);
+                                    //alert("5--"+s);
                                     order_pagenum.innerHTML = s;
 
                                     $.ajax({
@@ -405,7 +411,6 @@
 <div class="scroll-to-top"><i class="fa fa-chevron-up fa-lg"></i></div>
 
 
-<script src="/js/jquery/2.0.0/jquery.min.js"></script>
 <script src="/js/bootstrap/3.3.6/bootstrap.min.js"></script>
 <script src="/assets/bootstrap-daterangepicker/moment.min.js"></script>
 <script src="/assets/bootstrap-daterangepicker/daterangepicker.js"></script>

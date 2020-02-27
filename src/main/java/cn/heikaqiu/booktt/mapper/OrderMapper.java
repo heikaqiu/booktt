@@ -3,11 +3,9 @@ package cn.heikaqiu.booktt.mapper;
 import cn.heikaqiu.booktt.bean.FindOrderByInformation;
 import cn.heikaqiu.booktt.bean.Order;
 import cn.heikaqiu.booktt.bean.OrderContent;
-import cn.heikaqiu.booktt.bean.User;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -24,8 +22,8 @@ public interface OrderMapper {
      * @param order
      * @return
      */
-    @Insert("insert into `order` (id,user_id,submittime,state,paymentaTime,number,totalPrice)" +
-            " values(#{id},#{user.id},#{submitTime},#{state.value},#{paymentaTime},#{number},#{totalPrice});")
+    @Insert("insert into `order` (id,user_id,submittime,state,paymentaTime,number,totalPrice,isread)" +
+            " values(#{id},#{user.id},#{submitTime},#{state.value},#{paymentaTime},#{number},#{totalPrice},#{isread});")
     void addOrder(Order order);
 
 
@@ -161,7 +159,6 @@ public interface OrderMapper {
     List<Order> getOrderInfoLimit(Integer state_num, Integer page_num, FindOrderByInformation orderByInformation);
 
 
-
     @Select({
             "<script>",
             "select count(*) from  `order` <where>",
@@ -195,4 +192,25 @@ public interface OrderMapper {
     @Select("select express_number from `order` where id=#{orderid}")
     String findExpressNumberByorderid(String orderid);
 
+    @Select({
+            "<script>",
+            "select number from  `order` <where>",
+            "<if test='start_time != null'> and paymentaTime  &lt;  #{last_time} </if>",
+            "<if test='last_time != null '> and paymentaTime &gt;= #{start_time}</if>",
+            "</where>",
+            "</script>"
+    })
+    List<Integer> getCountSellBookNum(Date start_time, Date last_time);
+
+    @Select("select count(*) from `order` where state=2 AND isread=false")
+    Integer selectNewOrderNum();
+
+    @Update("update `order` set isread=#{b} where id=#{orderId}")
+    Integer updateOrderIsread(Long orderId, boolean b);
+
+    @Select("select * from  `order` where state=2 AND isread=false limit #{state_num},#{page_num}")
+    @Results({
+            @Result(column = "user_id", property = "user", one = @One(select = "cn.heikaqiu.booktt.mapper.UserMapper.getUserById"))
+    })
+    List<Order> getOrderInfoByNewOrder(Integer state_num,Integer page_num);
 }

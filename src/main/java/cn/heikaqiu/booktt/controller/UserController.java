@@ -13,8 +13,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.*;
 
 
@@ -72,6 +75,12 @@ public class UserController {
         String province = otherConfig.getProvince(Integer.valueOf(user.getProvince()));
         String city = otherConfig.getCity(Integer.valueOf(user.getProvince()), Integer.valueOf(user.getCity()));
         user.setProvince(province);
+        if (user.getGender()) {
+            //男
+            user.setImg("boyhead.jpg");
+        } else {
+            user.setImg("girlhead.jpg");
+        }
         user.setCity(city);
         user.setIsadmin(false);
         user.setBalance(0.0f);
@@ -168,10 +177,10 @@ public class UserController {
     }
 
     /**
-     *修改用户的基本信息
+     * 修改用户的基本信息
      */
     @PostMapping("/updateUserInformation")
-    public String updateUserInformation(User user , Model model) {
+    public String updateUserInformation(User user, Model model) {
         String province = otherConfig.getProvince(Integer.valueOf(user.getProvince()));
         String city = otherConfig.getCity(Integer.valueOf(user.getProvince()), Integer.valueOf(user.getCity()));
         user.setProvince(province);
@@ -188,21 +197,21 @@ public class UserController {
             return "redirect:/userInfo.html";
         } else {
             //转到错误页面
-            model.addAttribute("error_message","修改用户失败");
+            model.addAttribute("error_message", "修改用户失败");
             return "error";
         }
     }
 
 
-/**
- *修改用户的密码
- */
+    /**
+     * 修改用户的密码
+     */
     @PostMapping("/updatePassword")
-    public String updatePassword(Integer userid,String old_password,String password,String paypassword,Model model) {
+    public String updatePassword(Integer userid, String old_password, String password, String paypassword, Model model) {
 
         boolean isupdate = false;
         try {
-            isupdate = userService.updateUserPassword(userid,old_password,password,paypassword);
+            isupdate = userService.updateUserPassword(userid, old_password, password, paypassword);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -211,9 +220,83 @@ public class UserController {
             return "redirect:/userInfo.html";
         } else {
             //转到错误页面
-            model.addAttribute("error_message","修改用户失败");
+            model.addAttribute("error_message", "修改用户失败");
             return "error";
         }
+    }
+
+
+    /**
+     * 更换头像
+     */
+    @RequestMapping("/updateUserHead")
+    @ResponseBody
+    public Map<String, Object> updateUserHead(@RequestParam("file") MultipartFile file) {
+        Map<String, Object> map = new HashMap<>();
+        //获取文件本来的名字
+        String fileName = file.getOriginalFilename();
+        System.out.println("fileName:" + fileName);
+        //获取文件本来的后缀
+        String[] split = fileName.split("\\.");
+        System.out.println(split.length);
+        for (int i = 0; i < split.length; i++) {
+            System.out.println(split[i]);
+        }
+        String fileNameLast = split[split.length - 1];
+        //将时间戳给文件当名字
+        Long fileName1 = (new Date()).getTime();
+        fileName = fileName1.toString() + "." + fileNameLast;
+        //去此目录下找是否有同名  ，如果有同名 就
+        String filePath = "src/main/resources/static/image/head/";
+        boolean hasFile = otherConfig.findFile(filePath, fileName);
+        while (hasFile) {
+            //有同名文件  就重新获取时间戳再去查找  知道没有同名文件为止
+            fileName1 = (new Date()).getTime();
+            fileName = fileName1.toString() + "." + fileNameLast;
+            hasFile = otherConfig.findFile(filePath, fileName);
+        }
+
+        if (fileName.indexOf("\\") != -1) {
+            fileName = fileName.substring(fileName.lastIndexOf("\\"));
+        }
+
+        File targetFile = new File(filePath);
+        if (!targetFile.exists()) {
+            targetFile.mkdirs();
+        }
+        FileOutputStream out = null;
+        try {
+            out = new FileOutputStream(filePath + fileName);
+            out.write(file.getBytes());
+            out.flush();
+            out.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            map.put("message", "上传失败,文件上传失败");
+            return map;
+        }
+        map.put("message", "上传成功");
+        map.put("imgpath", "head/" + fileName);
+        return map;
+
+    }
+
+    /**
+     * 更换头像路径到数据库
+     */
+    @PostMapping("/updateUserImgPath")
+    @ResponseBody
+    public Map<String, Object> updateUserImgPath(Integer userid, String imgpath) {
+        Map<String, Object> map = new HashMap<>();
+        boolean isupdate = userService.updateUserImg(imgpath, userid);
+        if (isupdate) {
+            map.put("message", "上传成功");
+        } else {
+            map.put("message", "上传失败");
+        }
+
+        return map;
+
     }
 
 }

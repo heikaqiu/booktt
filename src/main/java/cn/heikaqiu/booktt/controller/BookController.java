@@ -110,9 +110,22 @@ public class BookController {
 
 
 
+
         Book book=bookService.getBookInfoById(id);
         model.addAttribute("book",book);
         System.out.println(book);
+
+
+        //查找书的平均星
+        Float AverageStar=bookService.getAverageStarByBookId(id);
+        if(AverageStar==null){
+            //没人给他评论给过
+            model.addAttribute("AverageStar", "没人参与评论");
+        }else{
+            String AverageStarString = String.format("%.1f", AverageStar);
+            model.addAttribute("AverageStar", AverageStarString);
+        }
+
 
 
         //查看用户是否已经收藏
