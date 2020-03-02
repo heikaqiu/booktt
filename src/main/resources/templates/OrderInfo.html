@@ -162,16 +162,23 @@
     <div class="col-sm-offset-7 col-sm-5" style="padding: 30px;">
         <div class="col-sm-6 btn btn-success btn-block" onclick="toindex()">继续购物</div>
         <div th:if="${order.state.value} eq 1"><!-- 如果是未付款的 则显示付款按钮 -->
-            <div class="col-sm-6  btn btn-success btn-block" onclick="toBuy()">支付</div>
+            <div class="col-sm-6  btn btn-success btn-block" th:onclick="'goToCheckPay('+${order.id}+')'">支付</div>
         </div>
 
     </div>
+<!--    <div id="functionToPay" style="display: none"><a class="btn btn-success" th:href="'/alipay/goAlipay?orderId='+${order.id}">支付宝支付</a>-->
+<!--        <button class="btn btn-success" onclick="">余额支付</button>-->
+<!--    </div>-->
 </div>
 
 <script th:inline="javascript">
 
+    var order = /*[[${order}]]*/;
+
+
     function toBuy() {
         //选择付款方式
+
         //当选择是账户余额时 弹出支付密码框
         todo:
         for (var j = 1; j <= 3; j++) {
@@ -181,7 +188,7 @@
                 break todo;
             }
             var paypassword_pass = /*[[${session.login_user.paypassword}]]*/;
-            var order = /*[[${order}]]*/;
+
             if (paypassword == paypassword_pass) {
                 //输入支付密码正确
                 $.ajax({
@@ -231,6 +238,12 @@
             }
         }
 
+
+    }
+    function goToCheckPay(orderid){
+        if(orderid>0){
+            location.href="/toCheckPay/"+orderid;
+        }
 
     }
 

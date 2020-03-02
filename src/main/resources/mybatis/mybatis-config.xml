@@ -6,5 +6,6 @@
 
     <settings>
         <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <setting name="defaultStatementTimeout" value="60"/>
     </settings>
 </configuration>

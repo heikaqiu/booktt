@@ -10,6 +10,10 @@ import java.util.List;
  * @create 2020-02-06 13:45
  */
 public interface OrderService {
+
+
+
+
     /**
      * 获取此用户的所有订单信息 但不包含详细
      * @param id
@@ -122,4 +126,11 @@ public interface OrderService {
      * @return
      */
     List<Order> getOrderInfoByNewOrder(Integer state_num,Integer page_num);
+
+    /**
+     * 修改订单状态
+     * @param out_trade_no
+     * @param waitDeliverGoods
+     */
+    void updateOrderStatus(String out_trade_no, Order.State waitDeliverGoods);
 }

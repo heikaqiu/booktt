@@ -3,15 +3,15 @@ package cn.heikaqiu.booktt.controller;
 import cn.heikaqiu.booktt.bean.*;
 import cn.heikaqiu.booktt.config.OtherConfig;
 import cn.heikaqiu.booktt.service.*;
-import com.sun.jmx.snmp.Timestamp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
-import javax.xml.crypto.Data;
-import java.util.*;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author HeiKaQiu
@@ -50,15 +50,10 @@ public class AdminIndexController {
     @RequestMapping(value = {"/"})
     public String index() {
 
-
-        //测试使用的登录 TODO
-        otherConfig.testLogin();
-
-
         User user = (User) session.getAttribute("login_user");
         if (user == null) {
             //没有登录的人 则转到后台登录界面
-            return "/admin/login";
+            return "admin/login";
         } else {
             if (user.getIsadmin() == null || !user.getIsadmin()) {
                 //不是管理员 转到前台首页
@@ -66,10 +61,9 @@ public class AdminIndexController {
 
             } else {
                 //是管理员 到后台首页
-                return "/admin/index";
+                return "admin/index";
             }
         }
-
 
     }
 
@@ -80,7 +74,7 @@ public class AdminIndexController {
      */
     @RequestMapping("/login.html")
     public String login() {
-        return "/admin/login";
+        return "admin/login";
     }
 
 
@@ -91,9 +85,6 @@ public class AdminIndexController {
      */
     @RequestMapping("/allOrder.html")
     public String allOrder(Model model) {
-
-        //测试使用的登录 TODO
-        otherConfig.testLogin();
 
 
         Map<String, Long> time = otherConfig.getTime();
@@ -142,8 +133,6 @@ public class AdminIndexController {
     @RequestMapping("/allOrderManage.html")
     public String allOrderManage(Model model) {
 
-        //测试使用的登录 TODO
-        otherConfig.testLogin();
 
         //封装需要查找的订单的信息
         packagingOrderInfo(model);
@@ -159,7 +148,7 @@ public class AdminIndexController {
         model.addAttribute("DELIVER_GOODS", DELIVER_GOODS);
         model.addAttribute("FINISH_ORDER", FINISH_ORDER);
         model.addAttribute("CLOSE", CLOSE);
-        return "/admin/AllOrderManage";
+        return "admin/AllOrderManage";
     }
 
     /**
@@ -194,8 +183,7 @@ public class AdminIndexController {
      */
     @RequestMapping("/allUser.html")
     public String allUser(Model model) {
-        //测试使用的登录 TODO
-        otherConfig.testLogin();
+
 
         //去工具类中找到时间段
         Map<String, Long> time = otherConfig.getTime();
@@ -238,7 +226,7 @@ public class AdminIndexController {
         model.addAttribute("yesterdayUserNum", yesterdayUserNum);
         model.addAttribute("todayUserNum", todayUserNum);
 
-        return "/admin/AllUser";
+        return "admin/AllUser";
     }
 
     /**
@@ -248,9 +236,8 @@ public class AdminIndexController {
      */
     @RequestMapping("/allUserManage.html")
     public String allUserManage() {
-        //测试使用的登录 TODO
-        otherConfig.testLogin();
-        return "/admin/AllUserManage";
+        
+        return "admin/AllUserManage";
     }
 
     /**
@@ -260,8 +247,7 @@ public class AdminIndexController {
      */
     @RequestMapping("/allAuthor.html")
     public String allAuthor(Model model) {
-        //测试使用的登录 TODO
-        otherConfig.testLogin();
+        
 
         Integer authorNum = authorService.getCountAuthor();
         model.addAttribute("authorNum", authorNum);
@@ -283,7 +269,7 @@ public class AdminIndexController {
         List<String> getnationality = otherConfig.getnationality();
         model.addAttribute("nationality", getnationality);
 
-        return "/admin/AllAuthor";
+        return "admin/AllAuthor";
     }
 
     /**
@@ -293,14 +279,13 @@ public class AdminIndexController {
      */
     @RequestMapping("/allAuthorManage.html")
     public String allAuthorManage(Model model) {
-        //测试使用的登录 TODO
-        otherConfig.testLogin();
+        
 
         List<String> getnationality = otherConfig.getnationality();
         model.addAttribute("nationality", getnationality);
 
 
-        return "/admin/AllAuthorManage";
+        return "admin/AllAuthorManage";
     }
 
     /**
@@ -310,10 +295,8 @@ public class AdminIndexController {
      */
     @RequestMapping("/allBook.html")
     public String allBook(Model model) {
-        //测试使用的登录 TODO
-        otherConfig.testLogin();
+        
 
-        //TODO
 //        <h4 class="title">总图书数</h4>
 //        <p>[[${allBookNum}]]</p>
 //
@@ -386,7 +369,7 @@ public class AdminIndexController {
         List<Author> authorList = authorService.getAllAuthor();
         model.addAttribute("authorList", authorList);
 
-        return "/admin/AllBook";
+        return "admin/AllBook";
     }
 
     /**
@@ -396,8 +379,7 @@ public class AdminIndexController {
      */
     @RequestMapping("/allBookManager.html")
     public String allBookManager(Model model) {
-        //测试使用的登录 TODO
-        otherConfig.testLogin();
+        
 
         //获取所有的书本类型
         List<BookType> bookTypeList = bookTypeService.getAllType();
@@ -406,7 +388,7 @@ public class AdminIndexController {
         //获取所有的作者
         List<Author> authorList = authorService.getAllAuthor();
         model.addAttribute("authorList", authorList);
-        return "/admin/AllBookManager";
+        return "admin/AllBookManager";
     }
 
     /**
@@ -416,9 +398,8 @@ public class AdminIndexController {
      */
     @RequestMapping("/notice.html")
     public String notice() {
-        //测试使用的登录 TODO
-        otherConfig.testLogin();
-        return "/admin/Notice";
+        
+        return "admin/Notice";
     }
 
     /**
@@ -428,16 +409,15 @@ public class AdminIndexController {
      */
     @RequestMapping("/newOrder.html")
     public String newOrder(Model model) {
-        //测试使用的登录 TODO
-        otherConfig.testLogin();
+        
 
         //到新增订单页面的时候  将订单状态为2  并且是未读的展示
-        List<Order> orderList=orderService.getOrderInfoByNewOrder(0,5);
+        List<Order> orderList = orderService.getOrderInfoByNewOrder(0, 5);
         Integer orderListNum = orderService.selectNewOrderNum();
-        model.addAttribute("orderList",orderList);
-        model.addAttribute("orderListNum",orderListNum);
+        model.addAttribute("orderList", orderList);
+        model.addAttribute("orderListNum", orderListNum);
 
-        return "/admin/NewOrder";
+        return "admin/NewOrder";
     }
 
     /**
@@ -447,8 +427,7 @@ public class AdminIndexController {
      */
     @RequestMapping("/advice.html")
     public String advice(Model model) {
-        //测试使用的登录 TODO
-        otherConfig.testLogin();
+        
         Boolean isread = null;//读过的
         Boolean isHandle = null;//处理的
 
@@ -478,7 +457,7 @@ public class AdminIndexController {
 
         model.addAttribute("adviceList", adviceList);
         model.addAttribute("adviceListNum", NoHandleAdviceNum);
-        return "/admin/Advice";
+        return "admin/Advice";
     }
 
 }

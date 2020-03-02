@@ -20,6 +20,13 @@
             text-align: center;
         }
     </style>
+
+    <script>
+        function toLogin1() {
+            alert("未检测到用户，请登录");
+            location.href = "/login.html";
+        }
+    </script>
 </head>
 <body>
 
@@ -61,12 +68,9 @@
                 </div>
             </div>
             <div th:if="${session.login_user} eq null">
-                <a class="btn btn-primary btn-block" role="button"
-                   th:onclick="toLogin()">立即购买</a>
-                <a class="btn btn-default btn-block" role="button"
-                   th:onclick="toLogin()">加入购物车</a>
-                <a class="btn btn btn-info btn-block" role="button"
-                   th:onclick="toLogin()">收藏本书</a>
+                <a class="btn btn-primary btn-block" role="button" onclick="toLogin1()">立即购买</a>
+                <a class="btn btn-default btn-block" role="button" onclick="toLogin1()">加入购物车</a>
+                <a class="btn btn-info btn-block" role="button" onclick="toLogin1()">收藏本书</a>
             </div>
 
             </p>
@@ -87,7 +91,11 @@
         <button class="btn btn-embossed btn-success" th:onclick="'toAddReply('+${comment.id}+')'"
                 th:id="'closeReply_'+${comment.id}">添加回复
         </button>
-        <button class="btn btn-embossed btn-warning" th:if="${comment.user.id eq session.login_user.id}" th:onclick="'deleteComment('+${comment.id}+')'">删除此评论</button>
+        <div th:if="${session.login_user} ne null">
+            <button class="btn btn-embossed btn-warning" th:if="${comment.user.id eq session.login_user.id}"
+                    th:onclick="'deleteComment('+${comment.id}+')'">删除此评论
+            </button>
+        </div>
         <p th:text="${comment.content}"></p>
 
         <div th:each="reply,r:${comment.replys}">
@@ -95,7 +103,9 @@
             <img style="height: 35px;width:35px" th:src="'/image/'+${reply.user.img}" alt="userheadimg">
             <span style="margin-right: 20px" th:text="'用户:'+${reply.user.username}"></span>
             <span style="margin-right: 20px" th:text="${#dates.format(reply.time, 'yyyy-MM-dd HH:mm:ss')}"></span>
-            <button class="btn btn-embossed btn-group " th:if="${reply.user.id eq session.login_user.id}" th:onclick="'deleteReply('+${reply.id}+')'">删除此回复</button>
+            <button class="btn btn-embossed btn-group " th:if="${reply.user.id eq session.login_user.id}"
+                    th:onclick="'deleteReply('+${reply.id}+')'">删除此回复
+            </button>
             <p th:text="'------------'+${reply.content}"></p>
         </div>
         <div class="form-group" th:id="'reply_'+${comment.id}" style="display: none">
@@ -124,16 +134,21 @@
     var reply_ = null;
     var closeReply_ = null;
 
-    function deleteReply(replyid){
+
+    function deleteReply(replyid) {
+        var userid = 0;
+        if (/*[[${session.login_user}]]*/!=null){
+            userid =/*[[${session.login_user.id}]]*/;
+        }
         var msg = confirm("您真的确定要删除此条回复吗请确认！");
-        if(msg==true){
+        if (msg == true) {
             //确认
             $.ajax({
                 url: "/deleteReply",
                 type: "POST",
                 data: {
                     '_method': "DELETE",
-                    'userid': /*[[${session.login_user.id}]]*/,
+                    'userid': userid,
                     'replyid': replyid
                 },
                 dataType: "json",
@@ -153,9 +168,9 @@
     }
 
 
-    function deleteComment(commentid){
+    function deleteComment(commentid) {
         var msg = confirm("您真的确定要删除此条评论吗请确认！");
-        if(msg==true){
+        if (msg == true) {
             //确认
             $.ajax({
                 url: "/deleteComment",
@@ -257,11 +272,6 @@
 
     }
 
-    function toLogin() {
-        alert("请登录");
-        location.href = "/login.html";
-    }
-
 
     function andToCollection(bookid, userid) {
         $.ajax({
@@ -312,29 +322,29 @@
         var buynum = document.getElementById("buynum");
         var buy_num = buynum.value;
         var totalPrice =/*[[${book.price}]]*/;
-        for (var j = 1; j <= 3; j++) {
-            var paypassword = prompt("请输入支付密码", "");
-            if (paypassword == null) {
-                //按了取消就是 未付款订单
-                var orderState = 1;
-                j = 4;
-            }
-
-
-            if (paypassword == paypassword_pass) {
-                //输入支付密码正确
-                j = 4;
-                var orderState = 2;
-
-            } else {
-                if (j == 3) {
-                    alert("支付密码错误次数过多，请在30分钟内完成支付");
-                    var orderState = 1;
-                    // 添加订单 到等待买家付款
-                }
-                alert("输错" + j + "次");
-            }
-        }
+        // for (var j = 1; j <= 3; j++) {
+        //     var paypassword = prompt("请输入支付密码", "");
+        //     if (paypassword == null) {
+        //         //按了取消就是 未付款订单
+        //         var orderState = 1;
+        //         j = 4;
+        //     }
+        //
+        //
+        //     if (paypassword == paypassword_pass) {
+        //         //输入支付密码正确
+        //         j = 4;
+        //         var orderState = 2;
+        //
+        //     } else {
+        //         if (j == 3) {
+        //             alert("支付密码错误次数过多，请在30分钟内完成支付");
+        //             var orderState = 1;
+        //             // 添加订单 到等待买家付款
+        //         }
+        //         alert("输错" + j + "次");
+        //     }
+        // }
 
 
         $.ajax({
@@ -344,24 +354,32 @@
                 'user_id': userid,
                 'book_id': bookid,
                 'buy_num': buy_num,
-                'orderState': orderState,
-                'paypassword_pass': paypassword_pass,
                 'totalPrice': totalPrice
             },
             dataType: "json",
             success: function (data) {//这个data就是返回来的json数据
-                alert(data.message);
-                if (data.message == "付款成功，等待卖家发货" || data.message == "付款密码错误三次，请三十分钟内完成支付") {
-
-                    // 去订单页面
-                    toOrder();
+                if (data.message == "添加订单成功") {
+                    alert("提交订单成功，转到付款页面")
+                    // 去此订单付款页面
+                    goToCheckPay(data.orderid);
+                } else {
+                    alert(data.message);
                 }
+
 
             },
             error: function () {
                 alert("服务器错误");
             }
         });
+
+    }
+
+    function goToCheckPay(orderid) {
+        if (orderid > 0) {
+            location.href = "/toCheckPay/" + orderid;
+        }
+
     }
 </script>
 

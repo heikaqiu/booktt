@@ -1,13 +1,14 @@
 package cn.heikaqiu.booktt;
 
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 //启动
 
-@SpringBootApplication
 //@MapperScan(value = "cn.heikaqiu.booktt.mapper")
+@SpringBootApplication
+//@EnableAutoConfiguration
 public class BookttApplication {
 
     public static void main(String[] args) {

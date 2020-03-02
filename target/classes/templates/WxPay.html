@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Wxpay</title>
+</head>
+
+<link href="/css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet"/>
+<link rel="stylesheet" href="/Flat-UI-master/dist/css/flat-ui.min.css"/>
+<script src="/Flat-UI-master/dist/js/vendor/jquery.min.js"></script>
+<script src="/js/bootstrap/3.3.6/bootstrap.min.js"></script>
+<script src="/Flat-UI-master/dist/js/flat-ui.min.js"></script>
+<body>
+<div class="navbar" >
+    <div style="margin-top: 50px;background-color:whitesmoke" class="col-sm-12">
+        <div class="col-sm-8">
+            <p>订单编号：<span>[[${order.id}]]</span></p>
+            <p>商品件数:<span>[[${order.number}]]</span></p>
+            <p>订单提交时间:<span th:text="${#dates.format(order.submitTime,'yyyy-MM-dd HH:mm:ss') }"></span></p>
+            <p>订单最后付款时间:<span th:text="${#dates.format(order.paymentaTime,'yyyy-MM-dd HH:mm:ss') }"></span></p>
+        </div>
+        <div class="col-sm-4 text-center">
+            <p style="margin-top: 70px;font-size: 30px">需付款:<span>[[${order.totalPrice}]]</span></p>
+        </div>
+    </div>
+</div>
+<font color="red">可扫码但是千万别按付款，此账号是网上找的，如果按了付款不负责啊</font>
+
+<div style="margin-top: 20px;margin-left: 50px;margin-right: 50px;border:1px solid red;">
+    <img  width="150px" src="/image/WePayLogo.png" ><img width="50px" src="/image/Wxpaypage.png" >
+    <p style="float: right;padding-right: 20px;padding-top: 5px" class="right">支付<span style="color: #cb2d2e">[[${order.totalPrice}]]</span>元</p>
+</div>
+
+<div><img style="margin-left: 20px;" th:src="'/wxpay/goWxPay1/'+${order.id}"></div>
+<div><img style="margin-left: 50px;margin-top: 10px;" src="/image/WxPayword.png"></div>
+
+
+</body>
+</html>

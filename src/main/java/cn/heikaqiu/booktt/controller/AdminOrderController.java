@@ -12,8 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -64,7 +62,6 @@ public class AdminOrderController {
 
             System.out.println(order_time);
             Date[] dates = otherConfig.StringtoDate(order_time);
-            //TODO 错误
             findOrderByInformation.setFirst_time(dates[0]);
             findOrderByInformation.setLast_time(dates[1]);
         }
@@ -78,7 +75,7 @@ public class AdminOrderController {
     /**
      * 获取 分页第几条 和 订单状态
      * 只有在点击订单状态的时候才更改  也就是说其他时候都是在 找session中 条件对象中的订单状态
-     * TODO order_State 什么时候这个为null
+     *order_State 什么时候这个为null
      *
      * @param pageNum
      * @param order_State
@@ -132,7 +129,7 @@ public class AdminOrderController {
         } else {
             model.addAttribute("order", "未找到订单可能是订单id错误");
         }
-        return "/admin/OrderInformation";
+        return "admin/OrderInformation";
 
 
     }

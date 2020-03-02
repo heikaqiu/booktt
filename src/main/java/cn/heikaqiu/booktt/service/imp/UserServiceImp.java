@@ -49,15 +49,16 @@ public class UserServiceImp implements UserService {
     @Override
     public boolean register(User user) {
         User userByUsername = userMapper.getUserByUsername(user.getUsername());
-        if (userByUsername == null) {
+        User userByTele = userMapper.getUserByTele(user.getTelephone());
+        if (userByUsername == null&&userByTele==null) {
             //没有重复用户名
             user.setLastusetime(new Date());
-            int id = userMapper.insertUser(user);
-            user.setId(id);
-            session.setAttribute("login_user", user);
+            userMapper.insertUser(user);
+            //让他登录
+            login(user);
             return true;
         } else {
-            //用户名重复
+            //用户名重复 或者 手机号重复
             return false;
         }
     }
@@ -114,8 +115,11 @@ public class UserServiceImp implements UserService {
 
     @Override
     public boolean updateUserInformation(User user) throws Exception {
+
+
+
         User userByUsername = userMapper.getUserByUsername(user.getUsername());
-        if (userByUsername != null) {
+        if (userByUsername != null&&user.getId()!=userByUsername.getId()) {
             return false;//名字已经有人注册了
         }
         Integer line = userMapper.updateUserInformationByUser(user);
@@ -281,6 +285,33 @@ public class UserServiceImp implements UserService {
             return true;
         }
 
+    }
+
+    @Override
+    public boolean logintele(String telephone) {
+        User findUser = userMapper.getUserByTele(telephone);
+        if (findUser != null) {
+            //不为空 表示数据库中有对象
+            userMapper.updateLastUseTime(findUser.getId(), new Date());//更改账户最后使用的时间
+            session.setAttribute("login_user", findUser);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean hasTele(String phoneNum) {
+        //手机号是否存在
+        User userByTele = userMapper.getUserByTele(phoneNum);
+
+        if(userByTele!=null){
+            System.out.println(userByTele);
+            return true;
+        }else{
+            return false;
+
+        }
     }
 
 

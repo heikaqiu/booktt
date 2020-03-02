@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: cn.heikaqiu.booktt.BookttApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 14.724 s - in cn.heikaqiu.booktt.BookttApplicationTests

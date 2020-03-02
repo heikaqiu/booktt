@@ -2,14 +2,35 @@ package cn.heikaqiu.booktt.config;
 
 import cn.heikaqiu.booktt.bean.User;
 import cn.heikaqiu.booktt.service.UserService;
-import com.sun.jmx.snmp.Timestamp;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.HttpStatus;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.config.RequestConfig;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 
+import javax.servlet.http.HttpSession;
 import java.io.File;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URI;
+import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -24,8 +45,252 @@ public class OtherConfig {
     @Autowired
     private UserService userService;
 
-//TODO
-    public boolean findFile(String baseDirName, String targetFileName){
+    @Autowired
+    private HttpSession session;
+
+
+    /**
+     * 重新将登录用户放到session中
+     */
+public void reloadLoginUser(){
+
+    User login_user = (User)session.getAttribute("login_user");
+    User userById = userService.getUserById(login_user.getId());
+    session.setAttribute("login_user",userById);
+}
+
+    /**
+     * 请求参数是XML格式的POST请求
+     *
+     * @param url
+     * @param requestDataXml
+     * @return
+     */
+    public static String doPostByXml(String url, String requestDataXml) {
+        CloseableHttpClient httpClient = null;
+        CloseableHttpResponse httpResponse = null;
+
+        //穿件httpClient连接对象
+        httpClient = HttpClients.createDefault();
+        //创建Post请求连接对象‘’
+        HttpPost httpPost = new HttpPost(url);
+        //创建连接请求参数对象，并设置连接参数
+        RequestConfig requestConfig = RequestConfig.custom()
+                .setConnectTimeout(15000) //连接服务器主机超时时间
+                .setConnectionRequestTimeout(60000)//连接请求超时时间
+                .setSocketTimeout(60000)//设置读取相应数据超时时间
+                .build();
+
+        //为httpPost请求设置参数
+        httpPost.setConfig(requestConfig);
+
+        //将上传参数存放到entity属性中
+        httpPost.setEntity(new StringEntity(requestDataXml, "UTF-8"));
+        //添加头信息
+        httpPost.addHeader("Content-Type", "text/xml");
+
+        String result = "";
+        try {
+            //发送请求
+            httpResponse = httpClient.execute(httpPost);
+
+            //从响应对象中获取返回内容
+            HttpEntity httpEntity = httpResponse.getEntity();
+            result = EntityUtils.toString(httpEntity, "UTF-8");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
+
+    /**
+     *指定字符集的POST请求
+     *
+     * @return
+     */
+    public static String doPostEncoded(String url, Map<String, Object> paramMap, String charset) {
+        CloseableHttpClient httpClient = null;
+        CloseableHttpResponse httpResponse = null;
+
+        //穿件httpClient连接对象
+        httpClient = HttpClients.createDefault();
+        //创建Post请求连接对象‘’
+        HttpPost httpPost = new HttpPost(url);
+        //创建连接请求参数对象，并设置连接参数
+        RequestConfig requestConfig = RequestConfig.custom()
+                .setConnectTimeout(15000) //连接服务器主机超时时间
+                .setConnectionRequestTimeout(60000)//连接请求超时时间
+                .setSocketTimeout(60000)//设置读取相应数据超时时间
+                .build();
+
+        //为httpPost请求设置参数
+        httpPost.setConfig(requestConfig);
+
+        //判断参数是否为空
+        if (null != paramMap && paramMap.size() > 0) {
+            List<NameValuePair> nvpsList = new ArrayList<>();
+            //将map集成转换为Set集合
+            Set<Map.Entry<String, Object>> entrySet = paramMap.entrySet();
+            //通过EntrySet集合获取迭代器
+            Iterator<Map.Entry<String, Object>> iterable = entrySet.iterator();
+            //循环遍历
+            while (iterable.hasNext()) {
+                //遍历下一个
+                Map.Entry<String, Object> mapEntry = iterable.next();
+                nvpsList.add(new BasicNameValuePair(mapEntry.getKey(), mapEntry.getValue().toString()));
+            }
+            //将参数添加到post请求参数对象中
+            //将上传参数存放到entity属性中
+            try {
+                httpPost.setEntity(new UrlEncodedFormEntity(nvpsList, charset));
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+        }
+        String result = "";
+        try {
+            //httpClient对象执行post请求，并返回响应参数对象
+            httpResponse = httpClient.execute(httpPost);
+            //从响应对象中获取响应内容
+            HttpEntity entity = httpResponse.getEntity();
+            result = EntityUtils.toString(entity);
+        } catch (ClientProtocolException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        return result;
+    }
+
+
+    /**
+     * <pre class="code"><b>{@code
+     *   Title: 发送 get请求 已测试 可以传中文
+     *
+     * }</pre>
+     *
+     * @param url
+     * @return 返回json格式的数据
+     * @author haobin
+     * @date 2018年7月16日 下午8:34:49
+     */
+    public static String get(String url) {
+        CloseableHttpClient httpclient = HttpClients.createDefault();
+        String context = "";
+        try {
+            URL uRL = new URL(url);
+            URI uRI = new URI(uRL.getProtocol(), uRL.getHost() + ":" + uRL.getPort(), uRL.getPath(), uRL.getQuery(),
+                    null);
+            // 创建httpget.
+            HttpGet httpget = new HttpGet(uRI);
+            System.out.println("executing request " + httpget.getURI());
+            // 执行get请求.
+            CloseableHttpResponse response = httpclient.execute(httpget);
+            // 获取响应实体
+            HttpEntity entity = response.getEntity();
+            System.out.println("--------------------------------------");
+            // 打印响应状态
+            System.out.println(response.getStatusLine());
+            if (entity != null) {
+                // 打印响应内容 ，转换为utf-8格式，避免所传内容包含汉字乱码
+                context = EntityUtils.toString(entity, "UTF-8");
+                System.out.println(context);
+            }
+            response.close();
+            return context;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "Exception";
+        } finally {
+            // 关闭连接,释放资源
+            try {
+                httpclient.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     * <pre class="code"><b>{@code
+     *   Title:
+     *   发送POST请求， 已测试，可以传递中文
+     *   注意， 当服务器端返回的是空字符串时， 本方法返回值将会是null
+     *
+     *
+     *   补充：
+     * 如果 服务器提供方返回的json类似于：
+     * {
+     * "id": 1111,
+     * "name": "嘿嘿",
+     * "passwd": "123456",
+     * "data": {
+     * "aa": "第一",
+     * "bb": "这是第二名"
+     * }
+     * }
+     *
+     * 则调用方想获取aa的值可以这样写：
+     * JSONObject jSONObject = HttpUtils.doPost(url, XXXX);
+     * if (null != jSONObject) {
+     * System.out.println(jSONObject.getJSONObject("data").getString("aa")+ ",  " + jSONObject.getString("name"));
+     * }
+     *
+     *
+     * }</pre>
+     *
+     * @param url     url地址，随业务要求，可以附带中文参数
+     * @param bodyMap POST Body要发送的数据， 以Map<String, String>格式出现；  如果没有，允许为null
+     * @return 返回json格式的数据
+     * @author haobin
+     * @date 2018年7月16日 下午2:58:30
+     */
+    public static JSONObject doPost(String url, Map<String, Object> bodyMap) {
+        DefaultHttpClient client = new DefaultHttpClient();
+        HttpPost post = new HttpPost(url);
+        String result = null;
+        com.alibaba.fastjson.JSONObject jSONObject = null;
+
+        try {
+            // 2018-07-16 haobin: 解决 110行 如果bodyMap为Null 时运行报错的问题
+            if (null == bodyMap) {
+                bodyMap = new HashMap<String, Object>();
+            }
+
+            // 2018-07-16 haobin:  最后一个参数不能省略，否则会导致服务器端接收到的中文数据出现乱码
+            StringEntity s = new StringEntity(JSON.toJSONString(bodyMap), "UTF-8");   //110
+            s.setContentEncoding("UTF-8");
+            s.setContentType("application/json");// 发送json数据需要设置contentType
+            post.setEntity(s);
+            HttpResponse res = client.execute(post);
+            if (res.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+                HttpEntity entity = res.getEntity();
+                result = EntityUtils.toString(res.getEntity());// 返回json格式：
+
+                jSONObject = JSON.parseObject(result);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        return jSONObject;
+    }
+
+
+    /**
+     * 经测试发现， com.alibaba.druid.util.HttpClientUtils  无法得到服务器返回的json格式的数据
+     */
+//	public static void testAliBabaPost(){
+//		HttpClientUtils.post("http://localhost:8080/highlight_springmvc4/anno/obj3?address=beijing",
+//				"id=1111&name=qiaofeng&passwd=123qweasd", 6000);
+//	}
+
+
+
+    public boolean findFile(String baseDirName, String targetFileName) {
 //        String before = targetFileName.substring(0, targetFileName.indexOf("[")+1);
 //        System.out.println(before);
 //        String after = targetFileName.substring(targetFileName.indexOf("]"));
@@ -35,18 +300,18 @@ public class OtherConfig {
 //
 //        String intradayFile = before + nowDate + after;//当天的文件名
         File baseDir = new File(baseDirName);//创建一个File对象
-        if( !baseDir.exists() || !baseDir.isDirectory()){//判断目录是否存在(文件不为空 || 不是一个文件夹)，因为baseDirName为一个路径，所以必须是文件夹
+        if (!baseDir.exists() || !baseDir.isDirectory()) {//判断目录是否存在(文件不为空 || 不是一个文件夹)，因为baseDirName为一个路径，所以必须是文件夹
             System.out.println(baseDir + "文件路径为空" + "文件不是一个目录");
         }
         File[] fileList = baseDir.listFiles();
-        if(fileList.length == 0){
+        if (fileList.length == 0) {
             System.out.println("该文件夹下面没有文件");
             return false; //没有同名文件
-        }else{
-            for(int i=0; i<fileList.length;i++){
+        } else {
+            for (int i = 0; i < fileList.length; i++) {
                 File tempFile = fileList[i];
                 String tempName = tempFile.getName();
-                if(targetFileName.equals(tempName)){
+                if (targetFileName.equals(tempName)) {
                     return true;//有同名文件
                 }
             }
@@ -323,12 +588,6 @@ public class OtherConfig {
         Long yesterday_zero = today_zero - (1000 * 60 * 60 * 24);//昨天00:00:00
         Long tomorrow_zero = today_zero + 24 * 60 * 60 * 1000;//明天00:00:00
 
-        System.out.println(new Timestamp(yesterday_zero));
-        System.out.println(new Timestamp(yesterday));
-        System.out.println(new Timestamp(today_zero));
-        System.out.println(new Timestamp(current));
-        System.out.println(new Timestamp(twelve));
-        System.out.println(new Timestamp(tomorrow_zero));
 
         Map<String, Long> timeMap = new HashMap<>();
         timeMap.put("yesterday_zero", yesterday_zero);//昨天00:00:00

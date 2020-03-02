@@ -113,7 +113,7 @@
             <div class="col-sm-6 btn btn-success btn-block" onclick="toindex()">继续购物</div>
             <div th:if="${session.login_user} ne null">
                 <div class="col-sm-6  btn btn-success btn-block"
-                     th:onclick="toBuy([[${session.login_user.paypassword}]],[[${session.login_user.id}]])">提交订单
+                     th:onclick="toCheckPay([[${session.login_user.paypassword}]],[[${session.login_user.id}]])">提交订单
                 </div>
             </div>
         </div>
@@ -128,41 +128,12 @@
 <script type="text/javascript" defer="defer" th:inline="javascript">
 
 
-    function toBuy(paypassword_pass, userid) {
+    function toCheckPay(paypassword_pass, userid) {
         var checkId = $("input[name='checkBook']:checked");
 
         if (checkId.length == 0) {
             alert("请选择商品");
             return;
-        }
-
-        //选择付款方式
-        //当选择是账户余额时 弹出支付密码框
-        for (var j = 1; j <= 3; j++) {
-
-
-            var paypassword = prompt("请输入支付密码", "");
-            if (paypassword == null) {
-                //按了取消就是 未付款订单
-                var orderState = 1;
-                j = 4;
-            }
-            // alert("paypassword" + paypassword);
-            // alert("paypassword_pass" + paypassword_pass);
-
-            if (paypassword == paypassword_pass) {
-                //输入支付密码正确
-                j = 4;
-                var orderState = 2;
-
-            } else {
-                if (j == 3) {
-                    alert("支付密码错误次数过多，请在30分钟内完成支付");
-                    var orderState = 1;
-                    // 添加订单 到等待买家付款
-                }
-                alert("输错" + j + "次");
-            }
         }
         //获取所有选中的 书的id
         var bookidList = [];//获取书本的id
@@ -173,7 +144,6 @@
             bookidList.push(document.getElementById("bookid" + id).value);
             booknumList.push(document.getElementById("num_" + id).value);
         }
-
         $.ajax({
             url: "/toBuyList",
             type: "POST",
@@ -182,24 +152,29 @@
                 'bookidList': bookidList,
                 'booknumList': booknumList,
                 'userid': userid,
-                'totalPrice': totalPrice,
-                'paypassword_pass': paypassword_pass,
-                'orderState': orderState
+                'totalPrice': totalPrice
             },
             success: function (data) {//这个data就是返回来的json数据
-                alert(data.message);
-                if (data.message == "付款成功，等待卖家发货" || data.message == "付款密码错误三次，请三十分钟内完成支付") {
-
-                    // 去订单页面
-                    toOrder();
+                if (data.message == "添加订单成功") {
+                    alert("提交订单成功，转到付款页面")
+                    // 去此订单付款页面
+                    goToCheckPay(data.orderid);
+                }else{
+                    alert(data.message);
                 }
 
             },
             error: function () {
-                alert("服务器错误,购买失败");
+                alert("服务器错误,添加订单失败");
             }
         });
 
+
+    }
+    function goToCheckPay(orderid){
+        if(orderid>0){
+            location.href="/toCheckPay/"+orderid;
+        }
 
     }
 

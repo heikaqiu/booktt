@@ -47,7 +47,7 @@ public interface UserMapper {
 
     /**
      * 注册
-     *
+     * 返回的是行数啊 不是id TODO
      * @param user
      * @return
      */
@@ -114,8 +114,8 @@ public interface UserMapper {
     @Update("UPDATE ur SET password = #{password},paypassword=#{paypassword} WHERE id = #{userid}")
     Integer updateUserPasswordByUserid(Integer userid, String password, String paypassword);
 
-    @Update("UPDATE ur SET lastusetime = #{date} WHERE id = #{id}")
-    void updateLastUseTime(Integer id, Date date);
+    @Update("UPDATE ur SET lastusetime = #{lastusetime} WHERE id = #{userid}")
+    void updateLastUseTime(Integer userid, Date lastusetime);
 
 
     @Select("select count(*) from ur")
@@ -180,4 +180,7 @@ public interface UserMapper {
 
     @Update("UPDATE ur SET img=#{s} WHERE id = #{id}")
     void updateUserImg(String s,Integer id);
+
+    @Select("select * from ur where telephone=#{telephone}")
+    User getUserByTele(String telephone);
 }

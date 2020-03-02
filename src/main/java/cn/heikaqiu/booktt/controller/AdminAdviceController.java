@@ -1,10 +1,7 @@
 package cn.heikaqiu.booktt.controller;
 
 import cn.heikaqiu.booktt.bean.Advice;
-import cn.heikaqiu.booktt.bean.Author;
-import cn.heikaqiu.booktt.bean.FindAuthorByInformation;
 import cn.heikaqiu.booktt.service.AdviceService;
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -88,7 +85,7 @@ public class AdminAdviceController {
             }
         }
 
-        return "/admin/AdviceInformation";
+        return "admin/AdviceInformation";
     }
 
 

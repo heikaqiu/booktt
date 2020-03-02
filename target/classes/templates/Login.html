@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
 
@@ -11,11 +11,18 @@
 
     <title>Login</title>
     <style>
-        .row{
+        .row {
             margin-left: 20px;
             margin-right: 20px;;
         }
     </style>
+    <script>
+        $(function () {
+            $('#myTabs a').click(function (e) {
+                $(this).tab('show')
+            });
+        })
+    </script>
 </head>
 <body>
 <!-- Static navbar -->
@@ -24,54 +31,149 @@
 
 <!--content-->
 <div class="container">
-    <div class="row thumbnail center">
+    <div class="row thumbnail center col-sm-12">
         <div class="col-sm-12">
             <h1 class="text-center" style="margin-bottom: 30px">用户登录</h1>
         </div>
-        <div class="col-sm-6">
+        <ul class="nav nav-tabs nav-justified" id="myTabs">
+            <li class="active"><a href="#usernamelogin">账号登录</a></li>
+            <li><a href="#telelogin">手机号登录</a></li>
+        </ul>
+        <p style="color: red" th:if="${not#strings.isEmpty(error)}" th:text="${error}"></p>
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="usernamelogin">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-7">
+                    <form class="form-horizontal caption" action="/login" method="post">
+                        <div class="form-group">
 
-            <form class="form-horizontal caption" action="/login" method="post">
-                <div class="form-group">
-                    <p style="color: red" th:if="${not#strings.isEmpty(error)}" th:text="${error}"></p>
-                    <label for="username" class="col-sm-3 control-label" >用户名</label>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control" id="username" placeholder="用户名" name="username">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="password" class="col-sm-3 control-label">密码</label>
-                    <div class="col-sm-8">
-                        <input type="password" class="form-control" id="password" placeholder="密码" name="password">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-offset-3 col-sm-9">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox">记住我
-                            </label>
+                            <label for="username" class="col-sm-3 control-label">用户名</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="username" placeholder="用户名" name="username">
+                            </div>
                         </div>
-                    </div>
+                        <div class="form-group">
+                            <label for="password" class="col-sm-3 control-label">密码</label>
+                            <div class="col-sm-8">
+                                <input type="password" class="form-control" id="password" placeholder="密码"
+                                       name="password">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"></label>
+                            <div class=" col-sm-8">
+                                <button type="submit" class="btn btn-success btn-block">登录</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-                <div class="form-group">
-                    <div class="col-sm-offset-3 col-sm-5">
-                        <button type="submit" class="btn btn-success btn-block">登录</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-        <div class="col-sm-6">
-            <div class="caption">
-                <h3>免责声明</h3>
-                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-
+                <div class="col-sm-3"></div>
             </div>
+            <div role="tabpanel" class="tab-pane" id="telelogin">  <!-- TODO-->
+                <div class="col-sm-2"></div>
+                <div class="col-sm-7">
+                    <form class="form-horizontal caption" action="/logintele" method="post"  onsubmit="return Verificationtelelogin()">
+                        <div class="form-group">
+                            <label for="telephone" class="col-sm-3 control-label" >手机号</label>
+                            <div class="col-sm-8" >
+                                <input  type="text" class="form-control" id="telephone" placeholder="手机号"
+                                       name="telephone" onblur="toVerificationTelephone()">
+                                <a  class="btn btn-block " onclick="sendShortMsg()">获取验证码</a>
+                            </div>
+                            <div id="telephoneMsg"></div>
 
+                        </div>
+                        <div class="form-group">
+                            <label for="verification" class="col-sm-3 control-label">验证码</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="verification" placeholder="验证码"
+                                       name="verification">
+                            </div>
+                            <div id="VerificationMsg"></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"></label>
+                            <div class=" col-sm-8">
+                                <button type="submit" class="btn btn-success btn-block">登录</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-sm-3"></div>
+            </div>
         </div>
-
     </div>
 </div>
 
+<script>
+var istelephoneMsg=false;
+var telephoneNum=0; //电话号
+var VerificationCode=1234;//短信验证
+
+
+function Verificationtelelogin(){
+    var verification = document.getElementById("verification").value;
+
+    if(istelephoneMsg&&VerificationCode!=0&&verification!=0&&verification==VerificationCode){
+        return true;
+    }else if (istelephoneMsg==false){
+        document.getElementById("telephoneMsg").innerHTML = "<label  class='col-sm-3 control-label'></label><font style='color: red' class='col-sm-8'>手机号格式错误</font>";
+        return false;
+    }
+    else if (VerificationCode==0){
+        document.getElementById("VerificationMsg").innerHTML = "<label  class='col-sm-3 control-label'></label><font style='color: red' class='col-sm-8'>验证码未获取</font>";
+        return false;
+    }
+    else if (verification==0){
+
+        document.getElementById("VerificationMsg").innerHTML = "<label  class='col-sm-3 control-label'></label><font style='color: red' class='col-sm-8'>验证码未输入</font>";
+        return false;
+    }else if(verification!=VerificationCode){
+        document.getElementById("VerificationMsg").innerHTML = "<label  class='col-sm-3 control-label'></label><font style='color: red' class='col-sm-8'>验证码输入错误</font>";
+        return false;
+    }
+}
+    function toVerificationTelephone() {
+        //获取电话号码
+        telephoneNum = document.getElementById("telephone").value;
+        //加个限定 如果telephoneNum 是手机号码格式的  就发送请求
+        if (!(/^1[3456789]\d{9}$/.test(telephoneNum))) {
+            //手机号码有错
+            document.getElementById("telephoneMsg").innerHTML = "<label  class='col-sm-3 control-label'></label><font style='color: red' class='col-sm-8'>手机号格式错误</font>";
+
+            istelephoneMsg = false;
+            return false;
+        } else {
+            //手机号正确
+            document.getElementById("telephoneMsg").innerHTML = "";
+            istelephoneMsg = true;
+        }
+
+    }
+    function sendShortMsg() {
+        // 发送请求 发送验证码 返回验证码
+        if (istelephoneMsg) {
+            //发送请求
+            $.ajax({
+                url: "/getSsm",
+                type: "POST",
+                data: {
+                    'phoneNum': telephoneNum
+                },
+                dataType: "json",
+                success: function (data) {//这个data就是返回来的json数据
+                    VerificationCode = data.code;
+                },
+                error: function () {
+                    alert('发送请求错误');
+                }
+            });
+        } else {
+            alert("手机号不符合规则，无法发送短信");
+        }
+
+    }
+</script>
 
 <!--footer-->
 <div th:replace="Index :: end">

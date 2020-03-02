@@ -29,36 +29,17 @@ https://blog.csdn.net/liuyuanjiang109/article/details/78972644
 
      ajax 传json字符串或者直接传数组 SpringMvc如何接收https://blog.csdn.net/husky_long/article/details/81670251
 
-     2020 2/7 计划完成 订单显示页面      (2.7做到这里)   修改个人信息  以及 书本的评论 收藏功能
-     2020 2/8 计划完成  后台所有的界面
-     2020 2/9 计划完成 支付方式 以及 短信登录  微信登录 等功能
-     2020 2/10 计划完成 所有 并将项目发布到 阿里云
-
-
      使用JSON ajax传送对象到后端https://www.cnblogs.com/jpfss/p/9547004.html
 
 Mybatis 注解中 大于号小于号 要用转义https://blog.csdn.net/u013614451/article/details/39576621
 
 toPageAuthor   authorInformation
 
-是否上架的 权限 我都没有设置
-
 
 SPRINGBOOT ajax 上传文件 https://blog.csdn.net/Yaphst/article/details/82625159
-
 
 th:each 参数 及其遍历的方法
 
 
-当用户注册的时候 看是男是女 分别不同的头像  可以在个人信息 点击修改 上传  需要在首页等地方展示自己的头像
 
-超级管理员 发送通知   //发送通知 这感觉 还暂时没必要  可做可不做
-
-用户与管理员之间组成聊天室
-
-/// 现在先完成 这两个
-微信手机号登陆
-以及支付方式
-
-
-  以"." 、"\"、“|”分割字符串，直接用"." 、"\"、“|”无法分割，因为"." 、"\"、“|”是特殊字符，需要转义，"\\." 、"\\\"、“\\|”。   https://www.cnblogs.com/huanlingjisi/p/8881459.html
+  以"." 、"\"、“|”分割字符串，直接用"." 、"\、“|”无法分割，因为"." 、"\"、“|”是特殊字符，需要转义，"\\." 、"\\\"、“\\|”。   https://www.cnblogs.com/huanlingjisi/p/8881459.html"

@@ -1,11 +1,8 @@
 package cn.heikaqiu.booktt.controller;
 
-import cn.heikaqiu.booktt.bean.FindOrderByInformation;
 import cn.heikaqiu.booktt.bean.FindUserByInformation;
-import cn.heikaqiu.booktt.bean.Order;
 import cn.heikaqiu.booktt.bean.User;
 import cn.heikaqiu.booktt.config.OtherConfig;
-import cn.heikaqiu.booktt.service.AdminUserService;
 import cn.heikaqiu.booktt.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,8 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -24,9 +19,6 @@ import java.util.*;
 @Controller
 @RequestMapping("/admin")
 public class AdminUserController {
-
-    @Autowired
-    private AdminUserService adminUserService;
 
     @Autowired
     private UserService userService;
@@ -47,11 +39,11 @@ public class AdminUserController {
             } else {
                 //登录失败
                 model.addAttribute("message", "账号或者密码错误");
-                return "/admin/login";
+                return "admin/login";
             }
         }
-        //TODO 没接收到用户
-        return "/admin/login";
+
+        return "admin/login";
     }
 
     @RequestMapping(value = "/exitLogin")
@@ -161,7 +153,7 @@ public class AdminUserController {
         } else {
             model.addAttribute("message", "未找到用户  id错误");
         }
-        return "/admin/UserInformation";
+        return "admin/UserInformation";
 
 
     }

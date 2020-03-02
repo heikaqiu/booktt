@@ -1,10 +1,10 @@
 spring:
   datasource:
 #   数据源基本配置
-    username: root
-    password: root
+    username:
+    password:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/bookcity?characterEncoding=utf8&useUnicode=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai
+    url:
     type: com.alibaba.druid.pool.DruidDataSource
 #   数据源其他配置
     initialSize: 5
@@ -31,17 +31,21 @@ spring:
     freemarker:
       cache: false    #页面不加载缓存，修改即时生效
 mybatis:
-  # 指定全局配置文件位置
+  # 指定全局配置文件位置  configuration:  config-location:不能同时使用 采坑了
   config-location: classpath:mybatis/mybatis-config.xml
   # 指定sql映射文件位置
   mapper-locations: classpath:mybatis/mapper/*.xml
+#  configuration:
+#    default-statement-timeout: 60
 logging:
   level:
     #将mapper包下的日志等级调为DEBUG，能显示sql语句 ALL
     cn.heikaqiu.booktt.mapper: DEBUG
-
 #    schema:
-#      - classpath:sql/department.sql
-#      - classpath:sql/employee.sql
+#      - classpath:sql/bookttSQL.sql
 server:
-  port: 8888
+  port: 80
+
+
+
+

@@ -110,7 +110,6 @@ public class OrderServiceImp implements OrderService {
         userMapper.updateUserBalance(user.getId(),order.getTotalPrice());
         //将订单的状态更改  并将最后付款时间更改为现在
         orderMapper.updateOrderState(order.getId(), Order.State.WAIT_DELIVER_GOODS.getValue(),new Date());
-        userMapper.updateLastUseTime(order_user_id,new Date());//更改账户最后使用的时间
         return 1;
     }
 
@@ -118,6 +117,16 @@ public class OrderServiceImp implements OrderService {
     public boolean closeOrder(Long order_id) {
         try{
             orderMapper.updateOrderState(order_id,Order.State.CLOSE.getValue(),null);
+
+            //获取order
+            Order order = orderMapper.getOrderInfoByOrderId(order_id);
+            //并将order的库存返回
+            //获取订单详细的每一项
+            List<OrderContent> orderContents = order.getOrderContents();
+            for (int j = 0; j <orderContents.size() ; j++) {
+                bookMapper.updateBookRemainder(orderContents.get(j).getBook().getId(),orderContents.get(j).getNumber()*(-1));
+            }
+
             return true;
         }catch (Exception e){
             e.getMessage();
@@ -232,6 +241,11 @@ public class OrderServiceImp implements OrderService {
     public List<Order> getOrderInfoByNewOrder(Integer state_num,Integer page_num) {
 
         return orderMapper.getOrderInfoByNewOrder(state_num,page_num);
+    }
+
+    @Override
+    public void updateOrderStatus(String out_trade_no, Order.State waitDeliverGoods) {
+        orderMapper.updateOrderStatus(out_trade_no,waitDeliverGoods);
     }
 
 }

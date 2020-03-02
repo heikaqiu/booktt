@@ -50,7 +50,7 @@
                 <li th:classappend="${session.page.equals('advice')} ? 'active' : '' "><a href="/advice.html">建议</a>
                 </li>
             </ul>
-            <ul class="nav navbar-nav navbar-right hidden-sm">
+            <ul class="nav navbar-nav navbar-right">
 
                 <li th:if="${session.login_user} == null"
                     th:classappend="${session.page.equals('login')} ? 'active' : '' "><a href="/login.html">登录</a></li>

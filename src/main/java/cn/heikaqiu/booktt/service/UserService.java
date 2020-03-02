@@ -128,4 +128,8 @@ public interface UserService {
      * @return
      */
     boolean updateUserImg(String s,Integer id);
+
+    boolean logintele(String telephone);
+
+    boolean hasTele(String phoneNum);
 }

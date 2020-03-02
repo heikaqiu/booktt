@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en"  xmlns:th="http://www.thymeleaf.org">
-<head >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
     <meta charset="UTF-8">
 
     <link href="/css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet"/>
@@ -11,7 +11,7 @@
 
     <title>Register</title>
     <style>
-        .row{
+        .row {
             margin-left: 20px;
             margin-right: 20px;
         }
@@ -25,28 +25,33 @@
 <div class="container">
     <div class="row thumbnail">
         <div class="col-sm-12">
-             <h1 class="text-center" style="margin-bottom: 30px">用户注册</h1>
+            <h1 class="text-center" style="margin-bottom: 30px">用户注册</h1>
         </div>
-        <div class="col-sm-6">
-            <form class="form-horizontal caption" action="register" method="post">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+            <form class="form-horizontal caption" action="register" method="post" onsubmit="return VerificationALL()">
                 <div class="form-group">
                     <label for="username" class="col-sm-3 control-label">用户名</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" id="username" placeholder="用户名" name="username">
+                        <input type="text" class="form-control" id="username" placeholder="用户名" name="username"
+                               onblur="hasName()">
                         <p style="color: red" th:if="${not#strings.isEmpty(error)}" th:text="${error}"></p>
                     </div>
+                    <div id="usernameMsg"></div>
                 </div>
                 <div class="form-group">
                     <label for="password" class="col-sm-3 control-label">密码</label>
                     <div class="col-sm-8">
-                        <input type="password" class="form-control" id="password" placeholder="密码"  name="password">
+                        <input type="password" class="form-control" id="password" placeholder="密码" name="password" onblur="toVerificationpassword()">
                     </div>
+                    <div id="passwordMsg"></div>
                 </div>
                 <div class="form-group">
                     <label for="password" class="col-sm-3 control-label">确认密码</label>
                     <div class="col-sm-8">
-                        <input type="password" class="form-control" id="password2" placeholder="确认密码"  name="password2">
+                        <input type="password" class="form-control" id="password2" placeholder="确认密码" name="password2" onblur="toVerificationpassword2()">
                     </div>
+                    <div id="password2Msg"></div>
                 </div>
                 <div class="form-group">
                     <label for="inlineRadio1" class="col-sm-3 control-label">性别</label>
@@ -63,13 +68,28 @@
                 <div class="form-group">
                     <label for="telephone" class="col-sm-3 control-label">电话</label>
                     <div class="col-sm-8">
-                        <input type="tel" class="form-control" id="telephone" placeholder="电话号码" name="telephone">
+                        <input type="text" style="display: inline-block;width: 78%" class="form-control" id="telephone"
+                               placeholder="电话号码" name="telephone" onblur="toVerificationTelephone()">
+                        <a style="display: inline-block" class="btn btn-default" onclick="sendShortMsg()">点击验证 </a>
                     </div>
+                    <div id="telephoneMsg"></div>
+
                 </div>
+                <div class="form-group">
+                    <label for="Verification" class="col-sm-3 control-label">请输入验证码</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="Verification" placeholder="短信验证码"
+                               name="Verification" onblur="VerificationCode1();">
+                    </div>
+                    <div id="VerificationMsg"></div>
+                </div>
+
                 <div class="form-group">
                     <label for="address" class="col-sm-3 control-label">地址</label>
                     <div class="col-sm-8">
-                        <select style="width:200px" class="form-control" onchange="provinceChange(this)" value="" name="province">
+                        <select style="width:49%;display: inline-block"  class="form-control"
+                                onchange="provinceChange(this)" value=""
+                                name="province">
                             <option value="-1">-请选择-</option>
                             <option value="0">北京市</option>
                             <option value="1">天津市</option>
@@ -106,34 +126,30 @@
                             <option value="32">香港特别行政区</option>
                             <option value="33">澳门特别行政区</option>
                         </select>
-                        <select style="width:200px" class="form-control" name="city">
+                        <select style="width:50%;display: inline-block"  class="form-control" name="city">
                             <option value="-1">-请选择-</option>
                         </select>
-                        <input type="text" class="form-control" id="address" placeholder="地址" name="address">
+                        <input type="text" class="form-control" id="address" placeholder="详细地址" name="address" onblur="toVerificationaddress()">
                     </div>
+                    <div id="addressMsg"></div>
                 </div>
                 <div class="form-group">
                     <label for="paypassword" class="col-sm-3 control-label">支付密码</label>
                     <div class="col-sm-8">
-                        <input type="password" class="form-control" id="paypassword" name="paypassword"  placeholder="支付密码">
+                        <input type="password" class="form-control" id="paypassword" name="paypassword"
+                               placeholder="支付密码" onblur="toVerificationpaypassword()">
                     </div>
+                    <div id="paypasswordMsg"></div>
                 </div>
                 <div class="form-group">
-                    <div class="col-sm-offset-3 col-sm-5">
+                    <label class="col-sm-3 control-label"></label>
+                    <div class="col-sm-8">
                         <button type="submit" class="btn btn-success btn-block">注册</button>
                     </div>
                 </div>
             </form>
         </div>
-        <div class="col-sm-6">
-            <div class="caption">
-                <h3>免责声明</h3>
-                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-
-            </div>
-
-        </div>
-
+        <div class="col-sm-2"></div>
     </div>
 </div>
 
@@ -144,59 +160,301 @@
 
 <script>
 
-    var pArr=new Array("北京市","天津市","上海市","重庆市","新疆自治区","西藏自治区","宁夏自治区","内蒙古自治区","广西自治区","黑龙江省","吉林省","辽宁省","河北省","山东省","江苏省","安徽省","浙江省","福建省","广东省","海南省","云南省","贵州省","四川省","湖南省","湖北省","河南省","山西省","陕西省","甘肃省","青海省","江西省","台湾省","香港特别行政区","澳门特别行政区") ;
+    var pArr = new Array("北京市", "天津市", "上海市", "重庆市", "新疆自治区", "西藏自治区", "宁夏自治区", "内蒙古自治区", "广西自治区", "黑龙江省", "吉林省", "辽宁省", "河北省", "山东省", "江苏省", "安徽省", "浙江省", "福建省", "广东省", "海南省", "云南省", "贵州省", "四川省", "湖南省", "湖北省", "河南省", "山西省", "陕西省", "甘肃省", "青海省", "江西省", "台湾省", "香港特别行政区", "澳门特别行政区");
 
     var provinceArr = new Array(33);
-    provinceArr[0]=new Array("北京市");
-    provinceArr[1]=new Array("天津市");
-    provinceArr[2]=new Array("上海市");
-    provinceArr[3]=new Array("重庆市");
-    provinceArr[4]=new Array("乌鲁木齐","克拉玛依");
-    provinceArr[5]=new Array("拉萨");
-    provinceArr[6]=new Array("银川","石嘴山","吴忠","固原","中卫");
-    provinceArr[7]=new Array("呼和浩特","包头","乌海","赤峰","通辽","鄂尔多斯","呼伦贝尔","巴彦淖尔","乌兰察布");
-    provinceArr[8]=new Array("南宁","柳州","桂林","梧州","北海","崇左","来宾","贺州","玉林","百色","河池","钦州","防城港","贵港");
-    provinceArr[9]=new Array("哈尔滨","大庆","齐齐哈尔","佳木斯","鸡西","鹤岗","双鸭山","牡丹江","伊春","七台河","黑河","绥化");
-    provinceArr[10]=new Array("长春","吉林","四平","辽源","通化","白山","松原","白城");
-    provinceArr[11]=new Array("沈阳","大连","鞍山","抚顺","本溪","丹东","锦州","营口","阜新","辽阳","盘锦","铁岭","朝阳","葫芦岛");
-    provinceArr[12]=new Array("石家庄","唐山","邯郸","秦皇岛","保定","张家口","承德","廊坊","沧州","衡水","邢台");
-    provinceArr[13]=new Array("济南","青岛","淄博","枣庄","东营","烟台","潍坊","济宁","泰安","威海","日照","莱芜","临沂","德州","聊城","菏泽","滨州");
-    provinceArr[14]=new Array("南京","镇江","常州","无锡","苏州","徐州","连云港","淮安","盐城","扬州","泰州","南通","宿迁");
-    provinceArr[15]=new Array("合肥","蚌埠","芜湖","淮南","亳州","阜阳","淮北","宿州","滁州","安庆","巢湖","马鞍山","宣城","黄山","池州","铜陵");
-    provinceArr[16]=new Array("杭州","嘉兴","湖州","宁波","金华","温州","丽水","绍兴","衢州","舟山","台州");
-    provinceArr[17]=new Array("福州","厦门","泉州","三明","南平","漳州","莆田","宁德","龙岩");
-    provinceArr[18]=new Array("广州","深圳","汕头","惠州","珠海","揭阳","佛山","河源","阳江","茂名","湛江","梅州","肇庆","韶关","潮州","东莞","中山","清远","江门","汕尾","云浮");
-    provinceArr[19]=new Array("海口","三亚");
-    provinceArr[20]=new Array("昆明","曲靖","玉溪","保山","昭通","丽江","普洱","临沧");
-    provinceArr[21]=new Array("贵阳","六盘水","遵义","安顺");
-    provinceArr[22]=new Array("成都","绵阳","德阳","广元","自贡","攀枝花","乐山","南充","内江","遂宁","广安","泸州","达州","眉山","宜宾","雅安","资阳");
-    provinceArr[23]=new Array("长沙","株洲","湘潭","衡阳","岳阳","郴州","永州","邵阳","怀化","常德","益阳","张家界","娄底");
-    provinceArr[24]=new Array("武汉","襄樊","宜昌","黄石","鄂州","随州","荆州","荆门","十堰","孝感","黄冈","咸宁");
-    provinceArr[25]=new Array("郑州","洛阳","开封","漯河","安阳","新乡","周口","三门峡","焦作","平顶山","信阳","南阳","鹤壁","濮阳","许昌","商丘","驻马店");
-    provinceArr[26]=new Array("太原","大同","忻州","阳泉","长治","晋城","朔州","晋中","运城","临汾","吕梁");
-    provinceArr[27]=new Array("西安","咸阳","铜川","延安","宝鸡","渭南","汉中","安康","商洛","榆林");
-    provinceArr[28]=new Array("兰州","天水","平凉","酒泉","嘉峪关","金昌","白银","武威","张掖","庆阳","定西","陇南");
-    provinceArr[29]=new Array("西宁");
-    provinceArr[30]=new Array("南昌","九江","赣州","吉安","鹰潭","上饶","萍乡","景德镇","新余","宜春","抚州");
-    provinceArr[31]=new Array("台北","台中","基隆","高雄","台南","新竹","嘉义");
-    provinceArr[32]=new Array("香港特别行政区");
-    provinceArr[33]=new Array("澳门特别行政区");
+    provinceArr[0] = new Array("北京市");
+    provinceArr[1] = new Array("天津市");
+    provinceArr[2] = new Array("上海市");
+    provinceArr[3] = new Array("重庆市");
+    provinceArr[4] = new Array("乌鲁木齐", "克拉玛依");
+    provinceArr[5] = new Array("拉萨");
+    provinceArr[6] = new Array("银川", "石嘴山", "吴忠", "固原", "中卫");
+    provinceArr[7] = new Array("呼和浩特", "包头", "乌海", "赤峰", "通辽", "鄂尔多斯", "呼伦贝尔", "巴彦淖尔", "乌兰察布");
+    provinceArr[8] = new Array("南宁", "柳州", "桂林", "梧州", "北海", "崇左", "来宾", "贺州", "玉林", "百色", "河池", "钦州", "防城港", "贵港");
+    provinceArr[9] = new Array("哈尔滨", "大庆", "齐齐哈尔", "佳木斯", "鸡西", "鹤岗", "双鸭山", "牡丹江", "伊春", "七台河", "黑河", "绥化");
+    provinceArr[10] = new Array("长春", "吉林", "四平", "辽源", "通化", "白山", "松原", "白城");
+    provinceArr[11] = new Array("沈阳", "大连", "鞍山", "抚顺", "本溪", "丹东", "锦州", "营口", "阜新", "辽阳", "盘锦", "铁岭", "朝阳", "葫芦岛");
+    provinceArr[12] = new Array("石家庄", "唐山", "邯郸", "秦皇岛", "保定", "张家口", "承德", "廊坊", "沧州", "衡水", "邢台");
+    provinceArr[13] = new Array("济南", "青岛", "淄博", "枣庄", "东营", "烟台", "潍坊", "济宁", "泰安", "威海", "日照", "莱芜", "临沂", "德州", "聊城", "菏泽", "滨州");
+    provinceArr[14] = new Array("南京", "镇江", "常州", "无锡", "苏州", "徐州", "连云港", "淮安", "盐城", "扬州", "泰州", "南通", "宿迁");
+    provinceArr[15] = new Array("合肥", "蚌埠", "芜湖", "淮南", "亳州", "阜阳", "淮北", "宿州", "滁州", "安庆", "巢湖", "马鞍山", "宣城", "黄山", "池州", "铜陵");
+    provinceArr[16] = new Array("杭州", "嘉兴", "湖州", "宁波", "金华", "温州", "丽水", "绍兴", "衢州", "舟山", "台州");
+    provinceArr[17] = new Array("福州", "厦门", "泉州", "三明", "南平", "漳州", "莆田", "宁德", "龙岩");
+    provinceArr[18] = new Array("广州", "深圳", "汕头", "惠州", "珠海", "揭阳", "佛山", "河源", "阳江", "茂名", "湛江", "梅州", "肇庆", "韶关", "潮州", "东莞", "中山", "清远", "江门", "汕尾", "云浮");
+    provinceArr[19] = new Array("海口", "三亚");
+    provinceArr[20] = new Array("昆明", "曲靖", "玉溪", "保山", "昭通", "丽江", "普洱", "临沧");
+    provinceArr[21] = new Array("贵阳", "六盘水", "遵义", "安顺");
+    provinceArr[22] = new Array("成都", "绵阳", "德阳", "广元", "自贡", "攀枝花", "乐山", "南充", "内江", "遂宁", "广安", "泸州", "达州", "眉山", "宜宾", "雅安", "资阳");
+    provinceArr[23] = new Array("长沙", "株洲", "湘潭", "衡阳", "岳阳", "郴州", "永州", "邵阳", "怀化", "常德", "益阳", "张家界", "娄底");
+    provinceArr[24] = new Array("武汉", "襄樊", "宜昌", "黄石", "鄂州", "随州", "荆州", "荆门", "十堰", "孝感", "黄冈", "咸宁");
+    provinceArr[25] = new Array("郑州", "洛阳", "开封", "漯河", "安阳", "新乡", "周口", "三门峡", "焦作", "平顶山", "信阳", "南阳", "鹤壁", "濮阳", "许昌", "商丘", "驻马店");
+    provinceArr[26] = new Array("太原", "大同", "忻州", "阳泉", "长治", "晋城", "朔州", "晋中", "运城", "临汾", "吕梁");
+    provinceArr[27] = new Array("西安", "咸阳", "铜川", "延安", "宝鸡", "渭南", "汉中", "安康", "商洛", "榆林");
+    provinceArr[28] = new Array("兰州", "天水", "平凉", "酒泉", "嘉峪关", "金昌", "白银", "武威", "张掖", "庆阳", "定西", "陇南");
+    provinceArr[29] = new Array("西宁");
+    provinceArr[30] = new Array("南昌", "九江", "赣州", "吉安", "鹰潭", "上饶", "萍乡", "景德镇", "新余", "宜春", "抚州");
+    provinceArr[31] = new Array("台北", "台中", "基隆", "高雄", "台南", "新竹", "嘉义");
+    provinceArr[32] = new Array("香港特别行政区");
+    provinceArr[33] = new Array("澳门特别行政区");
 
-    function provinceChange(province){
+
+    var VerificationCode = 0;
+    var telephoneNum = 0;
+
+
+    var isusernameMsg=false;//验证用户名
+    var ispasswordMsg=false;//验证密码
+    var ispassword2Msg=false;//验证重复密码
+    var istelephoneMsg=false;//验证手机号
+    var isVerificationMsg=false;//验证 验证码
+    var isaddressMsg=false;//验证 地址信息
+    var ispaypasswordMsg=false;//验证 支付密码
+    var password=0;
+
+    //验证所有
+    function VerificationALL(){
+        if(isusernameMsg&&ispasswordMsg&&ispassword2Msg&&istelephoneMsg&&isVerificationMsg&&isaddressMsg&&ispaypasswordMsg){
+            var isNotChangeTele=toVerificationTelephone2();//验证下 电话是否改变
+            if(isNotChangeTele){
+                return true;
+            }else{
+                alert("手机号发生改变，提交失败");
+                return false;
+            }
+        }else{
+
+            hasName();
+            VerificationCode1();
+            toVerificationTelephone();
+            toVerificationpassword();
+            toVerificationpassword2();
+            toVerificationaddress();
+            toVerificationpaypassword();
+            return false;
+        }
+    }
+
+    //验证 支付密码
+    function toVerificationpaypassword() {
+        var paypassword=document.getElementById("paypassword").value;
+        if (!(/^\d{6}$/.test(paypassword))) {
+            document.getElementById("paypasswordMsg").innerHTML="<label  class='col-sm-3 control-label'></label><font style='color: red' class='col-sm-8'>支付密码必须为6位纯数字</font>";
+            ispaypasswordMsg=false;
+        }else{
+            document.getElementById("paypasswordMsg").innerHTML="";
+            ispaypasswordMsg=true;
+        }
+
+    }
+
+
+    //验证地址
+    function toVerificationaddress() {
+        var address1 = document.getElementsByName("province")[0].value;
+        var address2 = document.getElementsByName("city")[0].value;
+        var address3 = document.getElementsByName("address")[0].value;
+        if(address1>=0&&address2>=0&&address3!=""){
+            //完全了
+            document.getElementById("addressMsg").innerHTML="";
+            isaddressMsg=true;
+        }else{
+            isaddressMsg=false;
+            document.getElementById("addressMsg").innerHTML="<label  class='col-sm-3 control-label'></label><font style='color: red' class='col-sm-8'>地址没有选择或者没填写全</font>";
+        }
+
+    }
+
+
+    //验证密码  密码必须在6为到12位
+    function toVerificationpassword() {
+        password=document.getElementById("password").value;
+        if (!(/^[\w_-]{6,16}$/.test(password))) {
+            //不在此范围内
+            //密码必须在6到16位之间  可以包含数字字母_和-
+            document.getElementById("passwordMsg").innerHTML="<label  class='col-sm-3 control-label'></label><font style='color: red' class='col-sm-8'>密码必须在6到16位之间  可以包含数字字母_和-</font>";
+            ispasswordMsg=false;
+        }else{
+            ispasswordMsg=true;
+            document.getElementById("passwordMsg").innerHTML="";
+        }
+    }
+
+    //验证重复密码
+    function toVerificationpassword2() {
+        var password2=document.getElementById("password2").value;
+        //如果他们都不是空的话
+        if(password!=0&&password2!=0){
+            //判断是否一样
+            if(password2==password){
+                //yiyang de
+                ispassword2Msg=true;
+                document.getElementById("password2Msg").innerHTML="";
+            }else{
+                ispassword2Msg=false;
+                document.getElementById("password2Msg").innerHTML="<label  class='col-sm-3 control-label'></label><font style='color: red' class='col-sm-8'>两次输入密码不一致</font>";
+            }
+        }
+    }
+
+    //用于二次验证
+    function toVerificationTelephone2() {
+        //如果手机号码 还是刚才验证的手机号码的话  就是可以的 否则 就是错
+        if(telephoneNum==document.getElementById("telephone").value){
+            return true;
+        }else{
+            document.getElementById("telephoneMsg").innerHTML="<label  class='col-sm-3 control-label'></label><font style='color: red' class='col-sm-8'>手机号与验证手机号不匹配</font>";
+            return false;
+        }
+    }
+
+
+    function toVerificationTelephone() {
+
+        //获取电话号码
+        telephoneNum = document.getElementById("telephone").value;
+        //加个限定 如果telephoneNum 是手机号码格式的  就发送请求
+        if (!(/^1[3456789]\d{9}$/.test(telephoneNum))) {
+            //手机号码有错
+            document.getElementById("telephoneMsg").innerHTML = "<label  class='col-sm-3 control-label'></label><font style='color: red' class='col-sm-8'>手机号格式错误</font>";
+            istelephoneMsg = false;
+            return false;
+        } else {
+            //手机号正确
+            $.ajax({
+                url: "/getUserTele",
+                type: "POST",
+                data: {
+                    'phoneNum': telephoneNum
+                },
+                dataType: "json",
+                success: function (data) {//这个data就是返回来的json数据
+                     if(data.message=="存在"){
+                         //手机号存在
+                         document.getElementById("telephoneMsg").innerHTML = "<label  class='col-sm-3 control-label'></label><font style='color: red' class='col-sm-8'>手机号已有人注册</font>";
+                         istelephoneMsg = false;
+                     }else if(data.message=="不存在"){
+                        //手机号不存在
+                        document.getElementById("telephoneMsg").innerHTML = "";
+                         istelephoneMsg = true;
+                    }
+                },
+                error: function () {
+                    alert('发送请求错误');
+                }
+            });
+
+
+
+
+        }
+
+    }
+    function sendShortMsg(){
+        //发送请求 发送验证码 返回验证码
+        if(istelephoneMsg){
+            //发送请求
+            $.ajax({
+                url: "/getSsm",
+                type: "POST",
+                data: {
+                    'phoneNum': telephoneNum
+                },
+                dataType: "json",
+                success: function (data) {//这个data就是返回来的json数据
+
+                    document.getElementById("telephoneMsg").innerHTML = "<label  class='col-sm-3 control-label'></label><font style='color: green' class='col-sm-8'>验证码已发送至"+telephoneNum+"请等待</font>";
+
+                    VerificationCode = data.code;
+                },
+                error: function () {
+                    alert('发送请求错误');
+                }
+            });
+        }else{
+            alert("手机号不符合规则，无法发送短信");
+        }
+
+    }
+
+
+    //验证 验证码是否正确
+    function VerificationCode1() {
+        //获取验证码框 里的内容
+        var VerificationValue = document.getElementById("Verification").value;
+        if (VerificationValue != "") {
+            // alert("VerificationValue:" + VerificationValue);
+            // alert("VerificationCode:" + VerificationCode);
+            //如果相同就验证成功
+            var VerificationMsg = document.getElementById("VerificationMsg");
+            if (VerificationValue == VerificationCode && VerificationValue != 0 && VerificationCode != 0) {
+                VerificationMsg.innerHTML = "<label  class='col-sm-3 control-label'></label><font style='color: green' class='col-sm-8'>验证码匹配</font>";
+                isVerificationMsg=true;
+            } else {
+                VerificationMsg.innerHTML = "<label  class='col-sm-3 control-label'></label><font style='color: red' class='col-sm-8'>验证码失败</font>";
+                isVerificationMsg=false;
+            }
+        }
+    }
+
+
+    function hasName() {
+        //获取名字是否重复
+        var username = document.getElementById("username").value;
+
+        //用户名正则，4到16位（字母，数字，下划线，减号）
+        if (!(/^[a-zA-Z0-9_-]{4,16}$/.test(username))) {
+            //不符合
+            document.getElementById("usernameMsg").innerHTML = "<label  class='col-sm-3 control-label'></label><font style='color: red' class='col-sm-8'>用户名必须4到16位可以包含数字字母_和-</font>";
+            isusernameMsg=false;
+            return false;
+        }else{
+            //符合
+            document.getElementById("usernameMsg").innerHTML = "";
+
+        }
+        if (username != "") {
+            //发送请求
+            $.ajax({
+                url: "/getUsername",
+                type: "POST",
+                data: {
+                    'username': username
+                },
+                dataType: "json",
+                success: function (data) {//这个data就是返回来的json数据
+                    if (data.message == "不存在") {
+                        document.getElementById("usernameMsg").innerHTML = "<label  class='col-sm-3 control-label'></label><font style='color: green' class='col-sm-8'>用户名可用</font>";
+                        isusernameMsg=true;
+                    } else if (data.message == "存在") {
+                        isusernameMsg=false;
+                        document.getElementById("usernameMsg").innerHTML = "<label  class='col-sm-3 control-label'></label><font style='color: red' class='col-sm-8'>用户名重复</font>";
+
+                    }
+                },
+                error: function () {
+                    alert('发送请求错误');
+                }
+            });
+        }
+    }
+
+
+    function provinceChange(province) {
         var city = document.getElementsByName("city")[0];
         console.log(province.value);
-        console.log(typeof(province.value));
-        if(province.value=="-1"){
-            city.innerHTML="<option value=\"-1\">-请选择-</option>";
+        console.log(typeof (province.value));
+        if (province.value == "-1") {
+            city.innerHTML = "<option value=\"-1\">-请选择-</option>";
             return;
         }
 //		console.log(provinceArr[province.value]);
         var cityArr = provinceArr[province.value];
-        city.options.length=0;
-        for(var i=0;i<cityArr.length;i++){
+        city.options.length = 0;
+        for (var i = 0; i < cityArr.length; i++) {
             var cityOption = document.createElement("option");
-            cityOption.setAttribute("value",i);
-            cityOption.innerText=cityArr[i];
+            cityOption.setAttribute("value", i);
+            cityOption.innerText = cityArr[i];
             city.appendChild(cityOption);
         }
     }

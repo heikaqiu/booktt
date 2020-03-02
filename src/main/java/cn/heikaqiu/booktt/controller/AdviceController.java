@@ -3,9 +3,7 @@ package cn.heikaqiu.booktt.controller;
 import cn.heikaqiu.booktt.bean.Advice;
 import cn.heikaqiu.booktt.bean.User;
 import cn.heikaqiu.booktt.service.AdviceService;
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,10 +36,10 @@ public class AdviceController {
 
         if(advice.getContent().equals("")||advice.getContent()==null){
             model.addAttribute("error","请输入正文");
-            return "/Advice";
+            return "Advice";
         }if(advice.getTitle().equals("")||advice.getTitle()==null){
             model.addAttribute("error","请输入标题");
-            return "/Advice";
+            return "Advice";
         }
 
 
@@ -70,7 +68,7 @@ public class AdviceController {
 
             }
         }
-        return "/Advice";
+        return "Advice";
 
     }
 

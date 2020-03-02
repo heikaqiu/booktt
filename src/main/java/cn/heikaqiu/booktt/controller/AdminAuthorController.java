@@ -2,10 +2,7 @@ package cn.heikaqiu.booktt.controller;
 
 import cn.heikaqiu.booktt.bean.Author;
 import cn.heikaqiu.booktt.bean.FindAuthorByInformation;
-import cn.heikaqiu.booktt.bean.FindUserByInformation;
-import cn.heikaqiu.booktt.bean.User;
 import cn.heikaqiu.booktt.config.OtherConfig;
-import cn.heikaqiu.booktt.service.AdminUserService;
 import cn.heikaqiu.booktt.service.AuthorService;
 import cn.heikaqiu.booktt.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +11,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author HeiKaQiu
@@ -24,8 +24,6 @@ import java.util.*;
 @RequestMapping("/admin")
 public class AdminAuthorController {
 
-    @Autowired
-    private AdminUserService adminUserService;
 
     @Autowired
     private UserService userService;
@@ -108,7 +106,7 @@ public class AdminAuthorController {
         } else {
             model.addAttribute("message", "未找到作者 id出错");
         }
-        return "/admin/AuthorInformation";
+        return "admin/AuthorInformation";
     }
 
 
@@ -197,7 +195,7 @@ public class AdminAuthorController {
         boolean isshop=false;
         Boolean isishop = null;
         try {
-            //TODO
+
             isishop = authorService.updateauthorisshop(authorid,isshop);
 
         } catch (Exception e) {
@@ -223,7 +221,7 @@ public class AdminAuthorController {
     boolean isshop=true;
         Boolean isishop = null;
         try {
-            //TODO
+
             isishop = authorService.updateauthorisshop(authorid,isshop);
 
         } catch (Exception e) {

@@ -1,6 +1,9 @@
 package cn.heikaqiu.booktt.controller;
 
-import cn.heikaqiu.booktt.bean.*;
+import cn.heikaqiu.booktt.bean.Author;
+import cn.heikaqiu.booktt.bean.Book;
+import cn.heikaqiu.booktt.bean.BookType;
+import cn.heikaqiu.booktt.bean.FindBookByInformation;
 import cn.heikaqiu.booktt.config.OtherConfig;
 import cn.heikaqiu.booktt.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,7 +37,7 @@ public class AdminBookController {
     private OtherConfig otherConfig;
 
 
-    //TODO
+
     @RequestMapping("/bookInformation")
     @ResponseBody
     public Map<String, Object> bookInformation(FindBookByInformation findBookByInformation) {
@@ -117,7 +119,7 @@ public class AdminBookController {
         } else {
             model.addAttribute("message", "未找到图书 id出错");
         }
-        return "/admin/BookInformation";
+        return "admin/BookInformation";
     }
 
 
@@ -251,7 +253,7 @@ public class AdminBookController {
         boolean isshop=false;
         Boolean isishop = null;
         try {
-            //TODO
+
             isishop = bookService.updateBookisshop(bookid,isshop);
 
         } catch (Exception e) {
@@ -278,7 +280,7 @@ public class AdminBookController {
         boolean isshop=true;
         Boolean isishop = null;
         try {
-            //TODO
+
             isishop = bookService.updateBookisshop(bookid,isshop);
 
         } catch (Exception e) {

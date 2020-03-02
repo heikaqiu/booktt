@@ -28,7 +28,6 @@ public class CollectionServiceImp implements CollectionService {
         Integer line = collectionMapper.andToCollection(user_id, book_id);
         if (line == 1) {
             //添加一条收藏
-            userMapper.updateLastUseTime(user_id,new Date());//更改账户最后使用的时间
             return true;
         } else if (line == 0) {
             return false;

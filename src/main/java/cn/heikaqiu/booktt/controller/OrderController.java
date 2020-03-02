@@ -1,19 +1,13 @@
 package cn.heikaqiu.booktt.controller;
 
 import cn.heikaqiu.booktt.bean.Order;
-import cn.heikaqiu.booktt.bean.User;
 import cn.heikaqiu.booktt.service.OrderService;
-import com.sun.javafx.collections.MappingChange;
-import com.sun.org.apache.xpath.internal.operations.Mod;
-import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -81,7 +75,7 @@ public class OrderController {
             //购买失败余额不足
             map.put("message", "余额不足");
         } else if (is_buy == 3) {
-            map.put("message", "错误过多，关闭订单");
+            map.put("message", "支付密码错误，关闭订单");
         } else if (is_buy == 4) {
             map.put("message", "超过订单最后支付时间，订单已关闭");
         }

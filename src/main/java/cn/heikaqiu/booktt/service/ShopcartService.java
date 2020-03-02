@@ -29,8 +29,7 @@ public interface ShopcartService {
      * @param booknum    书数量的集合
      * @param userid      用户的id
      * @param totalPrice   需扣款的总和
-     * @param paypassword_pass
      * @return
      */
-    Integer toBuyList(List<Integer> bookid, List<Integer> booknum, Integer userid, Float totalPrice, String paypassword_pass,Integer orderState);
+    Long addOrder(List<Integer> bookid, List<Integer> booknum, Integer userid, Float totalPrice,Integer orderState);
 }

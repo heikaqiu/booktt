@@ -1,18 +1,18 @@
 package cn.heikaqiu.booktt.controller;
 
-import cn.heikaqiu.booktt.bean.Book;
-import cn.heikaqiu.booktt.bean.Order;
 import cn.heikaqiu.booktt.bean.User;
 import cn.heikaqiu.booktt.config.OtherConfig;
-import cn.heikaqiu.booktt.mapper.UserMapper;
 import cn.heikaqiu.booktt.service.BookService;
+import cn.heikaqiu.booktt.service.OrderService;
 import cn.heikaqiu.booktt.service.ShopcartService;
 import cn.heikaqiu.booktt.service.UserService;
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
@@ -40,6 +40,10 @@ public class UserController {
     @Autowired
     private ShopcartService shopcartService;
 
+
+    @Autowired
+    private OrderService orderService;
+
     /**
      * 登录
      *
@@ -60,6 +64,51 @@ public class UserController {
             session.setAttribute("page", "login");
             return "Login";
         }
+    }
+
+    @PostMapping(value = "/logintele")
+    public String logintele(String telephone, String verification, Model model) {
+        String code = (String) session.getAttribute(telephone);
+        System.out.println(telephone);
+        System.out.println(verification);
+        if (code.equals(verification) ) {
+            //验证成功登录
+            boolean issuccess = userService.logintele(telephone);
+            if (issuccess) {
+                //登录成功
+                return "redirect:/";
+            } else {
+                //登录失败 用户未找到
+                model.addAttribute("error", "登录失败1，验证码或手机号未注册错误");
+                session.setAttribute("page", "login");
+                return "Login";
+            }
+        } else {
+            //验证码错误
+            model.addAttribute("error", "登录失败2，验证码或手机号未注册错误");
+            session.setAttribute("page", "login");
+            return "Login";
+        }
+
+    }
+
+    /**
+     * 验证用户名 是否重复
+     */
+    @PostMapping("/getUsername")
+    @ResponseBody
+    public Map<String, Object> getUsername(String username, Model model) {
+        Map<String, Object> map = new HashMap<>();
+        User userByusername = userService.findUserByusername(username);
+
+        if (userByusername != null) {
+            map.put("message", "存在");
+        } else {
+            map.put("message", "不存在");
+        }
+
+        return map;
+
     }
 
     /**
@@ -90,7 +139,7 @@ public class UserController {
             //注册成功
             return "redirect:/";
         } else {
-            model.addAttribute("error", "用户名重复");
+            model.addAttribute("error", "用户名重复或者手机号重复");
             return "Register";
         }
 
@@ -107,8 +156,6 @@ public class UserController {
     public Map<String, String> buyBook(@RequestParam("book_id") String book_id,
                                        @RequestParam("buy_num") String buy_num,
                                        @RequestParam("user_id") String user_id,
-                                       Integer orderState,
-                                       String paypassword_pass,
                                        Float totalPrice) {
         Map<String, String> map = new HashMap<>();
 
@@ -121,21 +168,14 @@ public class UserController {
         Integer userid = Integer.valueOf(user_id);
 
 
-        Integer isBuyBook = shopcartService.toBuyList(bookid, booknum, userid, totalPrice, paypassword_pass, orderState);
-        if (isBuyBook == 1) {
-            //如果购买成功
-            if (orderState == Order.State.WAIT_PAYMENT.getValue())
-                map.put("message", "付款密码错误三次，请三十分钟内完成支付");
-            else if (orderState == Order.State.WAIT_DELIVER_GOODS.getValue())
-                map.put("message", "付款成功，等待卖家发货");
-        } else if (isBuyBook == 2) {
-            //购买失败余额不足
-            map.put("message", "余额不足");
-        } else if (isBuyBook == 3) {
+        Long isBuyBook = shopcartService.addOrder(bookid, booknum, userid, totalPrice, 1);
+        if (isBuyBook > 0L) {
+            //如果添加订单成功
+            map.put("message", "添加订单成功");
+            map.put("orderid", isBuyBook.toString());
+        } else if (isBuyBook == 0L) {
             //购买失败库存不足
             map.put("message", "库存不足");
-        } else if (isBuyBook == 4) {
-            map.put("message", "支付密码错误");
         }
 
         return map;
@@ -180,11 +220,23 @@ public class UserController {
      * 修改用户的基本信息
      */
     @PostMapping("/updateUserInformation")
-    public String updateUserInformation(User user, Model model) {
-        String province = otherConfig.getProvince(Integer.valueOf(user.getProvince()));
-        String city = otherConfig.getCity(Integer.valueOf(user.getProvince()), Integer.valueOf(user.getCity()));
-        user.setProvince(province);
-        user.setCity(city);
+    public String updateUserInformation(Integer id,
+                                        String username,
+                                        boolean gender, String telephone,
+                                        Integer province,
+                                        Integer city,
+                                        String address,
+                                        Model model) {
+        User user = new User();
+        String provinces = otherConfig.getProvince(province);
+        String citys = otherConfig.getCity(province, city);
+        user.setProvince(provinces);
+        user.setCity(citys);
+        user.setId(id);
+        user.setUsername(username);
+        user.setGender(gender);
+        user.setTelephone(telephone);
+        user.setAddress(address);
         System.out.println(user);
         boolean isupdate = false;
         try {
@@ -192,13 +244,19 @@ public class UserController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        user = userService.getUserById(id);
+        model.addAttribute("user", user);
         if (isupdate) {
             //修改用户成功
-            return "redirect:/userInfo.html";
+            otherConfig.reloadLoginUser();
+            model.addAttribute("success_message", "修改用户信息成功");
+
+
+            return "UserInfo";
         } else {
             //转到错误页面
-            model.addAttribute("error_message", "修改用户失败");
-            return "error";
+            model.addAttribute("error_message", "修改用户信息失败，用户名重复");
+            return "UserInfo";
         }
     }
 
@@ -215,13 +273,17 @@ public class UserController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        User user = userService.getUserById(userid);
+        model.addAttribute("user", user);
         if (isupdate) {
             //修改用户成功
-            return "redirect:/userInfo.html";
+            otherConfig.reloadLoginUser();
+            model.addAttribute("success_message", "修改用户密码成功");
+            return "UserInfo";
         } else {
             //转到错误页面
-            model.addAttribute("error_message", "修改用户失败");
-            return "error";
+            model.addAttribute("error_message", "修改用户密码失败,密码错误");
+            return "UserInfo";
         }
     }
 
@@ -294,9 +356,26 @@ public class UserController {
         } else {
             map.put("message", "上传失败");
         }
+        otherConfig.reloadLoginUser();
 
         return map;
 
     }
+
+    @PostMapping("/getUserTele")
+    @ResponseBody
+    public Map<String, Object> getUserTele(String phoneNum) {
+        Map<String, Object> map = new HashMap<>();
+        boolean ishas = userService.hasTele(phoneNum);
+        if (ishas) {
+            //
+            map.put("message", "存在");
+        } else {
+            map.put("message", "不存在");
+        }
+        return map;
+
+    }
+
 
 }

@@ -10,8 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import com.alibaba.fastjson.JSONObject;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
@@ -48,7 +46,7 @@ public class BookController {
     public  Map<String, Object> getBookByType(@PathVariable("id") Integer id){
         List<Book> booksList=bookService.getBookByType(id,null,null);
         Map<String, Object> books=new HashMap<>();
-        System.out.println(booksList);
+        //System.out.println(booksList);
         //将查找到的list<book>封装
         books.put("books",booksList);
 
@@ -67,11 +65,11 @@ public class BookController {
     @ResponseBody
     public  Map<String, Object> getBookByTypeLimit(Integer type_id,Integer index_num,Integer page_num){
 
-        System.out.println(type_id+"++"+index_num+"page_num"+page_num);
+        //System.out.println(type_id+"++"+index_num+"page_num"+page_num);
         //分页查询此类型书本
         List<Book> booksList=bookService.getBookByType(type_id,index_num,page_num);
         Map<String, Object> books=new HashMap<>();
-        System.out.println(booksList);
+        //System.out.println(booksList);
         //将查找到的list<book>封装
         books.put("books",booksList);
 
@@ -102,14 +100,9 @@ public class BookController {
     public String BookInfo(@PathVariable("id") Integer id, Model model){
 
 
-        //测试使用的登录 TODO
-        User user=new User();
-        user.setUsername("heikaqiu");
-        user.setPassword("123456");
-        userService.login(user);
 
 
-
+        session.setAttribute("page", "/");
 
         Book book=bookService.getBookInfoById(id);
         model.addAttribute("book",book);

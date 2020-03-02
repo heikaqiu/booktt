@@ -213,4 +213,7 @@ public interface OrderMapper {
             @Result(column = "user_id", property = "user", one = @One(select = "cn.heikaqiu.booktt.mapper.UserMapper.getUserById"))
     })
     List<Order> getOrderInfoByNewOrder(Integer state_num,Integer page_num);
+
+    @Update("update `order` set state=#{waitDeliverGoods.value} where id=#{out_trade_no}")
+    void updateOrderStatus(String out_trade_no, Order.State waitDeliverGoods);
 }
