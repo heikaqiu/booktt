@@ -14,7 +14,9 @@
 下面三处需要修改为自己的信息
 
 cn.heikaqiu.booktt.config.AlipayConfig
+
 cn.heikaqiu.booktt.controller.ShortMessageController
+
 cn.heikaqiu.booktt.controller.WxpayController
 
 application.yml 需要配置数据库信息
