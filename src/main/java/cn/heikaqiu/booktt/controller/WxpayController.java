@@ -81,7 +81,7 @@ public class WxpayController {
             e.printStackTrace();
         }
         requestDataMap.put("spbill_create_ip", hostAddress);//Native支付填调用微信支付API的机器IP 支持IPV4和IPV6两种格式的IP地址。用户的客户端IP
-        requestDataMap.put("notify_url", "http://118.178.190.156/wxpay/wxpayNotify");//异步接收微信支付结果通知的回调地址，通知url必须为外网可访问的url，不能携带参数。
+        requestDataMap.put("notify_url", "http://127.0.0.1:8080/wxpay/wxpayNotify");//异步接收微信支付结果通知的回调地址，通知url必须为外网可访问的url，不能携带参数。
         requestDataMap.put("trade_type", "NATIVE");//交易类型 JSAPI -JSAPI支付 NATIVE -Native支付 APP -APP支付
         requestDataMap.put("product_id", order.getId().toString());//商品ID  trade_type=NATIVE时，此参数必传。此参数为二维码中包含的商品ID，商户自行定义。
 
